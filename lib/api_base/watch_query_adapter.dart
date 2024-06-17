@@ -2,20 +2,17 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:graphql/client.dart';
 
 import 'gql_client_provider.dart';
-import '../config/ttl_config.dart';
-import 'ttl/ttl_service.dart';
 
 class GqlOfflineException implements Exception {
-  const GqlOfflineException(this.ttlKey);
-  final TtlKey ttlKey;
+  const GqlOfflineException();
 }
 
 extension _WatchQueryStreamAdapter<T> on Ref {
-  void handleErrors(QueryResult<T> event, TtlKey ttlKey) {
+  void handleErrors(QueryResult<T> event) {
     if (!event.hasException) return;
 
     if (event.exception?.linkException != null) {
-      throw GqlOfflineException(ttlKey);
+      throw const GqlOfflineException();
     }
 
     throw Exception(
@@ -26,12 +23,11 @@ extension _WatchQueryStreamAdapter<T> on Ref {
   Stream<QueryResult<T>> watchQueryStreamAdapter(
     GraphQLClient client,
     WatchQueryOptions<T> options,
-    TtlKey ttlKey,
   ) {
     final observableQuery = client.watchQuery(options);
     onDispose(observableQuery.close);
     return observableQuery.stream.map((event) {
-      handleErrors(event, ttlKey);
+      handleErrors(event);
       return event;
     }).where(
       (event) => event.isNotLoading,
@@ -41,19 +37,12 @@ extension _WatchQueryStreamAdapter<T> on Ref {
 
 extension TTLWatchQueryAdapter on AutoDisposeStreamProviderRef {
   Stream<T?> watchQueryWithCache<T>(
-      WatchQueryOptions<T> watchQueryOptions, TtlKey ttlKey) async* {
+      WatchQueryOptions<T> watchQueryOptions) async* {
     final apiClient = await watch(gqlClientProvider);
-    final ttlService = ttlServiceProvider.call(ttlKey);
-    final ttlFetchPolicy = await watch(ttlService.future);
-
-    final newOptions = watchQueryOptions.copyWithFetchPolicy(ttlFetchPolicy);
 
     yield* watchQueryStreamAdapter(
       apiClient,
-      newOptions,
-      ttlKey,
-    )
-        .asyncMap(read(ttlService.notifier).interceptAndSaveTimestamps)
-        .map((event) => event.parsedData);
+      watchQueryOptions,
+    ).map((event) => event.parsedData);
   }
 }

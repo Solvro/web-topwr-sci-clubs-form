@@ -1,13 +1,10 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:graphql/client.dart';
 
 import '../config/api_base_config.dart';
 
 final _hiveCacheBoxProvider = Provider((ref) async {
-  if (kIsWeb) return GraphQLCache(); // Normal in memory cache
-  final box = await HiveStore.open(boxName: ApiBaseConfig.hiveCacheBoxName);
-  return GraphQLCache(store: box); // Local persistent on-disk cache with Hive
+  return GraphQLCache();
 });
 
 final gqlClientProvider = Provider((ref) async {

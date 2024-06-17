@@ -21,6 +21,9 @@ dependencies:
   flutter_svg: ^2.0.10+1
   intl: ^0.19.0
   url_launcher: ^6.3.0
+  envied: ^0.5.4+1
+  graphql: ^5.1.3
+  flutter_widget_from_html_core: ^0.15.1
 
 dev_dependencies:
   flutter_test:
@@ -31,6 +34,9 @@ dev_dependencies:
   riverpod_generator: ^2.4.2
   theme_tailor: ^3.0.1
   enum_map_gen: ^0.3.0
+  riverpod_lint: ^2.3.12
+  envied_generator: ^0.5.4+1
+  graphql_codegen: ^0.14.0
 
 dependency_overrides:
   analyzer: ^6.5.0

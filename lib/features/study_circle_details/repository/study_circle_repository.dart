@@ -1,6 +1,5 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import '../../../config/ttl_config.dart';
 import '../../../api_base/watch_query_adapter.dart';
 import 'getScientificCircleDetails.graphql.dart';
 
@@ -20,7 +19,6 @@ Stream<StudyCircleDetails?> studyCircleRepository(
       eagerlyFetchResults: true,
       variables: _Vars(id: id),
     ),
-    TtlKey.sciCirclesPreviewRepository,
   );
   yield* stream.map((event) => event?.Scientific_Circles_by_id);
 }
