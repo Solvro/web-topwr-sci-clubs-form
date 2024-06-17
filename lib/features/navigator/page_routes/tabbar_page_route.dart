@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 
 import '../../../config/nav_bar_config.dart';
 import '../../../config/routes.dart';
+import '../../home_view /home_view.dart';
 
 class TabBarPageRoute extends MaterialPageRoute {
   static const _widgetOptions = UnmodifiableNavBarEnumMap(
-    home: Placeholder(),
+    home: HomeView(),
     mapp: Placeholder(),
     faculties: Placeholder(),
     sciCircles: Placeholder(),
