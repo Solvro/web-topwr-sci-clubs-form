@@ -17,6 +17,10 @@ dependencies:
   flutter_riverpod: ^2.5.1
   riverpod_annotation: ^2.3.5
   enum_map: ^0.3.0
+  cached_network_image: ^3.3.1
+  flutter_svg: ^2.0.10+1
+  intl: ^0.19.0
+  url_launcher: ^6.3.0
 
 dev_dependencies:
   flutter_test:
