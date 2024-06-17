@@ -1,7 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:graphql/client.dart';
 
-import '../config/api_base_config.dart';
+import '../features/topwr_mockup/config/api_base_config.dart';
 
 final _hiveCacheBoxProvider = Provider((ref) async {
   return GraphQLCache();
