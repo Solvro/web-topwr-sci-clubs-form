@@ -13,14 +13,16 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final lastKey = GlobalKey();
+    final scrollDownToKey = GlobalKey();
+
     Future.delayed(Durations.medium1, () {
       Scrollable.ensureVisible(
-        lastKey.currentContext ?? context,
+        scrollDownToKey.currentContext ?? context,
         alignment: 0.8,
         duration: const Duration(milliseconds: 500),
       );
     });
+
     final List<Widget> sections = [
       // const Greeting(),
       const HorizontalPlaceholder(),
@@ -45,7 +47,7 @@ class HomeView extends StatelessWidget {
         tabDestination: NavBarEnum.mapp,
       ),
       StudyCirclesSection(
-        key: lastKey,
+        key: scrollDownToKey,
       ),
       // const DepartmentSection(),
       SubsectionPlaceholder(
