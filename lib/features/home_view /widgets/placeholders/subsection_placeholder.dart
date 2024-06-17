@@ -14,11 +14,13 @@ class SubsectionPlaceholder extends ConsumerWidget {
     this.big = false,
     this.isMapActionString = false,
     required this.title,
+    required this.tabDestination,
     super.key,
   });
   final bool big;
   final bool isMapActionString;
   final String title;
+  final NavBarEnum tabDestination;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Column(
@@ -29,7 +31,7 @@ class SubsectionPlaceholder extends ConsumerWidget {
                 ? context.localize.map_button
                 : context.localize.list,
             onClick: () {
-              ref.read(navigatorProvider).changeTabBar(NavBarEnum.sciCircles);
+              ref.read(navigatorProvider).changeTabBar(tabDestination);
             }),
         big
             ? const BigScrollableSectionPlacehoder()

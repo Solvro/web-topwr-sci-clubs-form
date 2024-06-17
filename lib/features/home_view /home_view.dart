@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../config/nav_bar_config.dart';
 import '../../config/ui_config.dart';
 import '../../theme/app_theme.dart';
 import '../../utils/context_extensions.dart';
@@ -21,21 +22,25 @@ class HomeView extends StatelessWidget {
       SubsectionPlaceholder(
         title: context.localize.parkings_title,
         isMapActionString: true,
+        tabDestination: NavBarEnum.parkings,
       ),
       // const NewsSection(),
       SubsectionPlaceholder(
         title: context.localize.whats_up,
         big: true,
+        tabDestination: NavBarEnum.info,
       ),
       // const BuildingsSection(),
       SubsectionPlaceholder(
         title: context.localize.buildings_title,
         isMapActionString: true,
+        tabDestination: NavBarEnum.mapp,
       ),
       const StudyCirclesSection(),
       // const DepartmentSection(),
       SubsectionPlaceholder(
         title: context.localize.departments,
+        tabDestination: NavBarEnum.faculties,
       ),
     ];
     return Scaffold(
