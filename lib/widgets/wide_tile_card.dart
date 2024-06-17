@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../config/ui_config.dart';
 import '../theme/app_theme.dart';
 import 'my_cached_image.dart';
-import '../features/student_research_group_tab/widgets/ensure_visible_tags.dart';
+import '../features/sci_clubs_tab/widgets/ensure_visible_tags.dart';
 
 class PhotoTrailingWideTileCard extends WideTileCard {
   PhotoTrailingWideTileCard({
