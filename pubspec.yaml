@@ -31,6 +31,7 @@ dependency_overrides:
   meta: ^1.15.0
 
 flutter:
+  generate: true
   uses-material-design: true
   assets:
     - assets/splash_screen/splash_logo.png

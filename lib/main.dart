@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:topwr_sci_clubs_form/features/splash_screen/splash_screen.dart';
-import 'package:topwr_sci_clubs_form/features/splash_screen/splash_screen_controller.dart';
 
 import 'config/ui_config.dart';
-
+import 'features/splash_screen/splash_screen.dart';
+import 'features/splash_screen/splash_screen_controller.dart';
 import 'theme/app_theme.dart';
 import 'theme/colors.dart';
 
