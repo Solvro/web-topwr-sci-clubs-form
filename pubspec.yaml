@@ -16,6 +16,7 @@ dependencies:
   flutter_native_splash: ^2.4.0
   flutter_riverpod: ^2.5.1
   riverpod_annotation: ^2.3.5
+  enum_map: ^0.3.0
 
 dev_dependencies:
   flutter_test:
@@ -25,6 +26,7 @@ dev_dependencies:
   flutter_launcher_icons: ^0.13.1
   riverpod_generator: ^2.4.2
   theme_tailor: ^3.0.1
+  enum_map_gen: ^0.3.0
 
 dependency_overrides:
   analyzer: ^6.5.0

@@ -246,6 +246,22 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.3.6"
+  enum_map:
+    dependency: "direct main"
+    description:
+      name: enum_map
+      sha256: ce85ec59faba708085231e7829b7a5de73f6d059b43bfec0085a25a1fbb9cdf1
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.3.0"
+  enum_map_gen:
+    dependency: "direct dev"
+    description:
+      name: enum_map_gen
+      sha256: "1ee666dae131c56cf2df6d5a161fce47e584095c312a9b03d7b35855b0a3c358"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.3.0"
   fake_async:
     dependency: transitive
     description:
