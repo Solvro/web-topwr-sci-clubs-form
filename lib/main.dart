@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../theme/app_theme.dart';
 import '../../theme/colors.dart';
+import 'features/form/form_widget.dart';
 import 'features/mockup_frame/mockup_frame.dart';
 import 'features/topwr_mockup/config/ui_config.dart';
 import 'features/topwr_mockup/features/splash_screen/splash_screen.dart';
@@ -29,12 +30,31 @@ class MyApp extends StatelessWidget {
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
       theme: ThemeData(
-          extensions: const [AppTheme()],
-          colorScheme: const ColorScheme.light().copyWith(
-            surface: ColorsConsts.whiteSoap,
-          )),
+        extensions: const [AppTheme()],
+        colorScheme: const ColorScheme.light().copyWith(
+          surface: ColorsConsts.whiteSoap,
+          primary: ColorsConsts.blueAzure,
+          error: ColorsConsts.orangePomegranade,
+        ),
+      ),
       debugShowCheckedModeBanner: false,
-      home: const MockupFrame(),
+      home: const RootView(),
+    );
+  }
+}
+
+class RootView extends StatelessWidget {
+  const RootView({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const Scaffold(
+      body: Row(
+        children: [
+          Expanded(child: SciClubForm()),
+          Expanded(child: MockupFrame()),
+        ],
+      ),
     );
   }
 }

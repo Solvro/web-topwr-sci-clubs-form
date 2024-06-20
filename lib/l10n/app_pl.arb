@@ -63,5 +63,8 @@
   "offline_sci_clubs": "kół naukowych",
   "offline_buildings":"budynków",
   "offline_departments":"wydziałów",
-  "offline_academic_calendar":"kalendarza akademickiego"
+  "offline_academic_calendar":"kalendarza akademickiego",
+  "form_sci_club_name" : "Nazwa koła/organizacji",
+  "form_sci_short_desc" : "Krótki opis",
+  "form_sci_desc" : "Opis"
 }

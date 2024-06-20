@@ -27,11 +27,15 @@ dependencies:
   collection: ^1.18.0
   device_frame: ^1.2.0
   separate: ^1.0.3
+  reactive_forms: ^17.0.1
+  reactive_forms_annotations: ^5.0.0
+  freezed_annotation: ^2.4.1
+  json_annotation: ^4.9.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  build_runner: ^2.4.10
+  build_runner: ^2.4.11
   flutter_lints: ^3.0.0
   flutter_launcher_icons: ^0.13.1
   riverpod_generator: ^2.4.2
@@ -40,6 +44,9 @@ dev_dependencies:
   riverpod_lint: ^2.3.12
   envied_generator: ^0.5.4+1
   graphql_codegen: ^0.14.0
+  reactive_forms_generator: ^5.0.4
+  freezed: ^2.5.3
+  json_serializable: ^6.8.0
 
 dependency_overrides:
   analyzer: ^6.5.0
@@ -60,13 +67,13 @@ flutter:
   fonts:
     - family: Schyler
       fonts:
-        - asset: assets/fonts/Rubik-VariableFont_wght.ttf
+        - asset: fonts/Rubik-VariableFont_wght.ttf
     - family: BottomNavBarIcon
       fonts:
-        - asset: assets/fonts/BottomNavBarIcon.ttf
+        - asset: fonts/BottomNavBarIcon.ttf
     - family: IParkingIcons
       fonts:
-        - asset: assets/fonts/IParkingIcons.ttf
+        - asset: fonts/IParkingIcons.ttf
 flutter_native_splash:
   background_image: assets/splash_screen/native_splash_bg.png
   image: assets/splash_screen/splash_logo.png
