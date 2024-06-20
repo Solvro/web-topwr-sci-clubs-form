@@ -13,8 +13,10 @@ import '../../../config/nav_bar_config.dart';
 import '../../navigator/navigator/detail_view_navigator.dart';
 import '../../navigator/navigator/nested_navigator.dart';
 import '../../navigator/navigator/tab_bar_navigator.dart';
+
 import 'loading_widgets/big_scrollable_section_loading.dart';
 import 'paddings.dart';
+import 'scroll_down_to_key.dart';
 
 class StudyCirclesSection extends ConsumerWidget {
   const StudyCirclesSection({super.key});
@@ -23,6 +25,7 @@ class StudyCirclesSection extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) => Column(
         children: [
           SubsectionHeader(
+              key: ref.watch(scrollDownKey),
               title: context.localize.study_circles,
               actionTitle: context.localize.list,
               onClick: () {

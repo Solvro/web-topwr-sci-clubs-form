@@ -26,6 +26,7 @@ dependencies:
   flutter_widget_from_html_core: ^0.15.1
   collection: ^1.18.0
   device_frame: ^1.2.0
+  separate: ^1.0.3
 
 dev_dependencies:
   flutter_test:

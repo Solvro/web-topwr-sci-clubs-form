@@ -938,6 +938,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.27.7"
+  separate:
+    dependency: "direct main"
+    description:
+      name: separate
+      sha256: "7e1c50cca98fb9baecce2d5a51dd90061fcc1b834273e7d7b545ffc7afeca731"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.3"
   shelf:
     dependency: transitive
     description:

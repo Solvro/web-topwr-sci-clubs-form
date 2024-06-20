@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:separate/separate.dart';
 
-import '../../config/nav_bar_config.dart';
-import '../../config/ui_config.dart';
 import '../../../../theme/app_theme.dart';
 import '../../../../utils/context_extensions.dart';
+import '../../config/nav_bar_config.dart';
+import '../../config/ui_config.dart';
 import 'widgets/logo_app_bar.dart';
 import 'widgets/placeholders/horizontal_placeholder.dart';
 import 'widgets/placeholders/subsection_placeholder.dart';
@@ -15,8 +17,6 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final scrollDownToKey = GlobalKey();
-
     final List<Widget> sections = [
       // const Greeting(),
       const HorizontalPlaceholder(),
@@ -40,9 +40,7 @@ class HomeView extends StatelessWidget {
         isMapActionString: true,
         tabDestination: NavBarEnum.mapp,
       ),
-      StudyCirclesSection(
-        key: scrollDownToKey,
-      ),
+      const StudyCirclesSection(),
       // const DepartmentSection(),
       SubsectionPlaceholder(
         title: context.localize.departments,
@@ -53,13 +51,13 @@ class HomeView extends StatelessWidget {
       backgroundColor: context.colorTheme.whiteSoap,
       appBar: LogoAppBar(context),
       body: ScrollDownToKey(
-        scrollDownToKey,
-        child: ListView.separated(
+        child: ListView(
           padding: const EdgeInsets.only(bottom: 48),
-          itemBuilder: (context, index) => sections[index],
-          separatorBuilder: (context, index) =>
-              const SizedBox(height: HomeScreenConfig.paddingMedium),
-          itemCount: sections.length,
+          children: sections.separate(
+            (i, e0, e1) => const SizedBox(
+              height: HomeScreenConfig.paddingMedium,
+            ),
+          ),
         ),
       ),
     );

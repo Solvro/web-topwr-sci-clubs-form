@@ -19,25 +19,25 @@ class MockupFrame extends StatelessWidget {
     //   ),
     // );
     return DeviceFrame(
-      // device: Devices.ios.iPhoneSE,
-      device: DeviceInfo.genericPhone(
-        platform: TargetPlatform.android,
-        name: 'Medium',
-        id: 'medium',
-        screenSize: const Size(412, 732),
-        safeAreas: const EdgeInsets.only(
-          left: 0.0,
-          top: 24.0,
-          right: 0.0,
-          bottom: 0.0,
-        ),
-        rotatedSafeAreas: const EdgeInsets.only(
-          left: 0.0,
-          top: 24.0,
-          right: 0.0,
-          bottom: 0.0,
-        ),
-      ),
+      device: Devices.ios.iPhoneSE,
+      // device: DeviceInfo.genericPhone(
+      //   platform: TargetPlatform.android,
+      //   name: 'Medium',
+      //   id: 'medium',
+      //   screenSize: const Size(412, 732),
+      //   safeAreas: const EdgeInsets.only(
+      //     left: 0.0,
+      //     top: 24.0,
+      //     right: 0.0,
+      //     bottom: 0.0,
+      //   ),
+      //   rotatedSafeAreas: const EdgeInsets.only(
+      //     left: 0.0,
+      //     top: 24.0,
+      //     right: 0.0,
+      //     bottom: 0.0,
+      //   ),
+      // ),
       orientation: Orientation.portrait,
       isFrameVisible: true,
       screen: MaterialApp(
@@ -46,14 +46,14 @@ class MockupFrame extends StatelessWidget {
         supportedLocales: AppLocalizations.supportedLocales,
         theme: Theme.of(context),
         debugShowCheckedModeBanner: false,
-        scrollBehavior: MyCustomScrollBehavior(),
+        scrollBehavior: FixScroll(),
         home: const RootNavigatorWidget(),
       ),
     );
   }
 }
 
-class MyCustomScrollBehavior extends MaterialScrollBehavior {
+class FixScroll extends MaterialScrollBehavior {
   @override
   Set<PointerDeviceKind> get dragDevices => {
         PointerDeviceKind.touch,
