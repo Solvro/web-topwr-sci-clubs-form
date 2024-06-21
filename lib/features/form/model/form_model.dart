@@ -38,7 +38,20 @@ class SciClubFormModel with _$SciClubFormModel {
     @RfControl() Uint8List? logo,
     @RfControl() Uint8List? cover,
     @RfArray() List<bool>? tags,
+    @RfArray<SocialUrl>() List<SocialUrl>? socialLinks,
   }) = _SciClubFormModel;
+}
+
+@freezed
+@RfGroup()
+class SocialUrl with _$SocialUrl {
+  const factory SocialUrl({
+    String? name,
+    String? url,
+  }) = _SocialUrlForm;
+
+  factory SocialUrl.fromJson(Map<String, Object?> json) =>
+      _$SocialUrlFromJson(json);
 }
 
 @riverpod

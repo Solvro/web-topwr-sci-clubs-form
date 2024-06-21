@@ -6,6 +6,7 @@ import '../image_dropzone/image_dropzone.dart';
 import 'model/form_model.dart';
 import 'widgets/form_fields.dart';
 import 'widgets/select_tags.dart';
+import 'widgets/social_links_form.dart';
 import 'widgets/type_choice_field.dart';
 
 class SciClubForm extends ConsumerWidget {
@@ -23,21 +24,21 @@ class SciClubForm extends ConsumerWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 40.0),
                 children: [
                   MyFormField(
-                    formModel.nameControl,
                     context.localize.form_sci_club_name,
+                    formControl: formModel.nameControl,
                   ),
                   MyFormField(
-                    formModel.departmentControl,
                     context.localize.form_sci_club_department,
+                    formControl: formModel.departmentControl,
                   ),
                   MyFormField(
-                    formModel.shortDescriptionControl,
                     context.localize.form_sci_short_desc,
+                    formControl: formModel.shortDescriptionControl,
                   ),
                   TypeChoiceField(formModel.typeControl),
                   MyFormField(
-                    formModel.descriptionControl,
                     context.localize.form_sci_short_desc,
+                    formControl: formModel.descriptionControl,
                   ),
                   ImageDropzone(
                     label: context.localize.form_logo,
@@ -48,6 +49,7 @@ class SciClubForm extends ConsumerWidget {
                     formControl: formModel.coverControl,
                   ),
                   SelectTags(formModel.tagsControl),
+                  SocialLinksForm(formModel: formModel)
                 ]);
           },
         ),

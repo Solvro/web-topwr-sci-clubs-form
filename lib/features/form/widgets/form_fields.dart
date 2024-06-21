@@ -7,10 +7,12 @@ import 'text_style.dart';
 
 class MyFormField extends StatelessWidget {
   final FormControl<String>? formControl;
+  final String? formControlName;
   final String label;
   const MyFormField(
-    this.formControl,
     this.label, {
+    this.formControl,
+    this.formControlName,
     super.key,
   });
 
@@ -20,6 +22,7 @@ class MyFormField extends StatelessWidget {
       padding: FormFieldConfig.padding,
       child: ReactiveTextField<String>(
         formControl: formControl,
+        formControlName: formControlName,
         textInputAction: TextInputAction.next,
         decoration: InputDecoration(
           labelText: label,
