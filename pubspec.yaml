@@ -32,9 +32,8 @@ dependencies:
   freezed_annotation: ^2.4.1
   json_annotation: ^4.9.0
   reactive_image_picker: ^5.0.1
-  flutter_dropzone: ^4.0.1
   dotted_border: ^2.1.0
-  mobkit_dashed_border: ^0.0.6
+  super_drag_and_drop: ^0.8.17
 
 dev_dependencies:
   flutter_test:

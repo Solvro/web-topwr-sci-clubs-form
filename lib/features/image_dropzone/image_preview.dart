@@ -1,21 +1,23 @@
+import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
 
 import 'none_preview.dart';
 
 class DragAndDropImagePreview extends StatelessWidget {
-  const DragAndDropImagePreview({
+  const DragAndDropImagePreview(
+    this.image, {
     super.key,
-    required this.url,
     this.onRemoveFile,
     this.onPickFile,
   });
 
-  final String? url;
+  final Uint8List? image;
   final VoidCallback? onRemoveFile;
   final VoidCallback? onPickFile;
   @override
   Widget build(BuildContext context) {
-    if (url == null) {
+    if (image == null) {
       return DragAndDropNonePreview(
         onPressed: onPickFile,
       );
@@ -31,7 +33,7 @@ class DragAndDropImagePreview extends StatelessWidget {
         ),
         Container(
           padding: const EdgeInsets.all(20.0),
-          child: Image.network(url!),
+          child: Image.memory(image!),
         ),
       ],
     );
