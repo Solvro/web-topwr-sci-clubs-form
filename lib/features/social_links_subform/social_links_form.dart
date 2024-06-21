@@ -1,13 +1,9 @@
-import 'dart:async';
-
-import 'package:flutter/material.dart';
 import 'package:reactive_forms_annotations/reactive_forms_annotations.dart';
 
 import '../../utils/context_extensions.dart';
 import '../form/model/form_model.dart';
-import '../form/widgets/form_fields.dart';
 import '../form/widgets/form_subsection.dart';
-import 'widget/link_field.dart';
+import 'widget/social_link_section.dart';
 
 class SocialLinksForm extends StatelessWidget {
   const SocialLinksForm({super.key, required this.formModel});
@@ -28,55 +24,11 @@ class SocialLinksForm extends StatelessWidget {
             buildChildren: (setError) {
               return [
                 ...formModel.socialLinksSocialUrlForm.map((model) {
-                  return _SocialLinkSection(model);
+                  return SocialLinkSection(model);
                 })
               ];
             },
           );
         });
-  }
-}
-
-class _SocialLinkSection extends StatefulWidget {
-  const _SocialLinkSection(this.model);
-  final SocialUrlForm model;
-
-  @override
-  State<_SocialLinkSection> createState() => _SocialLinkSectionState();
-}
-
-class _SocialLinkSectionState extends State<_SocialLinkSection> {
-  StreamSubscription? subs;
-  @override
-  void initState() {
-    subs = widget.model.urlControl?.valueChanges
-        .listen((event) => setState(() {}));
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    subs?.cancel();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      child: Column(
-        children: [
-          LinkField(
-            formControl: widget.model.urlControl,
-            widget.model.model,
-            context.localize.url_field,
-          ),
-          if (!widget.model.model.isUrlEmail)
-            MyFormField(
-              formControl: widget.model.nameControl,
-              context.localize.url_name_field,
-            ),
-        ],
-      ),
-    );
   }
 }
