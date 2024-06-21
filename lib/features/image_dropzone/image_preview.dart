@@ -2,6 +2,7 @@ import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 
+import '../../theme/app_theme.dart';
 import 'none_preview.dart';
 
 class DragAndDropImagePreview extends StatelessWidget {
@@ -23,17 +24,25 @@ class DragAndDropImagePreview extends StatelessWidget {
       );
     }
     return Stack(
+      fit: StackFit.expand,
       children: [
-        Align(
-          alignment: Alignment.topRight,
-          child: IconButton(
-            onPressed: onRemoveFile,
-            icon: const Icon(Icons.close_outlined),
-          ),
-        ),
         Container(
           padding: const EdgeInsets.all(20.0),
-          child: Image.memory(image!),
+          child: Image.memory(
+            image!,
+            fit: BoxFit.cover,
+          ),
+        ),
+        Align(
+          alignment: Alignment.topRight,
+          child: IconButton.filled(
+            onPressed: onRemoveFile,
+            icon: const Icon(Icons.close_outlined),
+            style: ButtonStyle(
+                backgroundColor: WidgetStatePropertyAll(
+              context.colorTheme.blueAzure,
+            )),
+          ),
         ),
       ],
     );

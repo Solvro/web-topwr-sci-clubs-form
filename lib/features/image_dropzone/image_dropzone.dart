@@ -6,6 +6,7 @@ import 'package:reactive_forms_annotations/reactive_forms_annotations.dart';
 import 'package:super_drag_and_drop/super_drag_and_drop.dart';
 
 import '../../config.dart';
+import '../../theme/app_theme.dart';
 import '../form/widgets/text_style.dart';
 import 'image_preview.dart';
 
@@ -25,48 +26,67 @@ class ImageDropzone extends StatefulWidget {
 }
 
 class _ImageDropzoneState extends State<ImageDropzone> {
+  bool canDrop = false;
+
   @override
   Widget build(BuildContext context) {
-    return DropRegion(
-      formats: FormFieldConfig.imageFormats,
-      onDropOver: (event) {
-        if (event.session.allowedOperations.contains(DropOperation.copy)) {
-          return DropOperation.copy;
-        }
-        return DropOperation.none;
-      },
-      onPerformDrop: onPerformDrop,
-      child: ReactiveFormField(
-        formControl: widget.formControl,
-        builder: (fieldState) {
-          return Container(
-            height: widget.height,
-            padding: FormFieldConfig.padding,
-            child: DottedBorder(
-              color: FieldStateColor(context).resolve({
-                if (fieldState.errorText != null) WidgetState.error,
-              }),
-              strokeWidth: 1,
-              radius: FormFieldConfig.radius,
-              child: Stack(
-                fit: StackFit.expand,
-                children: [
-                  ReactiveTextField(
-                      maxLines: double.maxFinite.toInt(),
-                      formControl: widget.formControl,
-                      decoration: const InputDecoration(
-                        border: InputBorder.none,
-                      )),
-                  DragAndDropImagePreview(
-                    widget.formControl?.value,
-                    onRemoveFile: onRemoveFile,
-                    onPickFile: onPickFile,
-                  ),
-                ],
-              ),
-            ),
-          );
+    return MouseRegion(
+      cursor: SystemMouseCursors.basic,
+      child: DropRegion(
+        formats: FormFieldConfig.imageFormats,
+        onDropOver: (event) {
+          if (event.session.allowedOperations.contains(DropOperation.copy)) {
+            showDroppingAllowed();
+            return DropOperation.copy;
+          }
+          return DropOperation.none;
         },
+        onDropLeave: (_) => disableDroppingAllowed(),
+        onDropEnded: (_) => disableDroppingAllowed(),
+        onPerformDrop: onPerformDrop,
+        child: ReactiveFormField(
+          formControl: widget.formControl,
+          builder: (fieldState) {
+            return Container(
+              height: widget.height,
+              padding: FormFieldConfig.padding,
+              child: DottedBorder(
+                color: FieldStateColor(context).resolve({
+                  if (fieldState.errorText != null) WidgetState.error,
+                  if (canDrop) WidgetState.focused,
+                }),
+                strokeWidth: 1,
+                radius: FormFieldConfig.radius,
+                child: Stack(
+                  fit: StackFit.expand,
+                  children: [
+                    AnimatedContainer(
+                      duration: Durations.short4,
+                      color: canDrop
+                          ? context.colorTheme.greyPigeon.withOpacity(0.2)
+                          : Colors.transparent,
+                    ),
+                    IgnorePointer(
+                      child: ReactiveTextField(
+                        maxLines: double.maxFinite.toInt(),
+                        formControl: widget.formControl,
+                        decoration: const InputDecoration(
+                          border: InputBorder.none,
+                        ),
+                        readOnly: true,
+                      ),
+                    ),
+                    DragAndDropImagePreview(
+                      widget.formControl?.value,
+                      onRemoveFile: onRemoveFile,
+                      onPickFile: onPickFile,
+                    ),
+                  ],
+                ),
+              ),
+            );
+          },
+        ),
       ),
     );
   }
@@ -112,5 +132,17 @@ class _ImageDropzoneState extends State<ImageDropzone> {
     // }
     // widget.formControl?.updateValue(data.firstOrNull);
     // widget.formControl?.markAsTouched();
+  }
+
+  void showDroppingAllowed() {
+    setState(() {
+      canDrop = true;
+    });
+  }
+
+  void disableDroppingAllowed() {
+    setState(() {
+      canDrop = false;
+    });
   }
 }
