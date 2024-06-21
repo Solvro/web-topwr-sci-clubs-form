@@ -18,3 +18,12 @@ enum Source {
   aktywniWebsite,
   studentDepartment,
 }
+
+enum UrlType {
+  https("https://"),
+  email("mailto:");
+
+  const UrlType(this.val);
+
+  final String val;
+}

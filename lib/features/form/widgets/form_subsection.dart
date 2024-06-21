@@ -1,6 +1,6 @@
 import 'package:reactive_forms_annotations/reactive_forms_annotations.dart';
 
-import '../../../config.dart';
+import '../../../config/config.dart';
 import '../../../theme/app_theme.dart';
 
 class FormSubsection<T> extends StatefulWidget {

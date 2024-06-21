@@ -1085,18 +1085,16 @@ packages:
   reactive_forms:
     dependency: "direct main"
     description:
-      name: reactive_forms
-      sha256: "9b1fb18e0aae9c50cfa0aaabaaa38bc4d78eefc9b7b95fa9c947b051f6524b8e"
-      url: "https://pub.dev"
-    source: hosted
-    version: "17.0.1"
+      path: "/Users/shark/StudioProjects/topwr_sci_clubs_form/reactive_forms"
+      relative: false
+    source: path
+    version: "17.0.0"
   reactive_forms_annotations:
     dependency: "direct main"
     description:
-      name: reactive_forms_annotations
-      sha256: d14efb8835f794bf639e504060262de915b6dd9c15f8c815e371f9c7bce45fe1
-      url: "https://pub.dev"
-    source: hosted
+      path: "/Users/shark/StudioProjects/topwr_sci_clubs_form/reactive_forms_generator/packages/reactive_forms_annotations"
+      relative: false
+    source: path
     version: "5.0.0"
   reactive_forms_generator:
     dependency: "direct dev"

@@ -3,10 +3,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../utils/context_extensions.dart';
 import '../image_dropzone/image_dropzone.dart';
+import '../social_links_subform/social_links_form.dart';
 import 'model/form_model.dart';
 import 'widgets/form_fields.dart';
 import 'widgets/select_tags.dart';
-import 'widgets/social_links_form.dart';
 import 'widgets/type_choice_field.dart';
 
 class SciClubForm extends ConsumerWidget {

@@ -80,5 +80,7 @@
   "form_sci_type" : "Rodzaj organizacji",
   "form_sci_tags" : "Tagi",
   "max3tags" : "Możesz wybrać maksymalnie 3 tagi",
-  "form_sci_social_links": "Kontakt i sociale"
+  "form_sci_social_links": "Kontakt i sociale",
+  "url_field" : "Link URL",
+  "url_name_field": "Tekst wyświetlający się"
 }

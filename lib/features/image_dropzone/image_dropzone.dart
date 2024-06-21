@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:reactive_forms_annotations/reactive_forms_annotations.dart';
 import 'package:super_drag_and_drop/super_drag_and_drop.dart';
 
-import '../../config.dart';
+import '../../config/config.dart';
 import '../../theme/app_theme.dart';
 import '../form/widgets/text_style.dart';
 import 'image_preview.dart';

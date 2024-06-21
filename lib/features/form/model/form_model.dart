@@ -46,9 +46,21 @@ class SciClubFormModel with _$SciClubFormModel {
 @RfGroup()
 class SocialUrl with _$SocialUrl {
   const factory SocialUrl({
-    String? name,
+    @RfControl() String? name,
+    @RfControl() UrlType? urlType,
+    @RfControl(validators: [
+      RequiredValidator(),
+      ComposeOrValidator([
+        PatternValidator(
+          DefaultPatternEvaluator(
+            r'^(https:\/\/)[a-zA-Z0-9\-\.]+\.[a-z]{2,3}(/\S*)?$',
+          ),
+        ),
+        EmailValidator(),
+      ])
+    ])
     String? url,
-  }) = _SocialUrlForm;
+  }) = _SocialUrl;
 
   factory SocialUrl.fromJson(Map<String, Object?> json) =>
       _$SocialUrlFromJson(json);
