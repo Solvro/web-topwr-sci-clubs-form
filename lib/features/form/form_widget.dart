@@ -6,6 +6,7 @@ import '../../utils/context_extensions.dart';
 import '../image_dropzone/image_dropzone.dart';
 import 'model/form_model.dart';
 import 'widgets/form_fields.dart';
+import 'widgets/type_choice_field.dart';
 
 class SciClubForm extends ConsumerWidget {
   const SciClubForm({super.key});
@@ -21,12 +22,17 @@ class SciClubForm extends ConsumerWidget {
             context.localize.form_sci_club_name,
           ),
           MyFormField(
+            formModel.departmentControl,
+            context.localize.form_sci_club_department,
+          ),
+          MyFormField(
             formModel.shortDescriptionControl,
             context.localize.form_sci_short_desc,
           ),
+          TypeChoiceField(formModel.typeControl),
           MyFormField(
             formModel.descriptionControl,
-            context.localize.form_sci_short_desc,
+            context.localize.form_sci_desc,
           ),
           ImageDropzone(
             label: context.localize.form_logo,

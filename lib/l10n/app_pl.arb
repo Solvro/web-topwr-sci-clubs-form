@@ -71,5 +71,11 @@
   "or_choose_btn_msg": "Lub wybierz plik",
   "allowed_ext":"Dopuszczalne rozszerzenia: ",
   "form_logo": "Logo koła/organizacji",
-  "form_cover": "Zdjęcie cover"
+  "form_cover": "Zdjęcie cover",
+  "form_sci_club_department":"Wydział",
+  "cultural_agenda_type" : "Agenda kultury",
+  "stud_media_type" : "Media studenckie",
+  "stud_org_type": "Organizacja studencka",
+  "sci_circle_type":"Koło naukowe",
+  "form_sci_type" : "Rodzaj organizacji"
 }

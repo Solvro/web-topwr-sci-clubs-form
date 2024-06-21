@@ -2,20 +2,13 @@ import 'dart:typed_data';
 
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:reactive_forms_annotations/reactive_forms_annotations.dart';
-import 'package:reactive_image_picker/reactive_image_picker.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-part 'form_model.g.dart';
+import 'enums.dart';
 
 part 'form_model.freezed.dart';
-
+part 'form_model.g.dart';
 part 'form_model.gform.dart';
-
-enum Source {
-  manualEntry,
-  aktywniWebsite,
-  studentDepartment,
-}
 
 @freezed
 @Rf()
@@ -33,7 +26,7 @@ class SciClubFormModel with _$SciClubFormModel {
       RequiredValidator(),
     ])
     String? shortDescription,
-    @RfControl() String? type,
+    @RfControl() SciClubType? type,
     Source? source,
     @RfControl(
       disabled: true,
