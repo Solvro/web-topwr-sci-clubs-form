@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 import 'package:separate/separate.dart';
 
 import '../../../../theme/app_theme.dart';
@@ -9,7 +9,7 @@ import '../../config/ui_config.dart';
 import 'widgets/logo_app_bar.dart';
 import 'widgets/placeholders/horizontal_placeholder.dart';
 import 'widgets/placeholders/subsection_placeholder.dart';
-import 'widgets/scroll_down_to_key.dart';
+
 import 'widgets/study_circles_section.dart';
 
 class HomeView extends StatelessWidget {
@@ -17,6 +17,7 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final scrollDownKey = GlobalKey();
     final List<Widget> sections = [
       // const Greeting(),
       const HorizontalPlaceholder(),
@@ -40,23 +41,29 @@ class HomeView extends StatelessWidget {
         isMapActionString: true,
         tabDestination: NavBarEnum.mapp,
       ),
-      const StudyCirclesSection(),
+      StudyCirclesSection(key: scrollDownKey),
       // const DepartmentSection(),
       SubsectionPlaceholder(
         title: context.localize.departments,
         tabDestination: NavBarEnum.faculties,
       ),
     ];
+
+    Future.delayed(Durations.extralong4, () {
+      Scrollable.ensureVisible(
+        scrollDownKey.currentContext!,
+        // alignment: widget.alignment,
+        duration: Durations.short3,
+      );
+    });
     return Scaffold(
       backgroundColor: context.colorTheme.whiteSoap,
       appBar: LogoAppBar(context),
-      body: ScrollDownToKey(
-        child: ListView(
-          padding: const EdgeInsets.only(bottom: 48),
-          children: sections.separate(
-            (i, e0, e1) => const SizedBox(
-              height: HomeScreenConfig.paddingMedium,
-            ),
+      body: ListView(
+        padding: const EdgeInsets.only(bottom: 48),
+        children: sections.separate(
+          (i, e0, e1) => const SizedBox(
+            height: HomeScreenConfig.paddingMedium,
           ),
         ),
       ),

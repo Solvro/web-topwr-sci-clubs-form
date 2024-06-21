@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../config.dart';
 import '../../../theme/app_theme.dart';
 import '../../../theme/typography.dart';
 
@@ -11,7 +12,7 @@ class FieldStateBorder extends OutlineInputBorder
   @override
   OutlineInputBorder resolve(Set<WidgetState> states) {
     return OutlineInputBorder(
-      borderRadius: const BorderRadius.all(Radius.circular(6)),
+      borderRadius: const BorderRadius.all(FormFieldConfig.radius),
       borderSide: BorderSide(
         color: FieldStateColor(
           context,

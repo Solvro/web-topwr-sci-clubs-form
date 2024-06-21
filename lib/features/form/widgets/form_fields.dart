@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:reactive_forms_annotations/reactive_forms_annotations.dart';
 
+import '../../../config.dart';
 import '../../../theme/app_theme.dart';
 import 'text_style.dart';
 
@@ -16,7 +17,7 @@ class MyFormField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: FormFieldConfig.padding,
       child: ReactiveTextField<String>(
         formControl: formControl,
         textInputAction: TextInputAction.next,
