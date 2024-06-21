@@ -78,7 +78,7 @@
   "stud_org_type": "Organizacja studencka",
   "sci_circle_type":"Koło naukowe",
   "form_sci_type" : "Rodzaj organizacji",
-  "form_sci_tags" : "Tagi",
+  "form_sci_tags" : "Kategorie tematyczne (max. 3)",
   "max3tags" : "Możesz wybrać maksymalnie 3 tagi",
   "form_sci_social_links": "Kontakt i sociale",
   "url_field" : "Email lub link do socialek",
