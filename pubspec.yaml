@@ -36,6 +36,7 @@ dependencies:
   super_drag_and_drop: ^0.8.17
   file_picker: ^8.0.5
   reactive_segmented_control: ^2.0.1
+  split_view: ^3.2.1
 
 dev_dependencies:
   flutter_test:
