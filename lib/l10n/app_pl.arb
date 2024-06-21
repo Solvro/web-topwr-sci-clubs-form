@@ -69,5 +69,7 @@
   "form_sci_desc" : "Opis",
   "drag_and_drop"  : "Przeciągnij i upuść zdjęcie",
   "or_choose_btn_msg": "Lub wybierz plik",
-  "allowed_ext":"Dopuszczalne rozszerzenia: "
+  "allowed_ext":"Dopuszczalne rozszerzenia: ",
+  "form_logo": "Logo koła/organizacji",
+  "form_cover": "Zdjęcie cover"
 }

@@ -29,6 +29,11 @@ class SciClubForm extends ConsumerWidget {
             context.localize.form_sci_short_desc,
           ),
           ImageDropzone(
+            label: context.localize.form_logo,
+            formControl: formModel.logoControl,
+          ),
+          ImageDropzone(
+            label: context.localize.form_cover,
             formControl: formModel.coverControl,
           ),
         ]);

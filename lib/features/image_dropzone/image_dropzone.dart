@@ -17,11 +17,13 @@ class ImageDropzone extends StatefulWidget {
     required this.formControl,
     this.sizeInLines = 10,
     this.height = 300,
+    required this.label,
   });
 
   final FormControl<Uint8List>? formControl;
   final int sizeInLines;
   final double height;
+  final String label;
   @override
   State<ImageDropzone> createState() => _ImageDropzoneState();
 }
@@ -71,8 +73,13 @@ class _ImageDropzoneState extends State<ImageDropzone> {
                       child: ReactiveTextField(
                         maxLines: double.maxFinite.toInt(),
                         formControl: widget.formControl,
-                        decoration: const InputDecoration(
+                        decoration: InputDecoration(
                           border: InputBorder.none,
+                          label: Padding(
+                            padding: const EdgeInsets.only(left: 8.0),
+                            child: Text(widget.label),
+                          ),
+                          floatingLabelBehavior: FloatingLabelBehavior.always,
                         ),
                         readOnly: true,
                       ),
