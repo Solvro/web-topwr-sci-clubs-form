@@ -2,6 +2,7 @@ import 'dart:typed_data';
 
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:reactive_forms_annotations/reactive_forms_annotations.dart';
 import 'package:super_drag_and_drop/super_drag_and_drop.dart';
 
@@ -123,15 +124,16 @@ class _ImageDropzoneState extends State<ImageDropzone> {
   }
 
   void onPickFile() async {
-    // final data = await controller?.pickFiles(
-    //   multiple: false,
-    //   mime: FormFieldConfig.imageMimes,
-    // );
-    // if (data == null) {
-    //   return setError(DropzoneErrors.onDropInvalid);
-    // }
-    // widget.formControl?.updateValue(data.firstOrNull);
-    // widget.formControl?.markAsTouched();
+    final picker = ImagePicker();
+    final image = await picker.pickImage(source: ImageSource.gallery);
+
+    if (image != null) {
+      if (image.path.endsWith('.svg')) {
+        return setError()
+      }
+    }
+    final data = await image?.readAsBytes();
+    if (data != null) didChange(data);
   }
 
   void showDroppingAllowed() {
@@ -145,4 +147,10 @@ class _ImageDropzoneState extends State<ImageDropzone> {
       canDrop = false;
     });
   }
+}
+
+
+enum ImageFieldErrors {
+  dropzoneError,
+  unsupportedFile
 }
