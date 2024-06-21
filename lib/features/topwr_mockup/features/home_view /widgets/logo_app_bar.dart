@@ -1,19 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '../../../config/ui_config.dart';
 import '../../../../../theme/app_theme.dart';
+import '../../../config/ui_config.dart';
 
 class LogoAppBar extends AppBar {
   /// AppBar with ToPwr colorful logo
-  LogoAppBar(
-    BuildContext context, {
-    super.key,
-  }) : super(
+  LogoAppBar(BuildContext context, {super.key, Color? backgroundColor})
+      : super(
           title: const AppBarLogo(),
           centerTitle: false,
           titleSpacing: 0,
-          backgroundColor: context.colorTheme.whiteSoap,
+          backgroundColor: backgroundColor ?? context.colorTheme.whiteSoap,
           scrolledUnderElevation: 0,
           automaticallyImplyLeading: false,
         );

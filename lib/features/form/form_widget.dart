@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:reactive_forms_annotations/reactive_forms_annotations.dart';
 
 import '../../utils/context_extensions.dart';
 import '../image_dropzone/image_dropzone.dart';
@@ -14,38 +13,45 @@ class SciClubForm extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return SciClubFormModelFormBuilder(
-      model: ref.watch(sciClubFormModelProvider),
-      builder: (context, formModel, child) {
-        return ListView(children: [
-          MyFormField(
-            formModel.nameControl,
-            context.localize.form_sci_club_name,
-          ),
-          MyFormField(
-            formModel.departmentControl,
-            context.localize.form_sci_club_department,
-          ),
-          MyFormField(
-            formModel.shortDescriptionControl,
-            context.localize.form_sci_short_desc,
-          ),
-          TypeChoiceField(formModel.typeControl),
-          MyFormField(
-            formModel.descriptionControl,
-            context.localize.form_sci_short_desc,
-          ),
-          ImageDropzone(
-            label: context.localize.form_logo,
-            formControl: formModel.logoControl,
-          ),
-          ImageDropzone(
-            label: context.localize.form_cover,
-            formControl: formModel.coverControl,
-          ),
-          SelectTags(formModel.tagsControl),
-        ]);
-      },
+    return Center(
+      child: ConstrainedBox(
+        constraints: const BoxConstraints(maxWidth: 1000),
+        child: SciClubFormModelFormBuilder(
+          model: ref.watch(sciClubFormModelProvider),
+          builder: (context, formModel, child) {
+            return ListView(
+                padding: const EdgeInsets.symmetric(horizontal: 40.0),
+                children: [
+                  MyFormField(
+                    formModel.nameControl,
+                    context.localize.form_sci_club_name,
+                  ),
+                  MyFormField(
+                    formModel.departmentControl,
+                    context.localize.form_sci_club_department,
+                  ),
+                  MyFormField(
+                    formModel.shortDescriptionControl,
+                    context.localize.form_sci_short_desc,
+                  ),
+                  TypeChoiceField(formModel.typeControl),
+                  MyFormField(
+                    formModel.descriptionControl,
+                    context.localize.form_sci_short_desc,
+                  ),
+                  ImageDropzone(
+                    label: context.localize.form_logo,
+                    formControl: formModel.logoControl,
+                  ),
+                  ImageDropzone(
+                    label: context.localize.form_cover,
+                    formControl: formModel.coverControl,
+                  ),
+                  SelectTags(formModel.tagsControl),
+                ]);
+          },
+        ),
+      ),
     );
   }
 }

@@ -8,6 +8,7 @@ import 'features/form/form_widget.dart';
 import 'features/mockup_frame/mockup_frame.dart';
 import 'features/mockup_frame/split_view.dart';
 import 'features/topwr_mockup/config/ui_config.dart';
+import 'features/topwr_mockup/features/home_view /widgets/logo_app_bar.dart';
 import 'features/topwr_mockup/features/splash_screen/splash_screen.dart';
 import 'features/topwr_mockup/features/splash_screen/splash_screen_controller.dart';
 
@@ -49,10 +50,17 @@ class RootView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-        body: FormSplitView(
-      form: SciClubForm(),
-      phone: MockupFrame(),
-    ));
+    return Scaffold(
+        appBar: LogoAppBar(
+          context,
+          backgroundColor: context.colorTheme.greyLight,
+        ),
+        body: const Padding(
+          padding: EdgeInsets.all(8.0),
+          child: FormSplitView(
+            form: SciClubForm(),
+            phone: MockupFrame(),
+          ),
+        ));
   }
 }
