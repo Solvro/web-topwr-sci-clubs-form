@@ -1,8 +1,8 @@
 import 'dart:typed_data';
 
 import 'package:dotted_border/dotted_border.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:reactive_forms_annotations/reactive_forms_annotations.dart';
 import 'package:super_drag_and_drop/super_drag_and_drop.dart';
 
@@ -34,7 +34,7 @@ class _ImageDropzoneState extends State<ImageDropzone> {
     return MouseRegion(
       cursor: SystemMouseCursors.basic,
       child: DropRegion(
-        formats: FormFieldConfig.imageFormats,
+        formats: FormFieldConfig.dragAndDropFormats,
         onDropOver: (event) {
           if (event.session.allowedOperations.contains(DropOperation.copy)) {
             showDroppingAllowed();
@@ -111,9 +111,9 @@ class _ImageDropzoneState extends State<ImageDropzone> {
   Future<void> onPerformDrop(PerformDropEvent event) async {
     final reader = event.session.items.first.dataReader;
     if (reader != null) {
-      if (FormFieldConfig.imageFormats.any(reader.canProvide)) {
+      if (FormFieldConfig.dragAndDropFormats.any(reader.canProvide)) {
         reader.getFile(
-          FormFieldConfig.imageFormats.firstWhere(reader.canProvide),
+          FormFieldConfig.dragAndDropFormats.firstWhere(reader.canProvide),
           (file) async {
             didChange(await file.readAll());
           },
@@ -124,15 +124,11 @@ class _ImageDropzoneState extends State<ImageDropzone> {
   }
 
   void onPickFile() async {
-    final picker = ImagePicker();
-    final image = await picker.pickImage(source: ImageSource.gallery);
-
-    if (image != null) {
-      if (image.path.endsWith('.svg')) {
-        return setError()
-      }
-    }
-    final data = await image?.readAsBytes();
+    final result = await FilePicker.platform.pickFiles(
+      type: FileType.custom,
+      allowedExtensions: FormFieldConfig.filePickerFormats,
+    );
+    final data = await result?.xFiles.first.readAsBytes();
     if (data != null) didChange(data);
   }
 
@@ -147,10 +143,4 @@ class _ImageDropzoneState extends State<ImageDropzone> {
       canDrop = false;
     });
   }
-}
-
-
-enum ImageFieldErrors {
-  dropzoneError,
-  unsupportedFile
 }

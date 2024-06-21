@@ -32,7 +32,7 @@ class DragAndDropNonePreview extends StatelessWidget {
               padding: const EdgeInsets.all(8.0),
               child: Text(
                 context.localize.allowed_ext +
-                    FormFieldConfig.imageFormats
+                    FormFieldConfig.dragAndDropFormats
                         .map(
                           (x) => "*.${x.mimeTypes?.first.split("/")[1]}",
                         )
