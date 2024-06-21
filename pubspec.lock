@@ -1085,16 +1085,19 @@ packages:
   reactive_forms:
     dependency: "direct main"
     description:
-      path: "/Users/shark/StudioProjects/topwr_sci_clubs_form/reactive_forms"
-      relative: false
-    source: path
-    version: "17.0.0"
+      path: "."
+      ref: HEAD
+      resolved-ref: "46a732fa1b10ee83c17af381a45d690b6029de0c"
+      url: "https://github.com/simon-the-shark/reactive_forms"
+    source: git
+    version: "17.0.1"
   reactive_forms_annotations:
     dependency: "direct main"
     description:
-      path: "/Users/shark/StudioProjects/topwr_sci_clubs_form/reactive_forms_generator/packages/reactive_forms_annotations"
-      relative: false
-    source: path
+      name: reactive_forms_annotations
+      sha256: d14efb8835f794bf639e504060262de915b6dd9c15f8c815e371f9c7bce45fe1
+      url: "https://pub.dev"
+    source: hosted
     version: "5.0.0"
   reactive_forms_generator:
     dependency: "direct dev"
