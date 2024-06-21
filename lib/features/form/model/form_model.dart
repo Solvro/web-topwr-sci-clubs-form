@@ -26,7 +26,10 @@ class SciClubFormModel with _$SciClubFormModel {
       RequiredValidator(),
     ])
     String? shortDescription,
-    @RfControl() SciClubType? type,
+    @RfControl(validators: [
+      RequiredValidator(),
+    ])
+    SciClubType? type,
     Source? source,
     @RfControl(
       disabled: true,
@@ -34,6 +37,7 @@ class SciClubFormModel with _$SciClubFormModel {
     String? department,
     @RfControl() Uint8List? logo,
     @RfControl() Uint8List? cover,
+    @RfArray() List<bool>? tags,
   }) = _SciClubFormModel;
 }
 

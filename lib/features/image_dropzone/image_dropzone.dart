@@ -15,7 +15,7 @@ class ImageDropzone extends StatefulWidget {
   const ImageDropzone({
     super.key,
     required this.formControl,
-    this.height = 200,
+    this.height = FormFieldConfig.bigSectionDefHeight,
     required this.label,
   });
 

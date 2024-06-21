@@ -6,6 +6,7 @@ import '../../utils/context_extensions.dart';
 import '../image_dropzone/image_dropzone.dart';
 import 'model/form_model.dart';
 import 'widgets/form_fields.dart';
+import 'widgets/select_tags.dart';
 import 'widgets/type_choice_field.dart';
 
 class SciClubForm extends ConsumerWidget {
@@ -42,6 +43,7 @@ class SciClubForm extends ConsumerWidget {
             label: context.localize.form_cover,
             formControl: formModel.coverControl,
           ),
+          SelectTags(formModel.tagsControl),
         ]);
       },
     );

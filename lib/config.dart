@@ -4,6 +4,7 @@ import 'package:super_drag_and_drop/super_drag_and_drop.dart';
 abstract class FormConfig {}
 
 abstract class FormFieldConfig {
+  static const bigSectionDefHeight = 200.0;
   static const padding = EdgeInsets.all(8.0);
   static const radius = Radius.circular(6);
   static const dragAndDropFormats = [
