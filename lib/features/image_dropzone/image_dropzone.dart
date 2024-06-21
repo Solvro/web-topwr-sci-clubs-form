@@ -15,13 +15,11 @@ class ImageDropzone extends StatefulWidget {
   const ImageDropzone({
     super.key,
     required this.formControl,
-    this.sizeInLines = 10,
-    this.height = 300,
+    this.height = 200,
     required this.label,
   });
 
   final FormControl<Uint8List>? formControl;
-  final int sizeInLines;
   final double height;
   final String label;
   @override

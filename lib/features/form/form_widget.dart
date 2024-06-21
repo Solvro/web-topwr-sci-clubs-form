@@ -32,7 +32,7 @@ class SciClubForm extends ConsumerWidget {
           TypeChoiceField(formModel.typeControl),
           MyFormField(
             formModel.descriptionControl,
-            context.localize.form_sci_desc,
+            context.localize.form_sci_short_desc,
           ),
           ImageDropzone(
             label: context.localize.form_logo,
