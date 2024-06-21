@@ -47,24 +47,26 @@ class _TagsCheckboxListState<T> extends State<FormSubsection<T>> {
           borderRadius: const BorderRadius.all(FormFieldConfig.radius),
         ),
         child: ExpansionTile(
-          title: Column(
-            children: [
-              Align(
-                alignment: Alignment.topLeft,
-                child: Padding(
-                  padding: const EdgeInsets.all(16.0),
+          title: Padding(
+            padding: const EdgeInsets.symmetric(
+              vertical: 16.0,
+            ),
+            child: Column(
+              children: [
+                Align(
+                  alignment: Alignment.topLeft,
                   child: Text(
                     widget.title,
                     style: context.textTheme.headline,
                   ),
                 ),
-              ),
-              if (isError && widget.errorMessage != null)
-                Text(
-                  widget.errorMessage!,
-                  style: context.textTheme.titleOrange,
-                ),
-            ],
+                if (isError && widget.errorMessage != null)
+                  Text(
+                    widget.errorMessage!,
+                    style: context.textTheme.titleOrange,
+                  ),
+              ],
+            ),
           ),
           enabled: true,
           initiallyExpanded: true,

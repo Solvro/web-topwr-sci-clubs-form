@@ -22,10 +22,8 @@ class SelectTags extends ConsumerWidget {
           child: CircularProgressIndicator.adaptive(),
         ),
       AsyncError(:final error) => MyErrorWidget(error),
-      AsyncValue(:final value) => TagsCheckboxList([
-          ...value.whereNonNull,
-          ...value.whereNonNull.map((e) => Tag(name: e.name + e.name))
-        ], formControl),
+      AsyncValue(:final value) =>
+        TagsCheckboxList(value.whereNonNull.toList(), formControl),
     };
   }
 }
