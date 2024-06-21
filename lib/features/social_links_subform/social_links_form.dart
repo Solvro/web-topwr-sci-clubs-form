@@ -15,7 +15,6 @@ class SocialLinksForm extends StatelessWidget {
         formArray: formModel.socialLinksControl,
         builder: (context, formArray, child) {
           return FormSubsection(
-            height: null,
             title: context.localize.form_sci_social_links,
             formControl: formModel.socialLinksControl,
             onInitState: () {
