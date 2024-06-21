@@ -37,48 +37,52 @@ class TagsCheckboxList extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return FormSubsection(
-      title: context.localize.form_sci_tags,
-      formControl: formControl,
-      errorMessage: context.localize.max3tags,
-      onInitState: () {
-        formControl?.addAll(
-          tags
-                  ?.map(
-                    (email) => FormControl<bool>(value: false),
-                  )
-                  .toList() ??
-              [],
-        );
-      },
-      buildChildren: (context, formArray, setError) {
-        return [
-          for (final iter in IterableZip([
-            formArray.controls,
-            tags ?? [],
-          ]))
-            ReactiveCheckboxListTile(
-              key: ValueKey(iter.last?.name),
-              formControl: iter.first as FormControl<bool>?,
-              title: Text(iter.last?.name),
-              onChanged: (control) {
-                final allTrues =
-                    formArray.controls.where((e) => e.value == true);
-                if (allTrues.length > 3) {
-                  for (final element in allTrues) {
-                    element.setErrors({"": ""});
-                  }
-                  setError(true);
-                } else {
-                  for (final element in allTrues) {
-                    element.setErrors({});
-                  }
-                  setError(false);
-                }
-              },
-            ),
-        ];
-      },
-    );
+    return ReactiveFormArray(
+        formArray: formControl,
+        builder: (context, formArray, child) {
+          return FormSubsection(
+            title: context.localize.form_sci_tags,
+            formControl: formControl,
+            errorMessage: context.localize.max3tags,
+            onInitState: () {
+              formControl?.addAll(
+                tags
+                        ?.map(
+                          (email) => FormControl<bool>(value: false),
+                        )
+                        .toList() ??
+                    [],
+              );
+            },
+            buildChildren: (setError) {
+              return [
+                for (final iter in IterableZip([
+                  formArray.controls,
+                  tags ?? [],
+                ]))
+                  ReactiveCheckboxListTile(
+                    key: ValueKey(iter.last?.name),
+                    formControl: iter.first as FormControl<bool>?,
+                    title: Text(iter.last?.name),
+                    onChanged: (control) {
+                      final allTrues =
+                          formArray.controls.where((e) => e.value == true);
+                      if (allTrues.length > 3) {
+                        for (final element in allTrues) {
+                          element.setErrors({"": ""});
+                        }
+                        setError(true);
+                      } else {
+                        for (final element in allTrues) {
+                          element.setErrors({});
+                        }
+                        setError(false);
+                      }
+                    },
+                  ),
+              ];
+            },
+          );
+        });
   }
 }

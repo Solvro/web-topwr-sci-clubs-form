@@ -47,7 +47,6 @@ class SciClubFormModel with _$SciClubFormModel {
 class SocialUrl with _$SocialUrl {
   const factory SocialUrl({
     @RfControl() String? name,
-    @RfControl() UrlType? urlType,
     @RfControl(validators: [
       RequiredValidator(),
       ComposeOrValidator([
@@ -64,6 +63,10 @@ class SocialUrl with _$SocialUrl {
 
   factory SocialUrl.fromJson(Map<String, Object?> json) =>
       _$SocialUrlFromJson(json);
+}
+
+extension IsEmail on SocialUrl {
+  bool get isUrlEmail => EmailValidator.emailRegex.hasMatch(url ?? "");
 }
 
 @riverpod

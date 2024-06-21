@@ -81,6 +81,6 @@
   "form_sci_tags" : "Tagi",
   "max3tags" : "Możesz wybrać maksymalnie 3 tagi",
   "form_sci_social_links": "Kontakt i sociale",
-  "url_field" : "Link URL",
-  "url_name_field": "Tekst wyświetlający się"
+  "url_field" : "Email lub link do socialek",
+  "url_name_field": "Tekst wyświetlający się (opcjonalne)"
 }

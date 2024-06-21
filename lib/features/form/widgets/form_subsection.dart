@@ -7,7 +7,7 @@ class FormSubsection<T> extends StatefulWidget {
   const FormSubsection({
     super.key,
     required this.title,
-    required this.errorMessage,
+    this.errorMessage,
     required this.buildChildren,
     required this.onInitState,
     required this.formControl,
@@ -15,10 +15,9 @@ class FormSubsection<T> extends StatefulWidget {
   });
 
   final String title;
-  final String errorMessage;
+  final String? errorMessage;
   final FormArray<T>? formControl;
-  final List<Widget> Function(BuildContext context, FormArray<T> formArray,
-      void Function(bool isErr) setError) buildChildren;
+  final List<Widget> Function(void Function(bool isErr) setError) buildChildren;
   final VoidCallback onInitState;
   final double? height;
 
@@ -46,41 +45,34 @@ class _TagsCheckboxListState<T> extends State<FormSubsection<T>> {
           borderRadius: const BorderRadius.all(FormFieldConfig.radius),
         ),
         height: widget.height,
-        child: ReactiveFormArray(
-          formArray: widget.formControl,
-          builder: (context, formArray, child) {
-            return Column(
-              children: [
-                Align(
-                  alignment: Alignment.topLeft,
-                  child: Padding(
-                    padding: const EdgeInsets.all(16.0),
-                    child: Text(
-                      widget.title,
-                      style: context.textTheme.headline,
-                    ),
-                  ),
+        child: Column(
+          children: [
+            Align(
+              alignment: Alignment.topLeft,
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Text(
+                  widget.title,
+                  style: context.textTheme.headline,
                 ),
-                if (isError)
-                  Text(
-                    widget.errorMessage,
-                    style: context.textTheme.titleOrange,
-                  ),
-                _ListView(
-                  shouldExpand: widget.height != null,
-                  children: widget.buildChildren(
-                    context,
-                    formArray,
-                    (isErr) => setState(
-                      () {
-                        isError = isErr;
-                      },
-                    ),
-                  ),
+              ),
+            ),
+            if (isError && widget.errorMessage != null)
+              Text(
+                widget.errorMessage!,
+                style: context.textTheme.titleOrange,
+              ),
+            _ListView(
+              shouldExpand: widget.height != null,
+              children: widget.buildChildren(
+                (isErr) => setState(
+                  () {
+                    isError = isErr;
+                  },
                 ),
-              ],
-            );
-          },
+              ),
+            ),
+          ],
         ),
       ),
     );
