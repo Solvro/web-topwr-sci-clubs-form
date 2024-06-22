@@ -31,15 +31,7 @@ class SciClubForm extends ConsumerWidget {
                     context.localize.form_sci_club_department,
                     formControl: formModel.departmentControl,
                   ),
-                  MyFormField(
-                    context.localize.form_sci_short_desc,
-                    formControl: formModel.shortDescriptionControl,
-                  ),
                   TypeChoiceField(formModel.typeControl),
-                  MyFormField(
-                    context.localize.form_sci_short_desc,
-                    formControl: formModel.descriptionControl,
-                  ),
                   ImageDropzone(
                     label: context.localize.form_logo,
                     formControl: formModel.logoControl,
@@ -48,8 +40,16 @@ class SciClubForm extends ConsumerWidget {
                     label: context.localize.form_cover,
                     formControl: formModel.coverControl,
                   ),
+                  SocialLinksForm(formModel: formModel),
                   SelectTags(formModel.tagsControl),
-                  SocialLinksForm(formModel: formModel)
+                  MyFormField(
+                    context.localize.form_sci_short_desc,
+                    formControl: formModel.shortDescriptionControl,
+                  ),
+                  MyFormField(
+                    context.localize.form_sci_desc,
+                    formControl: formModel.descriptionControl,
+                  ),
                 ]);
           },
         ),
