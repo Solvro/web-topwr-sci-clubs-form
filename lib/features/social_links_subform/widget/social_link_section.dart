@@ -34,23 +34,21 @@ class _SocialLinkSectionState extends State<SocialLinkSection> {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      elevation: 0,
-      // shape: RoundedRectangleBorder(
-      //   borderRadius: const BorderRadius.all(FormFieldConfig.radius),
-      //   side: BorderSide(color: FieldStateColor(context)),
-      // ),
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
       child: Column(
         children: [
           LinkField(
             formControl: widget.model.urlControl,
             widget.model.model,
             context.localize.url_field,
+            hintText: context.localize.link_field_hint,
           ),
           if (!widget.model.model.isUrlEmail)
             MyFormField(
               formControl: widget.model.nameControl,
               context.localize.url_name_field,
+              hintText: context.localize.link_display_hint,
             ),
         ],
       ),

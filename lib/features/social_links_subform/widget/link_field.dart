@@ -13,6 +13,7 @@ class LinkField extends MyFormField {
     super.key,
     super.formControl,
     super.formControlName,
+    super.hintText,
     Widget? prefix,
   }) : super(
           prefixIcon: Image.asset(

@@ -18,10 +18,12 @@ class MyFormField extends StatelessWidget {
     super.key,
     this.prefixIcon,
     this.padding = FormFieldConfig.padding,
+    this.hintText,
   });
 
   final Widget? prefixIcon;
   final EdgeInsets padding;
+  final String? hintText;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -38,6 +40,7 @@ class MyFormField extends StatelessWidget {
           filled: true,
           hoverColor: context.colorTheme.blueAzure.withOpacity(0.1),
           prefixIcon: prefixIcon,
+          hintText: hintText,
         ).applyDefaults(fallbackTheme ?? const InputDecorationTheme()),
       ),
     );
