@@ -1,8 +1,11 @@
+import 'package:flutter/material.dart';
 import 'package:reactive_forms_annotations/reactive_forms_annotations.dart';
+import 'package:separate/separate.dart';
 
 import '../../utils/context_extensions.dart';
 import '../form/model/form_model.dart';
 import '../form/widgets/form_subsection.dart';
+import '../topwr_mockup/widgets/my_text_button.dart';
 import 'widget/social_link_section.dart';
 
 class SocialLinksForm extends StatelessWidget {
@@ -17,15 +20,29 @@ class SocialLinksForm extends StatelessWidget {
           return FormSubsection(
             title: context.localize.form_sci_social_links,
             formControl: formModel.socialLinksControl,
-            onInitState: () {
-              formModel.addSocialLinksItem(const SocialUrl());
-            },
+            onInitState: () {},
             buildChildren: (setError) {
               return [
-                ...formModel.socialLinksSocialUrlForm.map((model) {
-                  return SocialLinkSection(model);
-                })
-              ];
+                Container(), // needed for adequate separator behaviour
+                ...formModel.socialLinksSocialUrlForm.map(
+                  (model) {
+                    return SocialLinkSection(model);
+                  },
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(15.0),
+                  child: MyTextButton(
+                    actionTitle: context.localize.add_social_link_btn,
+                    onClick: () {
+                      formModel.addSocialLinksItem(
+                        const SocialUrl(name: "", url: ""),
+                      );
+                    },
+                  ),
+                ),
+              ].separate(
+                (i, e0, e1) => const Divider(height: 1),
+              );
             },
           );
         });

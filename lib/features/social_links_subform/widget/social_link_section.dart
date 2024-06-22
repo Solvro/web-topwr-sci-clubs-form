@@ -2,9 +2,11 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 
+import '../../../config/config.dart';
 import '../../../utils/context_extensions.dart';
 import '../../form/model/form_model.dart';
 import '../../form/widgets/form_fields.dart';
+import '../../form/widgets/text_style.dart';
 import 'link_field.dart';
 
 class SocialLinkSection extends StatefulWidget {
@@ -33,6 +35,11 @@ class _SocialLinkSectionState extends State<SocialLinkSection> {
   @override
   Widget build(BuildContext context) {
     return Card(
+      elevation: 0,
+      // shape: RoundedRectangleBorder(
+      //   borderRadius: const BorderRadius.all(FormFieldConfig.radius),
+      //   side: BorderSide(color: FieldStateColor(context)),
+      // ),
       child: Column(
         children: [
           LinkField(
