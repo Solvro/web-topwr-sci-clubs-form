@@ -11,13 +11,12 @@ class FormSubsection<T> extends StatefulWidget {
     this.errorMessage,
     required this.buildChildren,
     required this.onInitState,
-    required this.formControl,
     this.expandableMode = false,
   });
 
   final String title;
   final String? errorMessage;
-  final FormArray<T>? formControl;
+
   final List<Widget> Function(void Function(bool isErr) setError) buildChildren;
   final VoidCallback onInitState;
 
@@ -46,35 +45,38 @@ class _TagsCheckboxListState<T> extends State<FormSubsection<T>> {
           ),
           borderRadius: const BorderRadius.all(FormFieldConfig.radius),
         ),
-        child: ExpansionTile(
-          title: Padding(
-            padding: const EdgeInsets.symmetric(
-              vertical: 16.0,
-            ),
-            child: Column(
-              children: [
-                Align(
-                  alignment: Alignment.topLeft,
-                  child: Text(
-                    widget.title,
-                    style: context.textTheme.headline,
+        child: Theme(
+          data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
+          child: ExpansionTile(
+            title: Padding(
+              padding: const EdgeInsets.symmetric(
+                vertical: 16.0,
+              ),
+              child: Column(
+                children: [
+                  Align(
+                    alignment: Alignment.topLeft,
+                    child: Text(
+                      widget.title,
+                      style: context.textTheme.body,
+                    ),
                   ),
-                ),
-                if (isError && widget.errorMessage != null)
-                  Text(
-                    widget.errorMessage!,
-                    style: context.textTheme.titleOrange,
-                  ),
-              ],
+                  if (isError && widget.errorMessage != null)
+                    Text(
+                      widget.errorMessage!,
+                      style: context.textTheme.titleOrange,
+                    ),
+                ],
+              ),
             ),
-          ),
-          enabled: true,
-          initiallyExpanded: true,
-          children: widget.buildChildren(
-            (isErr) => setState(
-              () {
-                isError = isErr;
-              },
+            enabled: true,
+            initiallyExpanded: true,
+            children: widget.buildChildren(
+              (isErr) => setState(
+                () {
+                  isError = isErr;
+                },
+              ),
             ),
           ),
         ),

@@ -42,7 +42,6 @@ class TagsCheckboxList extends ConsumerWidget {
         builder: (context, formArray, child) {
           return FormSubsection(
             title: context.localize.form_sci_tags,
-            formControl: formControl,
             errorMessage: context.localize.max3tags,
             onInitState: () {
               formControl?.addAll(

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../utils/context_extensions.dart';
+import '../html_editor_field/html_field.dart';
 import '../image_dropzone/image_dropzone.dart';
 import '../social_links_subform/social_links_form.dart';
 import 'model/form_model.dart';
@@ -20,8 +21,9 @@ class SciClubForm extends ConsumerWidget {
         child: SciClubFormModelFormBuilder(
           model: ref.watch(sciClubFormModelProvider),
           builder: (context, formModel, child) {
-            return ListView(
-                padding: const EdgeInsets.symmetric(horizontal: 40.0),
+            return SingleChildScrollView(
+              child: Column(
+                // padding: const EdgeInsets.symmetric(horizontal: 40.0),
                 children: [
                   MyFormField(
                     context.localize.form_sci_club_name,
@@ -46,11 +48,13 @@ class SciClubForm extends ConsumerWidget {
                     context.localize.form_sci_short_desc,
                     formControl: formModel.shortDescriptionControl,
                   ),
-                  MyFormField(
+                  HtmlField(
                     context.localize.form_sci_desc,
-                    formControl: formModel.descriptionControl,
+                    formModel.descriptionControl,
                   ),
-                ]);
+                ],
+              ),
+            );
           },
         ),
       ),

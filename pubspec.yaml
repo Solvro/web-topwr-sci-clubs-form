@@ -38,6 +38,8 @@ dependencies:
   reactive_forms_annotations: ^5.0.0
   reactive_forms:
     git: https://github.com/simon-the-shark/reactive_forms
+  quill_html_editor: ^2.2.8
+  html_editor_enhanced: ^2.6.0
 
 dev_dependencies:
   flutter_test:
@@ -60,6 +62,8 @@ dependency_overrides:
   meta: ^1.15.0
   reactive_forms:
     git: https://github.com/simon-the-shark/reactive_forms
+  file_picker: ^8.0.5
+  lints: ^3.0.0
 
 flutter:
   generate: true
@@ -74,7 +78,7 @@ flutter:
     - assets/icons/ic_linkedin.png
     - assets/icons/ic_web.png
   fonts:
-    - family: Schyler
+    - family: Rubik
       fonts:
         - asset: fonts/Rubik-VariableFont_wght.ttf
     - family: BottomNavBarIcon

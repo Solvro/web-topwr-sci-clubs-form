@@ -16,7 +16,7 @@ class DragAndDropNonePreview extends StatelessWidget {
         const Spacer(),
         Text(
           context.localize.drag_and_drop,
-          style: context.textTheme.title,
+          style: context.textTheme.lightTitle,
         ),
         Padding(
           padding: const EdgeInsets.all(8.0),
