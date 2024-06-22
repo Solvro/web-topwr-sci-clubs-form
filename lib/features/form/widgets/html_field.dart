@@ -5,7 +5,7 @@ import 'package:reactive_forms_annotations/reactive_forms_annotations.dart';
 import '../../../utils/context_extensions.dart';
 import 'form_subsection.dart';
 
-final _quillControler = Provider((ref) => HtmlEditorController());
+final _htmlContoller = Provider((ref) => HtmlEditorController());
 
 class HtmlField extends ConsumerWidget {
   const HtmlField(this.title, this.formControl, {super.key});
@@ -15,7 +15,7 @@ class HtmlField extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final controller = ref.watch(_quillControler);
+    final controller = ref.watch(_htmlContoller);
 
     return FormSubsection(
       title: title,
