@@ -85,5 +85,6 @@
   "url_name_field": "Tekst wyświetlający się (opcjonalne)",
   "add_social_link_btn" : "Dodaj email/link",
   "link_field_hint" : "np. https://facebook.com/knsolvro lub kn.solvro@pwr.edu.pl",
-  "link_display_hint" : "np. facebook.com/knsolvro lub `mój super link`"
+  "link_display_hint" : "np. facebook.com/knsolvro lub `mój super link`",
+  "form_sci_desc_hint" : "Wprowadź tu swój super opis swojego super koła/organizacji"
 }
