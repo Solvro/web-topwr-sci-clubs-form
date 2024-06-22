@@ -1,12 +1,9 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:html_editor_enhanced/html_editor.dart';
 import 'package:reactive_forms_annotations/reactive_forms_annotations.dart';
 
-import '../../config/config.dart';
-import '../../theme/app_theme.dart';
-import '../../utils/context_extensions.dart';
-import '../form/widgets/form_subsection.dart';
+import '../../../utils/context_extensions.dart';
+import 'form_subsection.dart';
 
 final _quillControler = Provider((ref) => HtmlEditorController());
 
@@ -24,7 +21,7 @@ class HtmlField extends ConsumerWidget {
       title: title,
       buildChildren: (setError) => [
         HtmlEditor(
-          controller: controller, //required
+          controller: controller,
           htmlEditorOptions: HtmlEditorOptions(
             initialText: formControl?.value,
             hint: "<p>${context.localize.form_sci_desc_hint}</p>",
@@ -62,28 +59,5 @@ class HtmlField extends ConsumerWidget {
       ],
       onInitState: () {},
     );
-
-    // return Padding(
-    //   padding: FormFieldConfig.padding,
-    //   child: Container(
-    //     decoration: BoxDecoration(
-    //       border: Border.all(
-    //         color: context.colorTheme.blackMirage,
-    //       ),
-    //       borderRadius: const BorderRadius.all(FormFieldConfig.radius),
-    //     ),
-    //     child: Column(
-    //       children: [
-    //         ListTile(
-    //           title: Text(
-    //             ,
-    //             style: context.textTheme.lightTitle,
-    //           ),
-    //           tileColor: context.colorTheme.greyLight,
-    //         ),
-    //       ],
-    //     ),
-    //   ),
-    // );
   }
 }

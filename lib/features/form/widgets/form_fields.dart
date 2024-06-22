@@ -19,11 +19,15 @@ class MyFormField extends StatelessWidget {
     this.prefixIcon,
     this.padding = FormFieldConfig.padding,
     this.hintText,
+    this.minLines,
+    this.maxLines,
   });
 
   final Widget? prefixIcon;
   final EdgeInsets padding;
   final String? hintText;
+  final int? minLines;
+  final int? maxLines;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -42,6 +46,8 @@ class MyFormField extends StatelessWidget {
           prefixIcon: prefixIcon,
           hintText: hintText,
         ).applyDefaults(fallbackTheme ?? const InputDecorationTheme()),
+        minLines: minLines,
+        maxLines: maxLines,
       ),
     );
   }
