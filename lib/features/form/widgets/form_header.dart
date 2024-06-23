@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:separate/separate.dart';
 
 import '../../../config/config.dart';
 import '../../../theme/app_theme.dart';
+import '../../../utils/context_extensions.dart';
 
 class FormHeader extends StatelessWidget {
   const FormHeader({super.key});
@@ -14,19 +16,43 @@ class FormHeader extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            "Ankieta kół/organizacji do aplikacji mobilnej ToPWR",
+            context.localize.form_title,
             style: context.textTheme.headline.copyWith(fontSize: 40),
             textAlign: TextAlign.start,
           ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 30),
-            child: Text(
-              "Zapraszamy do wypełnienia danych o swoim kole naukowym, organizacji studenckiej, mediach lub agendzie. Wprowadzane dane można na bieżąco obserwować w podglądzie aplikacji. Można spojrzeć jak wprowadzone przez nas dane będą prezentować się na kafelku na ekranie domowym, na liście kół/organizacji oraz w widoku szczegółowym. ",
-              style: context.textTheme.title,
-              textAlign: TextAlign.justify,
-            ),
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 0, vertical: 30),
+            child: _Desc(),
           ),
         ],
+      ),
+    );
+  }
+}
+
+class _Desc extends StatelessWidget {
+  const _Desc();
+
+  @override
+  Widget build(BuildContext context) {
+    final descriptions = <String>[
+      // context.localize.form_desc1,
+      context.localize.form_desc2,
+      context.localize.form_desc3,
+    ];
+    return Column(
+      children: <Widget>[
+        ...descriptions.map(
+          (e) => Text(
+            e,
+            style: context.textTheme.title,
+            textAlign: TextAlign.justify,
+          ),
+        )
+      ].separate(
+        (i, e0, e1) => const SizedBox(
+          height: 20,
+        ),
       ),
     );
   }

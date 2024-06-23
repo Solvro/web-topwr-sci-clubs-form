@@ -5,6 +5,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../theme/app_theme.dart';
 import '../../theme/colors.dart';
 import 'features/form/form_widget.dart';
+import 'features/form/widgets/form_root_widget.dart';
+import 'features/form/widgets/submit_button.dart';
 import 'features/mockup_frame/mockup_frame.dart';
 import 'features/mockup_frame/split_view.dart';
 import 'features/topwr_mockup/config/ui_config.dart';
@@ -45,15 +47,17 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class RootView extends StatelessWidget {
+class RootView extends ConsumerWidget {
   const RootView({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
+  Widget build(BuildContext context, WidgetRef ref) {
+    return FormRootWidget(
+      child: Scaffold(
         appBar: LogoAppBar(
           context,
           backgroundColor: context.colorTheme.greyLight,
+          actions: const [SubmitButton()],
         ),
         body: const Padding(
           padding: EdgeInsets.all(8.0),
@@ -61,6 +65,8 @@ class RootView extends StatelessWidget {
             form: SciClubForm(),
             phone: MockupFrame(),
           ),
-        ));
+        ),
+      ),
+    );
   }
 }

@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:reactive_forms_annotations/reactive_forms_annotations.dart';
 import 'package:separate/separate.dart';
@@ -23,9 +24,12 @@ class SocialLinksForm extends StatelessWidget {
             buildChildren: (setError) {
               return [
                 Container(), // needed for adequate separator behaviour
-                ...formModel.socialLinksSocialUrlForm.map(
-                  (model) {
-                    return SocialLinkSection(model);
+                ...formModel.socialLinksSocialUrlForm.mapIndexed(
+                  (index, model) {
+                    return SocialLinkSection(
+                      key: ValueKey(index),
+                      model,
+                    );
                   },
                 ),
                 Padding(

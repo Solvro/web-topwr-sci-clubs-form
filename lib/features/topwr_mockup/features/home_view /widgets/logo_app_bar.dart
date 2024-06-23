@@ -6,8 +6,12 @@ import '../../../config/ui_config.dart';
 
 class LogoAppBar extends AppBar {
   /// AppBar with ToPwr colorful logo
-  LogoAppBar(BuildContext context, {super.key, Color? backgroundColor})
-      : super(
+  LogoAppBar(
+    BuildContext context, {
+    super.key,
+    Color? backgroundColor,
+    super.actions,
+  }) : super(
           title: const AppBarLogo(),
           centerTitle: false,
           titleSpacing: 0,

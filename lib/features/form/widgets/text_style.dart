@@ -14,11 +14,7 @@ class FieldStateBorder extends OutlineInputBorder
     return OutlineInputBorder(
       borderRadius: const BorderRadius.all(FormFieldConfig.radius),
       borderSide: BorderSide(
-        color: FieldStateColor(
-          context,
-        ).resolve(
-          states,
-        ),
+        color: FieldStateColor(context).resolve(states),
       ),
     );
   }
