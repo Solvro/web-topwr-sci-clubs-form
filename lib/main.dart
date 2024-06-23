@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_svg/svg.dart';
 
 import '../../theme/app_theme.dart';
 import '../../theme/colors.dart';
+import 'config/config.dart';
 import 'features/form/form_widget.dart';
 import 'features/form/widgets/form_root_widget.dart';
 import 'features/form/widgets/submit_button.dart';
@@ -57,7 +59,16 @@ class RootView extends ConsumerWidget {
         appBar: LogoAppBar(
           context,
           backgroundColor: context.colorTheme.greyLight,
-          actions: const [SubmitButton()],
+          actions: [
+            const SubmitButton(),
+            Container(
+              padding: const EdgeInsets.symmetric(vertical: 10.0),
+              child: SvgPicture.asset(
+                WebAppBarConfig.created_by_svg,
+                width: 180,
+              ),
+            ),
+          ],
         ),
         body: const Padding(
           padding: EdgeInsets.all(8.0),

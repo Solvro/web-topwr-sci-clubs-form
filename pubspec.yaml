@@ -69,6 +69,7 @@ flutter:
   assets:
     - assets/splash_screen/splash_logo.png
     - assets/logo_app_bar.svg
+    - assets/created_by_vert.svg
     - assets/search_box/vectorsearch.svg
     - assets/icons/ic_email.png
     - assets/icons/ic_fb.png

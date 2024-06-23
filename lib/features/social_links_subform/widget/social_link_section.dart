@@ -2,11 +2,9 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 
-import '../../../config/config.dart';
 import '../../../utils/context_extensions.dart';
 import '../../form/model/form_model.dart';
 import '../../form/widgets/form_fields.dart';
-import '../../form/widgets/text_style.dart';
 import 'link_field.dart';
 
 class SocialLinkSection extends StatefulWidget {

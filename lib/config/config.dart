@@ -15,3 +15,7 @@ abstract class FormFieldConfig {
   static const filePickerFormats = ['jpg', 'png', 'bmp'];
   static const dragAndDropError = "drag and drop error";
 }
+
+abstract class WebAppBarConfig {
+  static const created_by_svg = "assets/created_by_vert.svg";
+}
