@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../utils/context_extensions.dart';
 import '../../../../utils/where_non_null_iterable.dart';
-import '../../../firebase_tags/tags_repo.dart';
+import '../../../firebase/repositories/tags_repo.dart';
 import '../../widgets/search_box_app_bar.dart';
 import 'repositories/scientific_circles_tab_controller.dart';
 

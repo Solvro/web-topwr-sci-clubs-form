@@ -3,7 +3,7 @@ import 'dart:typed_data';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:reactive_forms_annotations/reactive_forms_annotations.dart';
 
-import '../../firebase_save/models/uint8list_converter.dart';
+import '../../firebase/models/uint8list_converter.dart';
 import 'enums.dart';
 
 part 'form_model.freezed.dart';

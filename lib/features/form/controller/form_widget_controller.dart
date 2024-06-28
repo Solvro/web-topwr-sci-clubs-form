@@ -1,6 +1,6 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import '../../firebase_save/services/submit_service.dart';
+import '../../firebase/services/submit_service.dart';
 import '../model/form_model.dart';
 import 'form_widgets_states.dart';
 

@@ -1,10 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import '../../config/firebase.dart';
-import '../../utils/watch_locale.dart';
-import '../../utils/where_non_null_iterable.dart';
-import '../topwr_mockup/features/sci_clubs_tab/repositories/getTags.graphql.dart';
+import '../../../config/firebase.dart';
+import '../../../utils/watch_locale.dart';
+import '../../../utils/where_non_null_iterable.dart';
+import '../../topwr_mockup/features/sci_clubs_tab/repositories/getTags.graphql.dart';
 
 part 'tags_repo.g.dart';
 

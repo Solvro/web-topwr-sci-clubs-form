@@ -2,7 +2,7 @@ import 'package:collection/collection.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import '../../firebase_tags/tags_repo.dart';
+import '../repositories/tags_repo.dart';
 import '../../form/model/form_model.dart';
 import '../models/sci_club.dart';
 import '../repositories/images_repo.dart';

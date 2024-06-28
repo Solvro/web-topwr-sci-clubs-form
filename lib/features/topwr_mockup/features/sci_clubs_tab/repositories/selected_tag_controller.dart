@@ -1,6 +1,6 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import '../../../../firebase_tags/tags_repo.dart';
+import '../../../../firebase/repositories/tags_repo.dart';
 
 part 'selected_tag_controller.g.dart';
 
