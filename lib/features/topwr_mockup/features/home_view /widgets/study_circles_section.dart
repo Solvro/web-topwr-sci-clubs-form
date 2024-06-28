@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../../current_sci_club/curr_sci_club_builder.dart';
 import '../../../../firebase/models/sci_club.dart';
 import '../../../../firebase/repositories/sci_clubs_repo.dart';
 import '../../../config/ui_config.dart';
@@ -40,26 +41,32 @@ class _StudyCirclesList extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final state = ref.watch(sciClubsRepoProvider);
-    return switch (state) {
-      AsyncLoading() => const Padding(
-          padding: EdgeInsets.only(
-              left: HomeScreenConfig.paddingMedium,
-              top: HomeScreenConfig.paddingMedium),
-          child: BigScrollableSectionLoading(),
-        ),
-      AsyncError(:final error) => MyErrorWidget(error),
-      AsyncValue(:final value) => Container(
-          padding: const EdgeInsets.only(
-            left: HomeScreenConfig.paddingSmall,
-            right: HomeScreenConfig.paddingSmall,
-            top: HomeScreenConfig.paddingMedium,
-          ),
-          height: BigPreviewCardConfig.cardHeight,
-          child: _StudyCirclesDataList(
-            value.whereNonNull.toList(),
-          ))
-    };
+    const loading = Padding(
+      padding: EdgeInsets.only(
+          left: HomeScreenConfig.paddingMedium,
+          top: HomeScreenConfig.paddingMedium),
+      child: BigScrollableSectionLoading(),
+    );
+
+    return CurrentSciClubBuilder(
+        loader: loading,
+        builder: (context, sciClub) {
+          final state = ref.watch(sciClubsRepoProvider);
+          return switch (state) {
+            AsyncLoading() => loading,
+            AsyncError(:final error) => MyErrorWidget(error),
+            AsyncValue(:final value) => Container(
+                padding: const EdgeInsets.only(
+                  left: HomeScreenConfig.paddingSmall,
+                  right: HomeScreenConfig.paddingSmall,
+                  top: HomeScreenConfig.paddingMedium,
+                ),
+                height: BigPreviewCardConfig.cardHeight,
+                child: _StudyCirclesDataList(
+                  [sciClub, ...value.whereNonNull],
+                ))
+          };
+        });
   }
 }
 
@@ -83,12 +90,13 @@ class _StudyCirclesDataList extends ConsumerWidget {
           final circle = studyCircles[index];
           return MediumLeftPadding(
             child: BigPreviewCard(
-                title: circle.name,
-                shortDescription: circle.shortDescription ?? "",
-                photoUrl: circle.logo,
-                onClick: circle.id == null
-                    ? null
-                    : () => goToDetailView(ref, circle.id!)),
+              title: circle.name ?? context.localize.default_name,
+              shortDescription: circle.shortDescription ?? "",
+              photoUrl: circle.logo,
+              onClick: circle.id == null
+                  ? null
+                  : () => goToDetailView(ref, circle.id!),
+            ),
           );
         });
   }

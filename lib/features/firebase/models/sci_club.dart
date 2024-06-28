@@ -10,14 +10,14 @@ part 'sci_club.g.dart';
 class SciClub with _$SciClub {
   const factory SciClub({
     String? id,
-    required String name,
-    required String? department,
-    required List<String> tags,
+    String? name,
+    String? department,
+    @Default([]) List<String> tags,
     String? logo,
     String? cover,
-    required List<SocialUrl> socialLinks,
-    required SciClubType type,
-    @Default(Source.manualEntry) Source source,
+    @Default([]) List<SocialUrl> socialLinks,
+    SciClubType? type,
+    @Default(Source.manualEntry) Source? source,
     String? description,
     String? shortDescription,
   }) = _SciClub;

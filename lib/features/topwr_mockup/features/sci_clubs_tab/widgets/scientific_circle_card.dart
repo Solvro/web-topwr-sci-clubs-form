@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../../../utils/context_extensions.dart';
 import '../../../../firebase/models/sci_club.dart';
 import '../../../config/ui_config.dart';
 
@@ -15,7 +16,7 @@ class ResearchGroupCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return WideTileCard(
       isActive: false,
-      title: sciCircle.name,
+      title: sciCircle.name ?? context.localize.default_name,
       subtitle: sciCircle.department ?? "",
       onTap: onTap,
       secondSubtitle: sciCircle.tags.map((tag) => '#$tag').toList().join(', '),

@@ -25,9 +25,10 @@ Future<Iterable<SciClub?>?> _sciCirclesFilteredByTextQuery(
   final originalList = await ref.watch(sciClubsRepoProvider.future);
   final query = ref.watch(searchScientificCirclesControllerProvider);
   return originalList.where((element) =>
-      element.name.toLowerCase().contains(query.toLowerCase()) ||
-      (element.department?.toLowerCase().contains(query.toLowerCase()) ??
-          false));
+      element.name?.toLowerCase().contains(query.toLowerCase()) ??
+      false ||
+          (element.department?.toLowerCase().contains(query.toLowerCase()) ??
+              false));
 }
 
 @riverpod

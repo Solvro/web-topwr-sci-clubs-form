@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../../config/firebase.dart';
+import '../../../current_sci_club/curr_sci_club_builder.dart';
 import '../../../firebase/models/sci_club.dart';
 import '../../../firebase/repositories/sci_clubs_repo.dart';
 import '../../config/ui_config.dart';
@@ -36,45 +38,60 @@ class _CircleDetailsDataView extends ConsumerWidget {
     final itemId = ModalRoute.of(context)?.settings.arguments as String;
     final state = ref.watch(sciClubsRepoProvider.notifier).getClub(itemId);
     return switch (state) {
-      null => const MyErrorWidget(null),
-      SciClub() => CustomScrollView(slivers: [
-          SliverPersistentHeader(
-              delegate: SliverHeaderSection(
-            logoImageUrl: state.logo,
-            backgroundImageUrl: state.cover,
-          )),
-          SliverList(
-            delegate: SliverChildListDelegate([
-              const SizedBox(height: 8),
-              Text(
-                state.name,
-                style: context.textTheme.headline,
-                textAlign: TextAlign.center,
-                maxLines: 2,
-              ),
-              const SizedBox(height: 12),
-              Text(
-                state.department ?? '',
-                style: context.textTheme.body,
-                textAlign: TextAlign.center,
-              ),
-              const SizedBox(height: DetailsScreenConfig.spacerHeight),
-              ContactSection(
-                list: state.socialLinks.whereNonNull
-                    .map((a) => ContactSectionData(
-                          text: a.name,
-                          url: a.url,
-                        ))
-                    .toList(),
-              ),
-              const SizedBox(height: DetailsScreenConfig.spacerHeight),
-              AboutUsSection(
-                text: state.description ?? '',
-              )
-            ]),
-          ),
-        ]),
+      null => itemId == FirebaseConfig.secretCurrentAppID
+          ? CurrentSciClubBuilder(
+              builder: (context, sciClub) => _ViewWidget(sciClub),
+            )
+          : const MyErrorWidget(null),
+      SciClub() => _ViewWidget(state),
     };
+  }
+}
+
+class _ViewWidget extends StatelessWidget {
+  const _ViewWidget(this.state);
+
+  final SciClub state;
+
+  @override
+  Widget build(BuildContext context) {
+    return CustomScrollView(slivers: [
+      SliverPersistentHeader(
+          delegate: SliverHeaderSection(
+        logoImageUrl: state.logo,
+        backgroundImageUrl: state.cover,
+      )),
+      SliverList(
+        delegate: SliverChildListDelegate([
+          const SizedBox(height: 8),
+          Text(
+            state.name ?? context.localize.default_name,
+            style: context.textTheme.headline,
+            textAlign: TextAlign.center,
+            maxLines: 2,
+          ),
+          const SizedBox(height: 12),
+          Text(
+            state.department ?? '',
+            style: context.textTheme.body,
+            textAlign: TextAlign.center,
+          ),
+          const SizedBox(height: DetailsScreenConfig.spacerHeight),
+          ContactSection(
+            list: state.socialLinks.whereNonNull
+                .map((a) => ContactSectionData(
+                      text: a.name,
+                      url: a.url,
+                    ))
+                .toList(),
+          ),
+          const SizedBox(height: DetailsScreenConfig.spacerHeight),
+          AboutUsSection(
+            text: state.description ?? '',
+          )
+        ]),
+      ),
+    ]);
   }
 }
 

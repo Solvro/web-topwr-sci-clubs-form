@@ -15,8 +15,9 @@ class AdapterService {
 
   const AdapterService(this.ref);
 
-  Future<SciClub> fromForm(SciClubFormModel model) async {
+  Future<SciClub> fromForm(SciClubFormModel model, String? id) async {
     final json = model.toJson();
+    json["id"] = id;
     if (model.logo != null) {
       json["logo"] = await ImagesRepository.submitImage(
         model.logo!,
