@@ -15,3 +15,17 @@ class Uint8ListConverter implements JsonConverter<Uint8List?, List<int>?> {
     return object?.toList();
   }
 }
+
+class IgnoreConverter implements JsonConverter<Uint8List?, Null> {
+  const IgnoreConverter();
+
+  @override
+  Null fromJson(Null json) {
+    return null;
+  }
+
+  @override
+  Null toJson(Uint8List? object) {
+    return null;
+  }
+}

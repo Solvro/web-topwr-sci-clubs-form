@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import '../../../../../utils/context_extensions.dart';
 import '../../../../firebase/models/sci_club.dart';
 import '../../../config/ui_config.dart';
-
 import '../../../widgets/my_cached_image.dart';
 import '../../../widgets/wide_tile_card.dart';
 
@@ -36,7 +35,7 @@ class ResearchGroupCard extends StatelessWidget {
                   bottomRight: WideTileCardConfig.radius),
             ),
             child: MyCachedImage(
-              sciCircle.logo,
+              sciCircle.logo?.url,
               boxFit: BoxFit.contain,
               noShimmeringLoading: true,
             ),

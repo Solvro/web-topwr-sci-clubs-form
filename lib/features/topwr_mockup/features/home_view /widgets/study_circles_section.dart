@@ -1,21 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../../../utils/context_extensions.dart';
+import '../../../../../utils/where_non_null_iterable.dart';
 import '../../../../current_sci_club/curr_sci_club_builder.dart';
 import '../../../../firebase/models/sci_club.dart';
 import '../../../../firebase/repositories/sci_clubs_repo.dart';
+import '../../../config/nav_bar_config.dart';
 import '../../../config/ui_config.dart';
-
-import '../../../../../utils/context_extensions.dart';
-import '../../../../../utils/where_non_null_iterable.dart';
 import '../../../widgets/big_preview_card.dart';
 import '../../../widgets/my_error_widget.dart';
 import '../../../widgets/subsection_header.dart';
-import '../../../config/nav_bar_config.dart';
 import '../../navigator/navigator/detail_view_navigator.dart';
 import '../../navigator/navigator/nested_navigator.dart';
 import '../../navigator/navigator/tab_bar_navigator.dart';
-
 import 'loading_widgets/big_scrollable_section_loading.dart';
 import 'paddings.dart';
 
@@ -92,7 +90,7 @@ class _StudyCirclesDataList extends ConsumerWidget {
             child: BigPreviewCard(
               title: circle.name ?? context.localize.default_name,
               shortDescription: circle.shortDescription ?? "",
-              photoUrl: circle.logo,
+              photoUrl: circle.logo?.url,
               onClick: circle.id == null
                   ? null
                   : () => goToDetailView(ref, circle.id!),
