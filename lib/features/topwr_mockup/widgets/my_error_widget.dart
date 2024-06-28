@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../../api_base/watch_query_adapter.dart';
-// import 'package:logger/logger.dart';
+// import '../../../api_base/watch_query_adapter.dart';
+import 'package:logger/logger.dart';
 
 // import '../api_base/watch_query_adapter.dart';
 // import '../features/iparking/api_client/iparking_commands.dart';
@@ -13,7 +13,7 @@ class MyErrorWidget extends StatelessWidget {
   final Object? error;
   @override
   Widget build(BuildContext context) {
-    // Logger().e(error.toString());
+    Logger().e(error.toString());
     return switch (error) {
       // ParkingsOfflineException() => const OfflineParkings(),
       // GqlOfflineException() => OfflineGraphQLMessage(ttlKey),
