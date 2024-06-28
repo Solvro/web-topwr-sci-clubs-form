@@ -5,6 +5,7 @@ import 'package:reactive_forms_annotations/reactive_forms_annotations.dart';
 
 import '../../firebase/models/uint8list_converter.dart';
 import 'enums.dart';
+import 'https_validator.dart';
 
 part 'form_model.freezed.dart';
 part 'form_model.g.dart';
@@ -54,14 +55,17 @@ class SciClubFormModel with _$SciClubFormModel {
 @RfGroup()
 class SocialUrl with _$SocialUrl {
   const factory SocialUrl({
-    @RfControl() String? name,
     @RfControl(validators: [
       RequiredValidator(),
-      ComposeOrValidator([
-        EmailValidator(),
-      ])
+      ComposeOrValidator(
+        [
+          HttpsValidator(),
+          EmailValidator(),
+        ],
+      )
     ])
     String? url,
+    @RfControl() String? name,
   }) = _SocialUrl;
 
   factory SocialUrl.fromJson(Map<String, Object?> json) =>
