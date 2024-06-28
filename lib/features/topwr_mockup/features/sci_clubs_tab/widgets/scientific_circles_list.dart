@@ -10,7 +10,7 @@ import '../../../../../utils/where_non_null_iterable.dart';
 import '../../../widgets/my_error_widget.dart';
 import '../../navigator/navigator/detail_view_navigator.dart';
 import '../../navigator/navigator/nested_navigator.dart';
-import '../repositories/scientific_circles_tab_controller.dart';
+import '../controller/scientific_circles_tab_controller.dart';
 import 'scientific_circle_card.dart';
 import 'scientific_circle_loading.dart';
 

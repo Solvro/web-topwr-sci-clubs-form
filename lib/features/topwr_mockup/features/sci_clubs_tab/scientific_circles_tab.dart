@@ -5,7 +5,7 @@ import '../../../../utils/context_extensions.dart';
 import '../../../../utils/where_non_null_iterable.dart';
 import '../../../firebase/repositories/tags_repo.dart';
 import '../../widgets/search_box_app_bar.dart';
-import 'repositories/scientific_circles_tab_controller.dart';
+import 'controller/scientific_circles_tab_controller.dart';
 
 import 'widgets/scientific_circles_list.dart';
 import 'widgets/tags_loading.dart';

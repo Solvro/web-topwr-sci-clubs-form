@@ -4,7 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../firebase/repositories/tags_repo.dart';
 import '../../../config/ui_config.dart';
 import '../../../../../theme/app_theme.dart';
-import '../repositories/selected_tag_controller.dart';
+import '../controller/selected_tag_controller.dart';
 
 class TagsRow extends ConsumerWidget {
   final List<Tag> allTags;
