@@ -14,7 +14,7 @@ class SubmitService {
 
   Future<void> submitSciClub(SciClubFormModel sciClub) async {
     final adapter = ref.read(adapterServiceProvider);
-    final model = await adapter.fromForm(sciClub, null);
+    final model = await adapter.fromFormToFirebase(sciClub);
     final repo = ref.read(sciClubsRepoProvider.notifier);
     await repo.save(model);
   }

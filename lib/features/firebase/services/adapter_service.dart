@@ -2,6 +2,7 @@ import 'package:collection/collection.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
+import '../../current_sci_club/utils/temp_image_url.dart';
 import '../models/tag.dart';
 import '../repositories/tags_repo.dart';
 import '../../form/model/form_model.dart';
@@ -15,9 +16,8 @@ class AdapterService {
 
   const AdapterService(this.ref);
 
-  Future<SciClub> fromForm(SciClubFormModel model, String? id) async {
+  Future<SciClub> fromFormToFirebase(SciClubFormModel model) async {
     final json = model.toJson();
-    json["id"] = id;
     if (model.logo != null) {
       json["logo"] = await ImagesRepository.submitImage(
         model.logo!,
@@ -29,6 +29,19 @@ class AdapterService {
         model.cover!,
         model.coverStorageName,
       );
+    }
+    json["tags"] = await determineTagsFromBools(model).toList();
+    return SciClub.fromJson(json);
+  }
+
+  Future<SciClub> fromFormToLocal(SciClubFormModel model, String? id) async {
+    final json = model.toJson();
+    json["id"] = id;
+    if (model.logo != null) {
+      json["logo"] = TempImageUrl.createTemporaryUrl(model.logo!);
+    }
+    if (model.cover != null) {
+      json["cover"] = TempImageUrl.createTemporaryUrl(model.cover!);
     }
     json["tags"] = await determineTagsFromBools(model).toList();
     return SciClub.fromJson(json);
