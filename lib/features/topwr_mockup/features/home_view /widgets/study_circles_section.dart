@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../../../api_base/directus_assets_url.dart';
 import '../../../../firebase/models/sci_club.dart';
 import '../../../../firebase/repositories/sci_clubs_repo.dart';
 import '../../../config/ui_config.dart';

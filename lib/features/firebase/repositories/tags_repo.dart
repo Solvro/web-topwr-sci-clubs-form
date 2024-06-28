@@ -4,19 +4,16 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 import '../../../config/firebase.dart';
 import '../../../utils/watch_locale.dart';
 import '../../../utils/where_non_null_iterable.dart';
-import '../../topwr_mockup/features/sci_clubs_tab/repositories/getTags.graphql.dart';
+import '../models/tag.dart';
 
 part 'tags_repo.g.dart';
-
-typedef Tag = Query$GetTags$Tags;
 
 @riverpod
 class RemoteTagsRepository extends _$RemoteTagsRepository {
   late final _collection = FirebaseFirestore.instance
       .collection(FirebaseConfig.firestoreTags)
       .withConverter<Tag>(
-        fromFirestore: (snapshots, _) =>
-            Tag(name: snapshots.data()?["name"] ?? ""),
+        fromFirestore: (snapshots, _) => Tag.fromJson(snapshots.data()!),
         toFirestore: (model, _) => model.toJson(),
       );
 
