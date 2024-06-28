@@ -6,10 +6,6 @@ targets:
           themes: [baseTheme]
           theme_getter: on_build_context_props
           require_static_const: true
-      envied_generator:envied:
-        generate_for:
-          include:
-            - lib/features/topwr_mockup/config/api_base_config.dart
       graphql_codegen:
         options:
           clients:
