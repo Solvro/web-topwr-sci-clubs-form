@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:collection/collection.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../config/firebase.dart';
@@ -26,5 +27,11 @@ class SciClubsRepo extends _$SciClubsRepo {
 
   Future<void> save(SciClub model) async {
     await _collection.add(model);
+  }
+
+  SciClub? getClub(String itemId) {
+    return state.valueOrNull?.firstWhereOrNull(
+      (element) => element.id == itemId,
+    );
   }
 }
