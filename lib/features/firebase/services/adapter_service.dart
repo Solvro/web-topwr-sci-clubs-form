@@ -31,6 +31,7 @@ class AdapterService {
       );
     }
     json["tags"] = await determineTagsFromBools(model).toList();
+    json["socialLinks"] = serializeSocialLinks(json["socialLinks"]);
     return SciClub.fromJson(json);
   }
 
@@ -44,6 +45,7 @@ class AdapterService {
       json["cover"] = TempImageUrl.createTemporaryUrl(model.cover!);
     }
     json["tags"] = await determineTagsFromBools(model).toList();
+    json["socialLinks"] = serializeSocialLinks(json["socialLinks"]);
     return SciClub.fromJson(json);
   }
 
@@ -58,6 +60,18 @@ class AdapterService {
         }
       }
     }
+  }
+
+  List<Map<String, dynamic>> serializeSocialLinks(List<SocialUrl> urls) {
+    return urls.map((e) {
+      if (e.isUrlEmail) {
+        return SocialUrl(
+          url: "mailto:${e.url}",
+          name: e.url,
+        ).toJson();
+      }
+      return e.toJson();
+    }).toList();
   }
 }
 

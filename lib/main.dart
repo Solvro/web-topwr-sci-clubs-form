@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -15,9 +16,14 @@ import 'features/topwr_mockup/config/ui_config.dart';
 import 'features/topwr_mockup/features/home_view /widgets/logo_app_bar.dart';
 import 'features/splash_screen/splash_screen.dart';
 import 'features/splash_screen/splash_screen_controller.dart';
+import 'firebase_options.dart';
 
 void main() async {
   SplashScreenController.preserveNativeSplashScreen();
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(
     const ProviderScope(
       child: SplashScreen(

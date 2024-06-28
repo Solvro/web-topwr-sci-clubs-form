@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import '../../config/firebase.dart';
 import '../../config/splash.dart';
 import '../topwr_mockup/features/home_view /widgets/logo_app_bar.dart';
 
@@ -23,7 +22,6 @@ class SplashScreenController extends _$SplashScreenController {
     // await MapController.initializeGoogleMapsRenderingAndroid();
 
     await AppBarLogo.precacheImageIfAbsent();
-    await ref.read(firebaseProvider.future);
   }
 
   @override
