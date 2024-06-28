@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../../../config/ui_config.dart';
-import '../../../../../theme/colors.dart';
+import '../../../config/splash.dart';
+
+import '../../../theme/colors.dart';
 import 'fade_in_gradient_animation.dart';
 
 class FadeInSplashGradient extends FadeInGradientAnimation {

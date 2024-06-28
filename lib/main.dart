@@ -13,8 +13,8 @@ import 'features/mockup_frame/mockup_frame.dart';
 import 'features/mockup_frame/split_view.dart';
 import 'features/topwr_mockup/config/ui_config.dart';
 import 'features/topwr_mockup/features/home_view /widgets/logo_app_bar.dart';
-import 'features/topwr_mockup/features/splash_screen/splash_screen.dart';
-import 'features/topwr_mockup/features/splash_screen/splash_screen_controller.dart';
+import 'features/splash_screen/splash_screen.dart';
+import 'features/splash_screen/splash_screen_controller.dart';
 
 void main() async {
   SplashScreenController.preserveNativeSplashScreen();

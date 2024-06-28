@@ -4,10 +4,10 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:topwr_sci_clubs_form/features/topwr_mockup/config/ui_config.dart';
 
-import '../../../../config/firebase.dart';
-import '../home_view /widgets/logo_app_bar.dart';
+import '../../config/firebase.dart';
+import '../../config/splash.dart';
+import '../topwr_mockup/features/home_view /widgets/logo_app_bar.dart';
 
 part 'splash_screen_controller.g.dart';
 
