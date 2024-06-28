@@ -1,8 +1,8 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
+import '../../../../firebase_tags/tags_repo.dart';
 import '../../../shared_repositories/sci_clubs_repository/scientific_circles_repository.dart';
 import 'selected_tag_controller.dart';
-import 'tags_repository.dart';
 
 part 'scientific_circles_tab_controller.g.dart';
 

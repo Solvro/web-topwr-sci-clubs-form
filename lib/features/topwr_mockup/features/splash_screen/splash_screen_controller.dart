@@ -6,6 +6,9 @@ import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:topwr_sci_clubs_form/features/topwr_mockup/config/ui_config.dart';
 
+import '../../../../config/firebase.dart';
+import '../home_view /widgets/logo_app_bar.dart';
+
 part 'splash_screen_controller.g.dart';
 
 @riverpod
@@ -17,8 +20,10 @@ class SplashScreenController extends _$SplashScreenController {
     */
     // await MapMarkerUtils.loadMapMarkerAssets(context);
     // await initHiveForGraphqlCache();
-    // AppBarLogo.precacheImageIfAbsent();
     // await MapController.initializeGoogleMapsRenderingAndroid();
+
+    await AppBarLogo.precacheImageIfAbsent();
+    await ref.read(firebaseProvider.future);
   }
 
   @override

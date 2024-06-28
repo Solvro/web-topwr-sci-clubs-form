@@ -5,7 +5,8 @@ import 'package:reactive_forms_annotations/reactive_forms_annotations.dart';
 
 import '../../../utils/context_extensions.dart';
 import '../../../utils/where_non_null_iterable.dart';
-import '../../topwr_mockup/features/sci_clubs_tab/repositories/tags_repository.dart';
+import '../../firebase_tags/tags_repo.dart';
+
 import '../../topwr_mockup/widgets/my_error_widget.dart';
 import 'form_subsection.dart';
 

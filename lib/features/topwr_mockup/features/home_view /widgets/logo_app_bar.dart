@@ -25,9 +25,10 @@ class AppBarLogo extends StatelessWidget {
   /// ToPwr Appbar svg colorful themed logo
   const AppBarLogo({super.key});
 
-  static void precacheImageIfAbsent() {
+  static Future<void> precacheImageIfAbsent() async {
     const loader = SvgAssetLoader(AppBarConfig.logoAssetName);
-    svg.cache.putIfAbsent(loader.cacheKey(null), () => loader.loadBytes(null));
+    await svg.cache
+        .putIfAbsent(loader.cacheKey(null), () => loader.loadBytes(null));
   }
 
   @override

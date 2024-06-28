@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:html_editor_enhanced/html_editor.dart';
 import 'package:reactive_forms_annotations/reactive_forms_annotations.dart';
@@ -26,7 +27,9 @@ class HtmlField extends ConsumerWidget {
             initialText: formControl?.value,
             hint: "<p>${context.localize.form_sci_desc_hint}</p>",
           ),
-          otherOptions: const OtherOptions(height: 400),
+          otherOptions: const OtherOptions(
+            height: 400,
+          ),
           htmlToolbarOptions: const HtmlToolbarOptions(
             defaultToolbarButtons: [
               StyleButtons(),
@@ -47,14 +50,30 @@ class HtmlField extends ConsumerWidget {
               ),
             ],
           ),
-          callbacks: Callbacks(onChangeContent: (p0) {
-            debugPrint(p0);
-            formControl?.updateValue(p0);
-            formControl?.updateValueAndValidity();
-            setError(false);
-          }, onInit: () {
-            controller.setFullScreen();
-          }),
+          callbacks: Callbacks(
+            onChangeContent: (p0) {
+              formControl?.updateValue(p0);
+              formControl?.updateValueAndValidity();
+              setError(false);
+            },
+            onInit: () {
+              controller.setFullScreen();
+            },
+          ),
+        ),
+        IgnorePointer(
+          child: ReactiveTextField(
+            style: const TextStyle(
+              color: Colors.transparent,
+              fontSize: 0,
+            ),
+            formControl: formControl,
+            readOnly: true,
+            decoration: const InputDecoration.collapsed(
+              hintText: "",
+              enabled: false,
+            ),
+          ),
         ),
       ],
       onInitState: () {},
