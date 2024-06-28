@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../api_base/directus_assets_url.dart';
+import '../../../../firebase/models/sci_club.dart';
 import '../../../config/ui_config.dart';
-import '../../../shared_repositories/sci_clubs_repository/scientific_circles_repository.dart';
+
 import '../../../widgets/my_cached_image.dart';
 import '../../../widgets/wide_tile_card.dart';
 
 class ResearchGroupCard extends StatelessWidget {
-  final ScientificCircle sciCircle;
+  final SciClub sciCircle;
   final VoidCallback? onTap;
   const ResearchGroupCard(this.sciCircle, this.onTap, {super.key});
 
@@ -16,12 +16,9 @@ class ResearchGroupCard extends StatelessWidget {
     return WideTileCard(
       isActive: false,
       title: sciCircle.name,
-      subtitle: sciCircle.department?.name ?? "",
+      subtitle: sciCircle.department ?? "",
       onTap: onTap,
-      secondSubtitle: sciCircle.tags
-          ?.map((tag) => '#${tag?.Tags_id?.name}')
-          .toList()
-          .join(', '),
+      secondSubtitle: sciCircle.tags.map((tag) => '#$tag').toList().join(', '),
       activeShadows: null,
       trailing: Padding(
         padding: const EdgeInsets.only(
@@ -38,7 +35,7 @@ class ResearchGroupCard extends StatelessWidget {
                   bottomRight: WideTileCardConfig.radius),
             ),
             child: MyCachedImage(
-              sciCircle.logo?.filename_disk.directusUrl,
+              sciCircle.logo,
               boxFit: BoxFit.contain,
               noShimmeringLoading: true,
             ),

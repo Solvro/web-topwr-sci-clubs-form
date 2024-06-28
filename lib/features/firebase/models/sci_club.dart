@@ -9,6 +9,7 @@ part 'sci_club.g.dart';
 @freezed
 class SciClub with _$SciClub {
   const factory SciClub({
+    String? id,
     required String name,
     required String? department,
     required List<String> tags,

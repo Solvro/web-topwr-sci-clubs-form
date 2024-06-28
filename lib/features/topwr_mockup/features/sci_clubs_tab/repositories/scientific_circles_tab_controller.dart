@@ -1,7 +1,9 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
+import '../../../../firebase/models/sci_club.dart';
+import '../../../../firebase/repositories/sci_clubs_repo.dart';
 import '../../../../firebase/repositories/tags_repo.dart';
-import '../../../shared_repositories/sci_clubs_repository/scientific_circles_repository.dart';
+
 import 'selected_tag_controller.dart';
 
 part 'scientific_circles_tab_controller.g.dart';
@@ -18,20 +20,18 @@ class SearchScientificCirclesController
 }
 
 @riverpod
-Future<Iterable<ScientificCircle?>?> _sciCirclesFilteredByTextQuery(
+Future<Iterable<SciClub?>?> _sciCirclesFilteredByTextQuery(
     _SciCirclesFilteredByTextQueryRef ref) async {
-  final originalList =
-      await ref.watch(scientificCirclesRepositoryProvider.future);
+  final originalList = await ref.watch(sciClubsRepoProvider.future);
   final query = ref.watch(searchScientificCirclesControllerProvider);
-  return originalList?.where((element) =>
-      element == null ||
+  return originalList.where((element) =>
       element.name.toLowerCase().contains(query.toLowerCase()) ||
-      (element.department?.name.toLowerCase().contains(query.toLowerCase()) ??
+      (element.department?.toLowerCase().contains(query.toLowerCase()) ??
           false));
 }
 
 @riverpod
-Future<Iterable<ScientificCircle?>?> scientificCircleList(
+Future<Iterable<SciClub?>?> scientificCircleList(
     ScientificCircleListRef ref) async {
   final circles =
       await ref.watch(_sciCirclesFilteredByTextQueryProvider.future);
@@ -42,8 +42,7 @@ Future<Iterable<ScientificCircle?>?> scientificCircleList(
   }
 
   final filteredAndSelectedTag = circles?.where((circle) {
-    return circle?.tags?.any((tag) => tag?.Tags_id?.name == selectedCategory) ??
-        false;
+    return circle?.tags.any((tag) => tag == selectedCategory) ?? false;
   });
   return filteredAndSelectedTag;
 }

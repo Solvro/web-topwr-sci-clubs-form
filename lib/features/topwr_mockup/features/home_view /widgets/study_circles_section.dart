@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../../api_base/directus_assets_url.dart';
+import '../../../../firebase/models/sci_club.dart';
+import '../../../../firebase/repositories/sci_clubs_repo.dart';
 import '../../../config/ui_config.dart';
-import '../../../shared_repositories/sci_clubs_repository/scientific_circles_repository.dart';
+
 import '../../../../../utils/context_extensions.dart';
 import '../../../../../utils/where_non_null_iterable.dart';
 import '../../../widgets/big_preview_card.dart';
@@ -39,7 +41,7 @@ class _StudyCirclesList extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final state = ref.watch(scientificCirclesRepositoryProvider);
+    final state = ref.watch(sciClubsRepoProvider);
     return switch (state) {
       AsyncLoading() => const Padding(
           padding: EdgeInsets.only(
@@ -65,7 +67,7 @@ class _StudyCirclesList extends ConsumerWidget {
 class _StudyCirclesDataList extends ConsumerWidget {
   const _StudyCirclesDataList(this.studyCircles);
 
-  final List<ScientificCircle> studyCircles;
+  final List<SciClub> studyCircles;
 
   static void goToDetailView(WidgetRef ref, String id) {
     ref.read(navigatorProvider).navigateToStudyCircleDetails(id);
@@ -84,8 +86,10 @@ class _StudyCirclesDataList extends ConsumerWidget {
             child: BigPreviewCard(
                 title: circle.name,
                 shortDescription: circle.shortDescription ?? "",
-                photoUrl: circle.logo?.filename_disk?.directusUrl,
-                onClick: () => goToDetailView(ref, circle.id)),
+                photoUrl: circle.logo,
+                onClick: circle.id == null
+                    ? null
+                    : () => goToDetailView(ref, circle.id!)),
           );
         });
   }

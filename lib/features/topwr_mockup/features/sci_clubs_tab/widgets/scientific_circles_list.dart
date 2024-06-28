@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../../firebase/models/sci_club.dart';
 import '../../../config/ui_config.dart';
-import '../../../shared_repositories/sci_clubs_repository/scientific_circles_repository.dart';
+
 import '../../../../../theme/app_theme.dart';
 import '../../../../../utils/context_extensions.dart';
 import '../../../../../utils/where_non_null_iterable.dart';
@@ -36,7 +37,7 @@ class ScientificCirclesList extends ConsumerWidget {
 class _ScientificCirclesDataView extends ConsumerWidget {
   const _ScientificCirclesDataView(this.filteredCircles);
 
-  final List<ScientificCircle> filteredCircles;
+  final List<SciClub> filteredCircles;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -55,9 +56,11 @@ class _ScientificCirclesDataView extends ConsumerWidget {
       itemCount: filteredCircles.length,
       itemBuilder: (context, index) =>
           ResearchGroupCard(filteredCircles[index], () {
-        ref
-            .read(navigatorProvider)
-            .navigateToStudyCircleDetails(filteredCircles[index].id);
+        if (filteredCircles[index].id != null) {
+          ref
+              .read(navigatorProvider)
+              .navigateToStudyCircleDetails(filteredCircles[index].id!);
+        }
       }),
     );
   }

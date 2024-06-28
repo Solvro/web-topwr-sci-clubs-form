@@ -11,13 +11,17 @@ class SciClubsRepo extends _$SciClubsRepo {
   late final _collection = FirebaseFirestore.instance
       .collection(FirebaseConfig.firestoreSciClubs)
       .withConverter<SciClub>(
-        fromFirestore: (snapshots, _) => SciClub.fromJson(snapshots.data()!),
+        fromFirestore: (snapshots, _) =>
+            SciClub.fromJson(snapshots.data()!).copyWith(
+          id: snapshots.id,
+        ),
         toFirestore: (model, _) => model.toJson(),
       );
 
   @override
-  Null build() {
-    return null;
+  Future<List<SciClub>> build() async {
+    final data = await _collection.get();
+    return data.docs.map((e) => e.data()).toList();
   }
 
   Future<void> save(SciClub model) async {
