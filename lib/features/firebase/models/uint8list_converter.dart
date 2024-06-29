@@ -16,11 +16,11 @@ class Uint8ListConverter implements JsonConverter<Uint8List?, List<int>?> {
   }
 }
 
-class IgnoreConverter implements JsonConverter<Uint8List?, Null> {
+class IgnoreConverter implements JsonConverter<Uint8List?, String?> {
   const IgnoreConverter();
 
   @override
-  Null fromJson(Null json) {
+  Null fromJson(json) {
     return null;
   }
 

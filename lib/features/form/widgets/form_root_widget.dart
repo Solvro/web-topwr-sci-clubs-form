@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:reactive_forms_annotations/reactive_forms_annotations.dart';
 
 import '../../../utils/context_extensions.dart';
+import '../../topwr_mockup/widgets/my_error_widget.dart';
 import '../controller/form_widget_controller.dart';
 import '../controller/form_widgets_states.dart';
 import '../model/form_model.dart';
@@ -17,10 +18,13 @@ class FormRootWidget extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(formWidgetControllerProvider);
 
-    return switch (state.state) {
-      FormViewState.loading => const Center(child: CircularProgressIndicator()),
-      FormViewState.saved => const Text("Nicely done"),
-      FormViewState.form => ReactiveFormConfig(
+    return switch (state) {
+      AsyncLoading() || AsyncData(value: final Loading _) => const Center(
+          child: CircularProgressIndicator(),
+        ),
+      AsyncError(:final error) => MyErrorWidget(error),
+      AsyncData(value: final Saved _) => const Text("Nicely done"),
+      AsyncData(:final ActiveForm value) => ReactiveFormConfig(
           validationMessages: {
             ValidationMessage.required: (error) =>
                 context.localize.form_err_req,
@@ -29,13 +33,14 @@ class FormRootWidget extends ConsumerWidget {
                 context.localize.form_err_https_pattrn,
           },
           child: SciClubFormModelFormBuilder(
-            model: state.data,
+            model: value.data,
             builder: (context, formModel, child) {
               return child ?? Container();
             },
             child: child,
           ),
         ),
+      AsyncValue<FormWidgetState>() => throw UnimplementedError(),
     };
   }
 }

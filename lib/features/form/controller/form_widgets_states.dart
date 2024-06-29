@@ -4,16 +4,15 @@ import '../model/form_model.dart';
 
 part 'form_widgets_states.freezed.dart';
 
-enum FormViewState {
-  form,
-  loading,
-  saved,
-}
-
 @freezed
-class FormWidgetState with _$FormWidgetState {
-  const factory FormWidgetState({
-    required FormViewState state,
-    required SciClubFormModel data,
-  }) = _FormWidgetState;
+sealed class FormWidgetState with _$FormWidgetState {
+  const factory FormWidgetState.activeForm(
+    SciClubFormModel data,
+  ) = ActiveForm;
+
+  const factory FormWidgetState.loading() = Loading;
+
+  const factory FormWidgetState.saved(
+    SciClubFormModel data,
+  ) = Saved;
 }

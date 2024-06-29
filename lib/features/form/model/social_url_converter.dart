@@ -2,12 +2,11 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 import 'form_model.dart';
 
-class SocialUrlConverter
-    extends JsonConverter<List<SocialUrl>, List<Map<String, dynamic>>> {
+class SocialUrlConverter extends JsonConverter<List<SocialUrl>, List<dynamic>> {
   const SocialUrlConverter();
 
   @override
-  List<SocialUrl> fromJson(List<Map<String, dynamic>> json) {
+  List<SocialUrl> fromJson(List<dynamic> json) {
     return json.map((json) => SocialUrl.fromJson(json)).toList();
   }
 

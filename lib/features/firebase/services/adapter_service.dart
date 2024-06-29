@@ -49,6 +49,19 @@ class AdapterService {
     );
   }
 
+  Future<SciClubFormModel> fromFirebaseToForm(SciClub model) async {
+    final json = model.toJson();
+    json["tags"] = await determinBoolsFromTags(model).toList();
+    return SciClubFormModel.fromJson(json).copyWith(
+      cover: model.cover == null
+          ? null
+          : await ImagesRepository.downloadImage(model.cover!),
+      logo: model.logo == null
+          ? null
+          : await ImagesRepository.downloadImage(model.logo!),
+    );
+  }
+
   Stream<String> determineTagsFromBools(SciClubFormModel model) async* {
     final tags = await ref.read(remoteTagsRepositoryProvider.future);
     for (final pair in IterableZip([tags, model.tags ?? []])) {
@@ -58,6 +71,17 @@ class AdapterService {
         if (isChosen) {
           yield tagName;
         }
+      }
+    }
+  }
+
+  Stream<bool> determinBoolsFromTags(SciClub model) async* {
+    final tags = await ref.read(remoteTagsRepositoryProvider.future);
+    for (final tag in tags) {
+      if (model.tags.contains(tag.name)) {
+        yield true;
+      } else {
+        yield false;
       }
     }
   }

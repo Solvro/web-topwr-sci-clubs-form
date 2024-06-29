@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:collection/collection.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../config/firebase.dart';
@@ -12,10 +13,7 @@ class SciClubsRepo extends _$SciClubsRepo {
   late final _collection = FirebaseFirestore.instance
       .collection(FirebaseConfig.firestoreSciClubs)
       .withConverter<SciClub>(
-        fromFirestore: (snapshots, _) =>
-            SciClub.fromJson(snapshots.data()!).copyWith(
-          id: snapshots.id,
-        ),
+        fromFirestore: (snapshots, _) => SciClub.fromJson(snapshots.data()!),
         toFirestore: (model, _) => model.toJson(),
       );
 
@@ -33,5 +31,10 @@ class SciClubsRepo extends _$SciClubsRepo {
     return state.valueOrNull?.firstWhereOrNull(
       (element) => element.id == itemId,
     );
+  }
+
+  Future<SciClub?> getClubForUser(User user) async {
+    final data = await future;
+    return data.firstWhereOrNull((element) => element.id == user.uid);
   }
 }
