@@ -61,7 +61,12 @@ class _StudyCirclesList extends ConsumerWidget {
                 ),
                 height: BigPreviewCardConfig.cardHeight,
                 child: _StudyCirclesDataList(
-                  [sciClub, ...value.whereNonNull],
+                  [
+                    sciClub,
+                    ...value.whereNonNull.where(
+                      (element) => element.id != sciClub.id,
+                    )
+                  ],
                 ))
           };
         });
