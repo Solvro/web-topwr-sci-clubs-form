@@ -33,7 +33,10 @@ class ScientificCirclesList extends ConsumerWidget {
                   loader: const ScientificCirclesLoading(),
                   builder: (context, sciClub) => _ScientificCirclesDataView(
                     [
-                      sciClub,
+                      if (value.whereNonNull.map((e) => e.id).contains(
+                            sciClub.id,
+                          ))
+                        sciClub,
                       ...value.whereNonNull.where(
                         (element) => element.id != sciClub.id,
                       )
