@@ -9,7 +9,7 @@ class TabBarPageRoute extends MaterialPageRoute {
     required this.newTab,
   }) : super(
           builder: (context) {
-            return TabsConfig.tabs.get(newTab);
+            return TabsConfig.tabs(context).get(newTab);
           },
           settings: RouteSettings(
             name: AppRoutes.root,
