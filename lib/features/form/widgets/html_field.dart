@@ -5,6 +5,7 @@ import 'package:reactive_forms_annotations/reactive_forms_annotations.dart';
 
 import '../../../utils/context_extensions.dart';
 import 'form_subsection.dart';
+import 'reactive_mock_field.dart';
 
 final _htmlContoller = Provider((ref) => HtmlEditorController());
 
@@ -62,13 +63,12 @@ class HtmlField extends ConsumerWidget {
           ),
         ),
         IgnorePointer(
-          child: ReactiveTextField(
+          child: ReactiveMockField(
             style: const TextStyle(
               color: Colors.transparent,
               fontSize: 0,
             ),
             formControl: formControl,
-            readOnly: true,
             decoration: const InputDecoration.collapsed(
               hintText: "",
               enabled: false,

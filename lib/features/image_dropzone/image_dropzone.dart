@@ -8,6 +8,7 @@ import 'package:super_drag_and_drop/super_drag_and_drop.dart';
 
 import '../../config/config.dart';
 import '../../theme/app_theme.dart';
+import '../form/widgets/reactive_mock_field.dart';
 import '../form/widgets/text_style.dart';
 import 'image_preview.dart';
 
@@ -67,21 +68,20 @@ class _ImageDropzoneState extends State<ImageDropzone> {
                           ? context.colorTheme.greyPigeon.withOpacity(0.2)
                           : Colors.transparent,
                     ),
-                    // IgnorePointer(
-                    //   child: ReactiveTextField<Uint8List>(
-                    //     maxLines: double.maxFinite.toInt(),
-                    //     formControl: widget.formControl,
-                    //     decoration: InputDecoration(
-                    //       border: InputBorder.none,
-                    //       label: Padding(
-                    //         padding: const EdgeInsets.only(left: 8.0),
-                    //         child: Text(widget.label),
-                    //       ),
-                    //       floatingLabelBehavior: FloatingLabelBehavior.always,
-                    //     ),
-                    //     readOnly: true,
-                    //   ),
-                    // ),
+                    IgnorePointer(
+                      child: ReactiveMockField<Uint8List>(
+                        maxLines: double.maxFinite.toInt(),
+                        formControl: widget.formControl,
+                        decoration: InputDecoration(
+                          border: InputBorder.none,
+                          label: Padding(
+                            padding: const EdgeInsets.only(left: 8.0),
+                            child: Text(widget.label),
+                          ),
+                          floatingLabelBehavior: FloatingLabelBehavior.always,
+                        ),
+                      ),
+                    ),
                     DragAndDropImagePreview(
                       widget.formControl?.value,
                       onRemoveFile: onRemoveFile,
