@@ -6,6 +6,7 @@ import 'package:reactive_forms_annotations/reactive_forms_annotations.dart';
 import '../../firebase/models/uint8list_converter.dart';
 import 'enums.dart';
 import 'https_validator.dart';
+import 'social_url_converter.dart';
 
 part 'form_model.freezed.dart';
 part 'form_model.g.dart';
@@ -41,7 +42,7 @@ class SciClubFormModel with _$SciClubFormModel {
     @IgnoreConverter() @RfControl() Uint8List? logo,
     @IgnoreConverter() @RfControl() Uint8List? cover,
     @RfArray() List<bool>? tags,
-    @RfArray<SocialUrl>() List<SocialUrl>? socialLinks,
+    @SocialUrlConverter() @RfArray<SocialUrl>() List<SocialUrl>? socialLinks,
   }) = _SciClubFormModel;
 
   factory SciClubFormModel.fromJson(Map<String, Object?> json) =>

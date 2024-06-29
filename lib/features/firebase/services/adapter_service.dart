@@ -19,7 +19,6 @@ class AdapterService {
   Future<SciClub> fromFormToFirebase(SciClubFormModel model) async {
     final json = model.toJson();
     json["tags"] = await determineTagsFromBools(model).toList();
-    json["socialLinks"] = serializeSocialLinks(json["socialLinks"]);
     return SciClub.fromJson(json).copyWith(
       cover: model.cover == null
           ? null
@@ -44,7 +43,6 @@ class AdapterService {
     final json = model.toJson();
     json["id"] = id;
     json["tags"] = await determineTagsFromBools(model).toList();
-    json["socialLinks"] = serializeSocialLinks(json["socialLinks"]);
     return SciClub.fromJson(json).copyWith(
       cover: model.cover == null ? null : TempUrl.fromUint8List(model.cover!),
       logo: model.logo == null ? null : TempUrl.fromUint8List(model.logo!),
@@ -64,17 +62,17 @@ class AdapterService {
     }
   }
 
-  List<Map<String, dynamic>> serializeSocialLinks(List<SocialUrl> urls) {
-    return urls.map((e) {
-      if (e.isUrlEmail) {
-        return SocialUrl(
-          url: "mailto:${e.url}",
-          name: e.url,
-        ).toJson();
-      }
-      return e.toJson();
-    }).toList();
-  }
+  // List<Map<String, dynamic>> serializeSocialLinks(List<SocialUrl> urls) {
+  //   return urls.map((e) {
+  //     if (e.isUrlEmail) {
+  //       return SocialUrl(
+  //         url: "mailto:${e.url}",
+  //         name: e.url,
+  //       );
+  //     }
+  //     return e;
+  //   }).toList().;
+  // }
 }
 
 @riverpod

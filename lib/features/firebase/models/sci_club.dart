@@ -4,6 +4,7 @@ import '../../current_sci_club/models/converter.dart';
 import '../../current_sci_club/models/url.dart';
 import '../../form/model/enums.dart';
 import '../../form/model/form_model.dart';
+import '../../form/model/social_url_converter.dart';
 
 part 'sci_club.freezed.dart';
 part 'sci_club.g.dart';
@@ -17,7 +18,7 @@ class SciClub with _$SciClub {
     @Default([]) List<String> tags,
     @UrlConverter() AbstractUrl? logo,
     @UrlConverter() AbstractUrl? cover,
-    @Default([]) List<SocialUrl> socialLinks,
+    @SocialUrlConverter() @Default([]) List<SocialUrl> socialLinks,
     SciClubType? type,
     @Default(Source.manualEntry) Source? source,
     String? description,
