@@ -17,16 +17,16 @@ class RemoteAuthRepo extends _$RemoteAuthRepo {
         );
   }
 
-  Future<void> loginWithQuery(QueryParams params) async {
-    try {
-      await FirebaseAuth.instance.signInWithEmailAndPassword(
-        email: params.email.trim(),
-        password: params.token.trim(),
-      );
-    } on FirebaseAuthException catch (e) {
-      if (e.code == 'user-not-found' ||
-          e.code == 'wrong-password' ||
-          e.code == "invalid-credential") {
+  Future<void> loginWithQuery(QueryParams? params) async {
+    if (params == null) {
+      state = const AsyncData(AuthState.guest());
+    } else {
+      try {
+        await FirebaseAuth.instance.signInWithEmailAndPassword(
+          email: params.email.trim(),
+          password: params.token.trim(),
+        );
+      } on FirebaseAuthException {
         state = const AsyncData(AuthState.wrong());
       }
     }
