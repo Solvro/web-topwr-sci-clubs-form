@@ -13,6 +13,7 @@ part 'sci_club.g.dart';
 class SciClub with _$SciClub {
   const factory SciClub({
     String? id,
+    String? userId,
     String? name,
     String? department,
     @Default([]) List<String> tags,

@@ -5,7 +5,7 @@ A new Flutter project.
 # Developement
 This is Flutter project, at the moments works only in the web version (best with html renderer destination)
 
-1. You need working Firebase project with Storage, Firestore i Auth
+1. You need working Firebase project with Firestore i Auth
 - install firebase cli and run `flutterfire configure` to generate `firebase_options.dart`. You need to choose only `web` target.
 https://firebase.google.com/docs/web/setup
 

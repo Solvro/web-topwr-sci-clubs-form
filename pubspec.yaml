@@ -45,6 +45,7 @@ dependencies:
   logger: ^2.3.0
   firebase_auth: ^5.1.1
   http: ^1.2.1
+  uuid: ^4.4.0
 
 dev_dependencies:
   flutter_test:

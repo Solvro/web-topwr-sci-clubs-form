@@ -1,6 +1,7 @@
 import 'package:collection/collection.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:uuid/uuid.dart';
 
 import '../../current_sci_club/models/url.dart';
 import '../../form/model/form_model.dart';
@@ -19,13 +20,15 @@ class AdapterService {
   Future<SciClub> fromFormToFirebase(SciClubFormModel model) async {
     final json = model.toJson();
     json["tags"] = await determineTagsFromBools(model).toList();
+    json["id"] ??= const Uuid().v4();
     return SciClub.fromJson(json).copyWith(
       cover: model.cover == null
           ? null
           : NormalUrl(
               await ImagesRepository.submitImage(
                 model.cover!,
-                model.coverStorageName,
+                json["id"],
+                "cover",
               ),
             ),
       logo: model.logo == null
@@ -33,15 +36,15 @@ class AdapterService {
           : NormalUrl(
               await ImagesRepository.submitImage(
                 model.logo!,
-                model.logoStorageName,
+                json["id"],
+                "logo",
               ),
             ),
     );
   }
 
-  Future<SciClub> fromFormToLocal(SciClubFormModel model, String? id) async {
+  Future<SciClub> fromFormToLocal(SciClubFormModel model) async {
     final json = model.toJson();
-    json["id"] = id;
     json["tags"] = await determineTagsFromBools(model).toList();
     return SciClub.fromJson(json).copyWith(
       cover: model.cover == null ? null : TempUrl.fromUint8List(model.cover!),

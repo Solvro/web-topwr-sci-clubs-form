@@ -18,6 +18,8 @@ class SciClubFormModel with _$SciClubFormModel {
   const SciClubFormModel._();
 
   const factory SciClubFormModel({
+    String? id,
+    String? userId,
     @RfControl(validators: [
       RequiredValidator(),
     ])
@@ -39,17 +41,14 @@ class SciClubFormModel with _$SciClubFormModel {
       disabled: true,
     )
     String? department,
-    @IgnoreConverter() @RfControl<Uint8List?>() Uint8List? logo,
-    @IgnoreConverter() @RfControl<Uint8List?>() Uint8List? cover,
+    @IgnoreConverter() @RfControl() Uint8List? logo,
+    @IgnoreConverter() @RfControl() Uint8List? cover,
     @RfArray() List<bool>? tags,
     @SocialUrlConverter() @RfArray<SocialUrl>() List<SocialUrl>? socialLinks,
   }) = _SciClubFormModel;
 
   factory SciClubFormModel.fromJson(Map<String, Object?> json) =>
       _$SciClubFormModelFromJson(json);
-
-  String get coverStorageName => "${name}_logo_$hashCode";
-  String get logoStorageName => "${name}_cover_$hashCode";
 }
 
 @freezed

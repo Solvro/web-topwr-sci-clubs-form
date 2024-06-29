@@ -13,7 +13,10 @@ class SciClubsRepo extends _$SciClubsRepo {
   late final _collection = FirebaseFirestore.instance
       .collection(FirebaseConfig.firestoreSciClubs)
       .withConverter<SciClub>(
-        fromFirestore: (snapshots, _) => SciClub.fromJson(snapshots.data()!),
+        fromFirestore: (snapshots, _) =>
+            SciClub.fromJson(snapshots.data()!).copyWith(
+          id: snapshots.id,
+        ),
         toFirestore: (model, _) => model.toJson(),
       );
 
@@ -24,7 +27,11 @@ class SciClubsRepo extends _$SciClubsRepo {
   }
 
   Future<void> save(SciClub model) async {
-    await _collection.add(model);
+    if (model.id == null) {
+      await _collection.add(model);
+    } else {
+      _collection.doc(model.id).update(model.toJson());
+    }
   }
 
   SciClub? getClub(String itemId) {
@@ -35,6 +42,6 @@ class SciClubsRepo extends _$SciClubsRepo {
 
   Future<SciClub?> getClubForUser(User user) async {
     final data = await future;
-    return data.firstWhereOrNull((element) => element.id == user.uid);
+    return data.firstWhereOrNull((element) => element.userId == user.uid);
   }
 }
