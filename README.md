@@ -13,6 +13,7 @@ https://firebase.google.com/docs/web/setup
 ```bash
 gcloud storage buckets update gs://example_bucket --cors-file=firebase_cors.json
 ```
+https://cloud.google.com/storage/docs/cors-configurations
 
 2. You need to run code generation with 
 ```bash

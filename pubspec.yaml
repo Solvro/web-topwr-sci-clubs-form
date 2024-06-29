@@ -46,6 +46,7 @@ dependencies:
   firebase_auth: ^5.1.1
   http: ^1.2.1
   uuid: ^4.4.0
+  go_router: ^14.2.0
 
 dev_dependencies:
   flutter_test:

@@ -8,13 +8,13 @@ import '../../theme/app_theme.dart';
 import '../../theme/colors.dart';
 import 'config/config.dart';
 import 'config/firebase.dart';
-import 'features/auth/login_from_query_params.dart';
+import 'features/auth/auth_root.dart';
 import 'features/form/form_widget.dart';
 import 'features/form/widgets/form_root_widget.dart';
 import 'features/form/widgets/submit_button.dart';
 import 'features/mockup_frame/mockup_frame.dart';
 import 'features/mockup_frame/split_view.dart';
-import 'features/navigation/generate_route.dart';
+import 'features/navigation/go_router.dart';
 import 'features/splash_screen/splash_screen.dart';
 import 'features/splash_screen/splash_screen_controller.dart';
 import 'features/topwr_mockup/config/ui_config.dart';
@@ -33,11 +33,15 @@ void main() async {
   );
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends ConsumerWidget {
   const MyApp({super.key});
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
+  Widget build(BuildContext context, WidgetRef ref) {
+    final router = ref.watch(routerProvider);
+    return MaterialApp.router(
+      routeInformationProvider: router.routeInformationProvider,
+      routeInformationParser: router.routeInformationParser,
+      routerDelegate: router.routerDelegate,
       title: MyAppConfig.title,
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
@@ -50,7 +54,6 @@ class MyApp extends StatelessWidget {
         ),
       ),
       debugShowCheckedModeBanner: false,
-      onGenerateRoute: generateRoute,
     );
   }
 }
@@ -60,7 +63,7 @@ class RootView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return LoginFromQueryParams(
+    return AuthRoot(
       builder: (context, value) => FormRootWidget(
         child: Scaffold(
           appBar: LogoAppBar(
