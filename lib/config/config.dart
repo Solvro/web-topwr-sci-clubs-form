@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:super_drag_and_drop/super_drag_and_drop.dart';
 
-abstract class FormConfig {}
+abstract class FormConfig {
+  static const mailto = "mailto:";
+}
 
 abstract class FormFieldConfig {
   static const bigSectionDefHeight = 200.0;

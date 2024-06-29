@@ -67,21 +67,21 @@ class _ImageDropzoneState extends State<ImageDropzone> {
                           ? context.colorTheme.greyPigeon.withOpacity(0.2)
                           : Colors.transparent,
                     ),
-                    IgnorePointer(
-                      child: ReactiveTextField(
-                        maxLines: double.maxFinite.toInt(),
-                        formControl: widget.formControl,
-                        decoration: InputDecoration(
-                          border: InputBorder.none,
-                          label: Padding(
-                            padding: const EdgeInsets.only(left: 8.0),
-                            child: Text(widget.label),
-                          ),
-                          floatingLabelBehavior: FloatingLabelBehavior.always,
-                        ),
-                        readOnly: true,
-                      ),
-                    ),
+                    // IgnorePointer(
+                    //   child: ReactiveTextField<Uint8List>(
+                    //     maxLines: double.maxFinite.toInt(),
+                    //     formControl: widget.formControl,
+                    //     decoration: InputDecoration(
+                    //       border: InputBorder.none,
+                    //       label: Padding(
+                    //         padding: const EdgeInsets.only(left: 8.0),
+                    //         child: Text(widget.label),
+                    //       ),
+                    //       floatingLabelBehavior: FloatingLabelBehavior.always,
+                    //     ),
+                    //     readOnly: true,
+                    //   ),
+                    // ),
                     DragAndDropImagePreview(
                       widget.formControl?.value,
                       onRemoveFile: onRemoveFile,

@@ -39,8 +39,8 @@ class SciClubFormModel with _$SciClubFormModel {
       disabled: true,
     )
     String? department,
-    @IgnoreConverter() @RfControl() Uint8List? logo,
-    @IgnoreConverter() @RfControl() Uint8List? cover,
+    @IgnoreConverter() @RfControl<Uint8List?>() Uint8List? logo,
+    @IgnoreConverter() @RfControl<Uint8List?>() Uint8List? cover,
     @RfArray() List<bool>? tags,
     @SocialUrlConverter() @RfArray<SocialUrl>() List<SocialUrl>? socialLinks,
   }) = _SciClubFormModel;

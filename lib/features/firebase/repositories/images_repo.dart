@@ -1,7 +1,7 @@
 import 'dart:typed_data';
 
-import 'package:dio/dio.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:http/http.dart' as http;
 
 import '../../../config/firebase.dart';
 import '../../current_sci_club/models/url.dart';
@@ -22,10 +22,7 @@ class ImagesRepository {
   }
 
   static Future<Uint8List> downloadImage(AbstractUrl url) async {
-    final image = await Dio().get(
-      url.url,
-      options: Options(responseType: ResponseType.bytes),
-    );
-    return Uint8List.fromList(image.data);
+    final response = await http.get(Uri.parse(url.url));
+    return response.bodyBytes;
   }
 }

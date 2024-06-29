@@ -1,5 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+import '../../../config/config.dart';
 import 'form_model.dart';
 
 class SocialUrlConverter extends JsonConverter<List<SocialUrl>, List<dynamic>> {
@@ -7,7 +8,14 @@ class SocialUrlConverter extends JsonConverter<List<SocialUrl>, List<dynamic>> {
 
   @override
   List<SocialUrl> fromJson(List<dynamic> json) {
-    return json.map((json) => SocialUrl.fromJson(json)).toList();
+    return json.map((json) => SocialUrl.fromJson(_dropMailTo(json))).toList();
+  }
+
+  Map<String, dynamic> _dropMailTo(Map<String, dynamic> json) {
+    if ((json["url"] as String).startsWith(FormConfig.mailto)) {
+      json["url"] = json["url"].replaceAll(FormConfig.mailto, "");
+    }
+    return json;
   }
 
   @override
@@ -15,7 +23,7 @@ class SocialUrlConverter extends JsonConverter<List<SocialUrl>, List<dynamic>> {
     return object.map((object) {
       if (object.isUrlEmail) {
         return SocialUrl(
-          url: "mailto:${object.url}",
+          url: "${FormConfig.mailto}${object.url}",
           name: object.url,
         ).toJson();
       }
