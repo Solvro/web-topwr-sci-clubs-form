@@ -2,15 +2,20 @@
 
 A new Flutter project.
 
-## Getting Started
+# Developement
+This is Flutter project, at the moments works only in the web version (best with html renderer destination)
 
-This project is a starting point for a Flutter application.
+1. You need working Firebase project with Storage, Firestore i Auth
+- install firebase cli and run `flutterfire configure` to generate `firebase_options.dart`. You need to choose only `web` target.
+https://firebase.google.com/docs/web/setup
 
-A few resources to get you started if this is your first Flutter project:
+2. You need to run code generation with 
+```bash
+dart run build_runner build -d
+```
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+3. Run the project for web
+```bash
+flutter run -d chrome --web-renderer html
+```
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
