@@ -21,8 +21,8 @@ extension ParseQuery on GoRouterState {
 @freezed
 class QueryParams with _$QueryParams {
   const factory QueryParams({
-    @JsonKey(name: '\$1') @HexConverter() required String email,
-    @JsonKey(name: '\$2') required String token,
+    @JsonKey(name: '1') @HexConverter() required String email,
+    @JsonKey(name: '2') required String token,
   }) = _QueryParams;
 
   factory QueryParams.fromJson(Map<String, Object?> json) =>

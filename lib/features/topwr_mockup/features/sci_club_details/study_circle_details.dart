@@ -31,14 +31,14 @@ class _CircleDetailsDataView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final itemId = ModalRoute.of(context)?.settings.arguments as String;
-    final state = ref.watch(sciClubsRepoProvider.notifier).getClub(itemId);
-    return switch (state) {
-      null => CurrentSciClubBuilder(
-          builder: (context, sciClub) => _ViewWidget(sciClub),
-        ),
-      SciClub() => _ViewWidget(state),
-    };
+    return CurrentSciClubBuilder(builder: (context, sciClub) {
+      final itemId = ModalRoute.of(context)?.settings.arguments as String;
+      final state = ref.watch(sciClubsRepoProvider.notifier).getClub(itemId);
+      return switch (state) {
+        null => _ViewWidget(sciClub),
+        SciClub() => _ViewWidget(state.id == sciClub.id ? sciClub : state),
+      };
+    });
   }
 }
 
