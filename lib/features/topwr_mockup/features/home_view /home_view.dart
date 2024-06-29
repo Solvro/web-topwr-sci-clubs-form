@@ -3,6 +3,7 @@ import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
 import '../../../../theme/app_theme.dart';
 import '../../../../utils/context_extensions.dart';
+import '../../../form/model/form_model.dart';
 import '../../config/nav_bar_config.dart';
 import '../../config/ui_config.dart';
 import 'widgets/logo_app_bar.dart';
@@ -15,53 +16,58 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final itemScrollController = ItemScrollController();
-    const studyCirclesSections = StudyCirclesSection();
-    final List<Widget> sections = [
-      const HorizontalPlaceholder(),
-      const HorizontalPlaceholder(),
-      SubsectionPlaceholder(
-        title: context.localize.parkings_title,
-        isMapActionString: true,
-        tabDestination: NavBarEnum.parkings,
-      ),
-      SubsectionPlaceholder(
-        title: context.localize.whats_up,
-        big: true,
-        tabDestination: NavBarEnum.info,
-      ),
-      SubsectionPlaceholder(
-        title: context.localize.buildings_title,
-        isMapActionString: true,
-        tabDestination: NavBarEnum.mapp,
-      ),
-      studyCirclesSections,
-      SubsectionPlaceholder(
-        title: context.localize.departments,
-        tabDestination: NavBarEnum.faculties,
-      ),
-    ];
+    return ReactiveSciClubFormModelFormConsumer(
+      builder: (context, formModel, child) {
+        //rebuilds on-purpose
+        final itemScrollController = ItemScrollController();
+        const studyCirclesSections = StudyCirclesSection();
+        final List<Widget> sections = [
+          const HorizontalPlaceholder(),
+          const HorizontalPlaceholder(),
+          SubsectionPlaceholder(
+            title: context.localize.parkings_title,
+            isMapActionString: true,
+            tabDestination: NavBarEnum.parkings,
+          ),
+          SubsectionPlaceholder(
+            title: context.localize.whats_up,
+            big: true,
+            tabDestination: NavBarEnum.info,
+          ),
+          SubsectionPlaceholder(
+            title: context.localize.buildings_title,
+            isMapActionString: true,
+            tabDestination: NavBarEnum.mapp,
+          ),
+          studyCirclesSections,
+          SubsectionPlaceholder(
+            title: context.localize.departments,
+            tabDestination: NavBarEnum.faculties,
+          ),
+        ];
 
-    Future.delayed(Durations.medium2, () {
-      itemScrollController.scrollTo(
-        index: sections.indexOf(studyCirclesSections),
-        duration: Durations.medium4,
-        alignment: 0.01,
-        curve: Curves.decelerate,
-      );
-    });
+        Future.delayed(Durations.medium2, () {
+          itemScrollController.scrollTo(
+            index: sections.indexOf(studyCirclesSections),
+            duration: Durations.medium4,
+            alignment: 0.01,
+            curve: Curves.decelerate,
+          );
+        });
 
-    return Scaffold(
-      backgroundColor: context.colorTheme.whiteSoap,
-      appBar: LogoAppBar(context),
-      body: ScrollablePositionedList.separated(
-        itemScrollController: itemScrollController,
-        padding: const EdgeInsets.only(bottom: 48),
-        itemCount: sections.length,
-        itemBuilder: (BuildContext context, int index) => sections[index],
-        separatorBuilder: (context, index) =>
-            const SizedBox(height: HomeScreenConfig.paddingMedium),
-      ),
+        return Scaffold(
+          backgroundColor: context.colorTheme.whiteSoap,
+          appBar: LogoAppBar(context),
+          body: ScrollablePositionedList.separated(
+            itemScrollController: itemScrollController,
+            padding: const EdgeInsets.only(bottom: 48),
+            itemCount: sections.length,
+            itemBuilder: (BuildContext context, int index) => sections[index],
+            separatorBuilder: (context, index) =>
+                const SizedBox(height: HomeScreenConfig.paddingMedium),
+          ),
+        );
+      },
     );
   }
 }
