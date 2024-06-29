@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:logger/logger.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
 import '../../../../theme/app_theme.dart';
@@ -66,7 +65,6 @@ class _HomeViewState extends State<_HomeView> {
   @override
   void initState() {
     super.initState();
-    Logger().i("INIT STATE");
     Future.delayed(
       Durations.medium4,
       () {

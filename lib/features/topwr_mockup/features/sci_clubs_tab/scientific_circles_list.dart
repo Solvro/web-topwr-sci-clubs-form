@@ -13,6 +13,7 @@ import '../navigator/navigator/nested_navigator.dart';
 import 'controller/scientific_circles_tab_controller.dart';
 import 'widgets/scientific_circle_card.dart';
 import 'widgets/scientific_circle_loading.dart';
+import 'widgets/scrolldown_widget.dart';
 
 class ScientificCirclesList extends ConsumerWidget {
   const ScientificCirclesList({super.key});
@@ -58,19 +59,22 @@ class _ScientificCirclesDataView extends ConsumerWidget {
         ),
       );
     }
-    return GridView.builder(
-      padding: const EdgeInsets.only(
-          bottom: ScientificCirclesTabConfig.mediumPadding),
-      gridDelegate: ScientificCirclesTabConfig.researchGroupTabGridDelegate,
-      itemCount: filteredCircles.length,
-      itemBuilder: (context, index) =>
-          ResearchGroupCard(filteredCircles[index], () {
-        if (filteredCircles[index].id != null) {
-          ref
-              .read(navigatorProvider)
-              .navigateToStudyCircleDetails(filteredCircles[index].id!);
-        }
-      }),
-    );
+    return ScrollUpSciClubList(builder: (context, scrollController) {
+      return GridView.builder(
+        controller: scrollController,
+        padding: const EdgeInsets.only(
+            bottom: ScientificCirclesTabConfig.mediumPadding),
+        gridDelegate: ScientificCirclesTabConfig.researchGroupTabGridDelegate,
+        itemCount: filteredCircles.length,
+        itemBuilder: (context, index) =>
+            ResearchGroupCard(filteredCircles[index], () {
+          if (filteredCircles[index].id != null) {
+            ref
+                .read(navigatorProvider)
+                .navigateToStudyCircleDetails(filteredCircles[index].id!);
+          }
+        }),
+      );
+    });
   }
 }
