@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:logger/logger.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
 import '../../../../theme/app_theme.dart';
@@ -13,15 +14,26 @@ import 'widgets/placeholders/horizontal_placeholder.dart';
 import 'widgets/placeholders/subsection_placeholder.dart';
 import 'widgets/study_circles_section.dart';
 
-class HomeView extends StatefulWidget {
-  const HomeView({super.key, this.form});
+class HomeView extends StatelessWidget {
+  const HomeView({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return _HomeView(
+      ReactiveSciClubFormModelForm.of(context, listen: false),
+    );
+  }
+}
+
+class _HomeView extends StatefulWidget {
+  const _HomeView(this.form);
   final SciClubFormModelForm? form;
 
   @override
-  State<HomeView> createState() => _HomeViewState();
+  State<_HomeView> createState() => _HomeViewState();
 }
 
-class _HomeViewState extends State<HomeView> {
+class _HomeViewState extends State<_HomeView> {
   final itemScrollController = ItemScrollController();
   late final studyCirclesSections = const StudyCirclesSection();
   late final List<Widget> sections = [
@@ -54,21 +66,20 @@ class _HomeViewState extends State<HomeView> {
   @override
   void initState() {
     super.initState();
-    if (widget.form != null) {
-      Future.delayed(
-        Durations.medium4,
-        () {
-          subscryption = widget.form?.form.valueChanges.listen(
-            (event) => itemScrollController.scrollTo(
-              index: sections.indexOf(studyCirclesSections),
-              duration: Durations.medium4,
-              alignment: 0.01,
-              curve: Curves.decelerate,
-            ),
-          );
-        },
-      );
-    }
+    Logger().i("INIT STATE");
+    Future.delayed(
+      Durations.medium4,
+      () {
+        subscryption = widget.form?.form.valueChanges.listen(
+          (event) => itemScrollController.scrollTo(
+            index: sections.indexOf(studyCirclesSections),
+            duration: Durations.medium4,
+            alignment: 0.01,
+            curve: Curves.decelerate,
+          ),
+        );
+      },
+    );
   }
 
   @override
