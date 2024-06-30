@@ -103,5 +103,7 @@
   "read_more_landing" :"Przeczytaj wiecęj",
   "wrong_link" : "Ups! Zły link ://",
   "wrong_link_desc" : "Niestety podany link nie jest prawidłowy. Proszę skontaktuj się z nami aby to wyjaśnić.",
-  "write_email" : "Napisz maila"
+  "write_email" : "Napisz maila",
+  "text404" : "Ups :// Chyba się zgubiłeś, bo nie ma takiej strony.",
+  "take_me_home" : "Zabierz mnie do domu"
 }
