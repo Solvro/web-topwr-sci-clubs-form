@@ -1,5 +1,8 @@
 # ToPWR SciClubs form
 
+
+![KN Solvro banner](https://github.com/Solvro/script-topwr-science-clubs/assets/28555148/822d27f0-93e0-44f8-9004-f37577a93d9a)
+
 Web form with live preview (ToPWR mock app) for submiting or changing information about your Scientific Club / Student Organization / Student Media / Cultural Agenda. Made to gather information for [ToPWR mobile app](https://github.com/Solvro/mobile-topwr), comprehensive tour guide over Wroclaw University of Science and Technology (WUST).
 
 # Developement
