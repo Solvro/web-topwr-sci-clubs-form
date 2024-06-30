@@ -30,9 +30,15 @@ class FormWidgetController extends _$FormWidgetController {
   }
 
   void submit(SciClubFormModel model) async {
-    state = const AsyncData(FormWidgetState.loading());
+    state = const AsyncLoading();
     final service = ref.read(submitServiceProvider);
     await service.submitSciClub(model);
     state = AsyncData(FormWidgetState.saved(model));
+  }
+
+  void backToEditing() {
+    state = const AsyncLoading();
+    ref.invalidate(sciClubsRepoProvider);
+    ref.invalidateSelf();
   }
 }

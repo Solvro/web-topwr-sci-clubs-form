@@ -105,5 +105,9 @@
   "wrong_link_desc" : "Niestety podany link nie jest prawidłowy. Proszę skontaktuj się z nami aby to wyjaśnić.",
   "write_email" : "Napisz maila",
   "text404" : "Ups :// Chyba się zgubiłeś, bo nie ma takiej strony.",
-  "take_me_home" : "Zabierz mnie do domu"
+  "take_me_home" : "Zabierz mnie do domu",
+  "done_page" : "Wysłano twoją odpowiedź!",
+  "done_page2" : "Twoje dane zostały zapisane, możesz jeszcze wracać i je edytować ile chcesz. Po tym jak dane zostaną wprowadzone do aplikacji, zmiany też będą możliwe, ale będą wymagały kontaktu z nami",
+  "back_to_edit" : "Edytuj swoją odpowiedź",
+  "write_to_us" : "Napisz do nas :)"
 }

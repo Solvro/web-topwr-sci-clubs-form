@@ -25,6 +25,7 @@ abstract class WebAppBarConfig {
 abstract class UndrawConfig {
   static const wrong = "assets/undraw/injured.svg";
   static const p404 = "assets/undraw/camping.svg";
+  static const sent = "assets/undraw/sent.svg";
 }
 
 abstract class GuestPageConfig {

@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:reactive_forms_annotations/reactive_forms_annotations.dart';
 
 import '../../../utils/context_extensions.dart';
+import '../../done_page/done_page.dart';
 import '../../topwr_mockup/widgets/my_error_widget.dart';
 import '../controller/form_widget_controller.dart';
 import '../controller/form_widgets_states.dart';
@@ -23,7 +24,7 @@ class FormRootWidget extends ConsumerWidget {
           child: CircularProgressIndicator(),
         ),
       AsyncError(:final error) => MyErrorWidget(error),
-      AsyncData(value: final Saved _) => const Text("Nicely done"),
+      AsyncData(value: final Saved _) => const DonePage(),
       AsyncData(:final ActiveForm value) => ReactiveFormConfig(
           validationMessages: {
             ValidationMessage.required: (error) =>
