@@ -1,6 +1,6 @@
-# topwr_sci_clubs_form
+# ToPWR SciClubs form
 
-A new Flutter project.
+Web form with live preview ToPWR mock app for submiting or changing information about your Scientific Club / Student Organization / Student Media / Cultural Agenda. Made to gather information for [ToPWR mobile app](https://github.com/Solvro/mobile-topwr), comprehensive tour guide over Wroclaw University of Science and Technology (WUST).
 
 # Developement
 This is Flutter project, at the moments works only in the web version (best with html renderer destination)
