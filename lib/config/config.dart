@@ -32,4 +32,5 @@ abstract class GuestPageConfig {
   static const landingPng = "assets/preview.png";
   static const portfolioLink = "https://solvro.pwr.edu.pl/portfolio/to-pwr";
   static const contactLink = "https://solvro.pwr.edu.pl/contact";
+  static const solvroMailLink = "mailto:kn.solvro@pwr.edu.pl";
 }

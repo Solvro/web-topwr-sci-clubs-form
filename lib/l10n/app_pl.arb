@@ -98,7 +98,10 @@
   "default_name" : "Nazwa koła",
   "guest_page": "Witamy w ankiecie ToPWR dla kół naukowych i innych organizacji studenckich na Politechnice Wrocławskiej!",
   "guest_page2" : "ToPWR to aplikacja mobilna stworzona przez studentów z KN Solvro dla wszystkich studentów Politechniki Wrocławskiej. Licznik dni do sesji, mapka kampusu, informacje o dziekanatach, kółkach naukowych i licznik wolnych miejsc parkingowych na żywo - wszystko, co trzeba w jednym miejscu. Life made easy. 🚀",
-  "guest_page3" : "Poprzez tą ankietę zbieramy dane o wszystkich kołach naukowych i organizacjach studenckich, mediach i agendach. W miarę publicznej dostępności waszych email, powysyłaliśmy wam specjalne dedykowane linki do edycji danych o waszej organizacji. Jeśli nie otrzymaliście dostępu do naszej ankiety, skontaktujcie się z nami czym prędzej!",
+  "guest_page3" : "Poprzez tą ankietę zbieramy dane o wszystkich kołach naukowych i organizacjach studenckich, mediach i agendach. W miarę publicznej dostępności waszych emaili, powysyłaliśmy wam specjalne dedykowane linki do edycji danych o waszej organizacji. Jeśli nie otrzymaliście dostępu do naszej ankiety, skontaktujcie się z nami czym prędzej!",
   "contact_landing" :  "Skontaktuj się",
-  "read_more_landing" :"Przeczytaj wiecęj"
+  "read_more_landing" :"Przeczytaj wiecęj",
+  "wrong_link" : "Ups! Zły link ://",
+  "wrong_link_desc" : "Niestety podany link nie jest prawidłowy. Proszę skontaktuj się z nami aby to wyjaśnić.",
+  "write_email" : "Napisz maila"
 }

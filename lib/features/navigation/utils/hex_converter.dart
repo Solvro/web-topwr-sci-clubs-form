@@ -5,7 +5,11 @@ class HexConverter implements JsonConverter<String, String> {
 
   @override
   String fromJson(String json) {
-    return String.fromCharCodes(_hexDecode(json));
+    try {
+      return String.fromCharCodes(_hexDecode(json));
+    } catch (_) {
+      return "";
+    }
   }
 
   @override

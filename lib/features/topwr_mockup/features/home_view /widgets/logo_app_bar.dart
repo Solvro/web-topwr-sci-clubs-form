@@ -10,9 +10,10 @@ class LogoAppBar extends AppBar {
     BuildContext context, {
     super.key,
     Color? backgroundColor,
+    VoidCallback? onLogoTap,
     super.actions,
   }) : super(
-          title: const AppBarLogo(),
+          title: AppBarLogo(onLogoTap),
           centerTitle: false,
           titleSpacing: 0,
           backgroundColor: backgroundColor ?? context.colorTheme.whiteSoap,
@@ -23,8 +24,9 @@ class LogoAppBar extends AppBar {
 
 class AppBarLogo extends StatelessWidget {
   /// ToPwr Appbar svg colorful themed logo
-  const AppBarLogo({super.key});
+  const AppBarLogo(this.onLogoTap, {super.key});
 
+  final VoidCallback? onLogoTap;
   static Future<void> precacheImageIfAbsent() async {
     const loader = SvgAssetLoader(AppBarConfig.logoAssetName);
     await svg.cache
@@ -33,9 +35,12 @@ class AppBarLogo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 48),
-      child: SvgPicture.asset(AppBarConfig.logoAssetName),
+    return GestureDetector(
+      onTap: onLogoTap,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 48),
+        child: SvgPicture.asset(AppBarConfig.logoAssetName),
+      ),
     );
   }
 }

@@ -8,28 +8,35 @@ class MyTextButton extends StatelessWidget {
     this.onClick,
     required this.actionTitle,
     this.isOrange = true,
+    this.icon,
   });
 
+  final IconData? icon;
   final void Function()? onClick;
   final String actionTitle;
   final bool isOrange;
   @override
   Widget build(BuildContext context) {
-    return TextButton(
+    return TextButton.icon(
       onPressed: onClick,
       style: TextButton.styleFrom(
-        padding: EdgeInsets.zero,
+        padding: const EdgeInsets.all(12.0),
       ),
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Text(
-          actionTitle,
-          style: isOrange
-              ? context.textTheme.boldBodyOrange
-              : context.textTheme.boldBody.copyWith(
-                  color: context.colorTheme.blueAzure,
-                ),
-        ),
+      icon: icon == null
+          ? null
+          : Icon(
+              icon,
+              color: isOrange
+                  ? context.colorTheme.orangePomegranade
+                  : context.colorTheme.blueAzure,
+            ),
+      label: Text(
+        actionTitle,
+        style: isOrange
+            ? context.textTheme.boldBodyOrange
+            : context.textTheme.boldBody.copyWith(
+                color: context.colorTheme.blueAzure,
+              ),
       ),
     );
   }
