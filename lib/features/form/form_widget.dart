@@ -49,6 +49,7 @@ class SciClubForm extends ConsumerWidget {
                     MyFormField(
                       context.localize.form_sci_club_department,
                       formControl: formModel.departmentControl,
+                      counterText: context.localize.dept_form_info,
                     ),
                     TypeChoiceField(formModel.typeControl),
                     ImageDropzone(

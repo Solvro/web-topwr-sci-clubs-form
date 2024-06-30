@@ -21,6 +21,7 @@ class MyFormField extends StatelessWidget {
     this.hintText,
     this.minLines,
     this.maxLines,
+    this.counterText,
   });
 
   final Widget? prefixIcon;
@@ -28,6 +29,7 @@ class MyFormField extends StatelessWidget {
   final String? hintText;
   final int? minLines;
   final int? maxLines;
+  final String? counterText;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -45,7 +47,19 @@ class MyFormField extends StatelessWidget {
           hoverColor: context.colorTheme.blueAzure.withOpacity(0.1),
           prefixIcon: prefixIcon,
           hintText: hintText,
-        ).applyDefaults(fallbackTheme ?? const InputDecorationTheme()),
+          counter: counterText == null
+              ? null
+              : Row(
+                  children: [
+                    Text(
+                      counterText!,
+                      style: context.textTheme.bodyGrey,
+                    )
+                  ],
+                ),
+        ).applyDefaults(
+          fallbackTheme ?? const InputDecorationTheme(),
+        ),
         minLines: minLines,
         maxLines: maxLines,
       ),
