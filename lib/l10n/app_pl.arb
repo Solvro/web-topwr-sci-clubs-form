@@ -109,5 +109,6 @@
   "done_page" : "Wysłano twoją odpowiedź!",
   "done_page2" : "Twoje dane zostały zapisane, możesz jeszcze wracać i je edytować ile chcesz. Po tym jak dane zostaną wprowadzone do aplikacji, zmiany też będą możliwe, ale będą wymagały kontaktu z nami",
   "back_to_edit" : "Edytuj swoją odpowiedź",
-  "write_to_us" : "Napisz do nas :)"
+  "saving" : "Zapisujemy...",
+  "wait_here" : "Prosimy o chwilkę cierpliwości i pozostanie na tej stronie"
 }

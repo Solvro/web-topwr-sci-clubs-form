@@ -12,6 +12,8 @@ sealed class FormWidgetState with _$FormWidgetState {
 
   const factory FormWidgetState.loading() = Loading;
 
+  const factory FormWidgetState.saving() = Saving;
+
   const factory FormWidgetState.saved(
     SciClubFormModel data,
   ) = Saved;

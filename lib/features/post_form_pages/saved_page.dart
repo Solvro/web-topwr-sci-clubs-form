@@ -7,12 +7,11 @@ import '../../../config/config.dart';
 import '../../../theme/app_theme.dart';
 import '../../../utils/context_extensions.dart';
 import '../auth/widgets/pure_app_bar.dart';
-import '../firebase/repositories/sci_clubs_repo.dart';
 import '../form/controller/form_widget_controller.dart';
 import '../topwr_mockup/widgets/my_text_button.dart';
 
-class DonePage extends StatelessWidget {
-  const DonePage({super.key});
+class SavedPage extends StatelessWidget {
+  const SavedPage({super.key});
 
   @override
   Widget build(BuildContext context) {
