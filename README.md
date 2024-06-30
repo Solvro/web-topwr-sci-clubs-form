@@ -32,3 +32,12 @@ dart run build_runner build -d
 flutter run -d chrome --web-renderer html
 ```
 
+
+# Caprover deploy
+so i can remember it as well :)
+if you don't know what caprover is: https://caprover.com/
+```bash
+flutter build web --web-renderer html
+tar -cvf ./deploy.tar ./captain-definition ./build/web/*
+caprover deploy -t ./deploy.tar
+```

@@ -159,3 +159,5 @@ env.g.dart
 .vscode
 
 **/firebase_options.dart
+
+deploy.tar
