@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:reactive_forms_annotations/reactive_forms_annotations.dart';
 
-import '../../../utils/context_extensions.dart';
-import '../../done_page/done_page.dart';
-import '../../topwr_mockup/widgets/my_error_widget.dart';
-import '../controller/form_widget_controller.dart';
-import '../controller/form_widgets_states.dart';
-import '../model/form_model.dart';
+import '../../utils/context_extensions.dart';
+import '../done_page/done_page.dart';
+import '../topwr_mockup/widgets/my_error_widget.dart';
+import 'controller/form_widget_controller.dart';
+import 'controller/form_widgets_states.dart';
+import 'model/form_model.dart';
 
 class FormRootWidget extends ConsumerWidget {
   const FormRootWidget({
