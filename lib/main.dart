@@ -74,7 +74,7 @@ class RootView extends ConsumerWidget {
               Container(
                 padding: const EdgeInsets.symmetric(vertical: 10.0),
                 child: SvgPicture.asset(
-                  WebAppBarConfig.created_by_svg,
+                  WebAppBarConfig.createdBySvg,
                   width: 180,
                 ),
               ),

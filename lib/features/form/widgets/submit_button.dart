@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../config/config.dart';
 import '../../../theme/colors.dart';
 import '../../../utils/context_extensions.dart';
 import '../controller/form_widget_controller.dart';
 import '../model/form_model.dart';
+import 'my_outline_button.dart';
 
 class SubmitButton extends ConsumerWidget {
   const SubmitButton({
@@ -21,22 +21,14 @@ class SubmitButton extends ConsumerWidget {
             primary: ColorsConsts.orangePomegranade,
           ),
         ),
-        child: OutlinedButton.icon(
-          onPressed: formModel.form.valid == true
+        child: MyOutlineButton(
+          icon: Icons.send_rounded,
+          actionTitle: context.localize.submit,
+          onClick: formModel.form.valid == true
               ? () => ref
                   .watch(formWidgetControllerProvider.notifier)
                   .submit(formModel.model)
               : formModel.form.markAllAsTouched,
-          label: Text(context.localize.submit),
-          icon: const Icon(Icons.send_rounded),
-          style: const ButtonStyle(
-            shape: WidgetStatePropertyAll(
-              RoundedRectangleBorder(
-                  borderRadius: BorderRadius.all(FormFieldConfig.radius)),
-            ),
-            padding: WidgetStatePropertyAll(
-                EdgeInsets.symmetric(horizontal: 40, vertical: 10)),
-          ),
         ),
       ),
     );

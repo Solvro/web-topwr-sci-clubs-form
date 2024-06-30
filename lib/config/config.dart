@@ -19,5 +19,17 @@ abstract class FormFieldConfig {
 }
 
 abstract class WebAppBarConfig {
-  static const created_by_svg = "assets/created_by_vert.svg";
+  static const createdBySvg = "assets/created_by_vert.svg";
+}
+
+abstract class UndrawConfig {
+  static const wrong = "assets/undraw/injured.svg";
+  static const p404 = "assets/undraw/camping.svg";
+}
+
+abstract class GuestPageConfig {
+  static const landing = "assets/undraw/landing.svg";
+  static const landingPng = "assets/preview.png";
+  static const portfolioLink = "https://solvro.pwr.edu.pl/portfolio/to-pwr";
+  static const contactLink = "https://solvro.pwr.edu.pl/contact";
 }

@@ -95,5 +95,10 @@
   "form_desc2" : "Zapraszamy do wypełnienia danych o swoim kole naukowym, organizacji studenckiej, mediach lub agendzie. Wprowadzane dane można na bieżąco obserwować w podglądzie aplikacji. Można spojrzeć jak wprowadzone przez nas dane będą prezentować się na kafelku na ekranie domowym, na liście kół/organizacji oraz w widoku szczegółowym. " ,
   "form_desc3" : "Dane można wielokrotnie zapisywać i do nich wracać, końcowe dane zostaną wprowadzone do aplikacji dopiero XXX. Zmiany w przyszłości będą oczywiście nadal możliwe, ale ta ankieta nie jest spięta na żywo z aplikacją i aktualizacje będą wymagały szybkiego kontaktu z naszym kołem.",
   "submit" : "Wyślij zmiany",
-  "default_name" : "Nazwa koła"
+  "default_name" : "Nazwa koła",
+  "guest_page": "Witamy w ankiecie ToPWR dla kół naukowych i innych organizacji studenckich na Politechnice Wrocławskiej!",
+  "guest_page2" : "ToPWR to aplikacja mobilna stworzona przez studentów z KN Solvro dla wszystkich studentów Politechniki Wrocławskiej. Licznik dni do sesji, mapka kampusu, informacje o dziekanatach, kółkach naukowych i licznik wolnych miejsc parkingowych na żywo - wszystko, co trzeba w jednym miejscu. Life made easy. 🚀",
+  "guest_page3" : "Poprzez tą ankietę zbieramy dane o wszystkich kołach naukowych i organizacjach studenckich, mediach i agendach. W miarę publicznej dostępności waszych email, powysyłaliśmy wam specjalne dedykowane linki do edycji danych o waszej organizacji. Jeśli nie otrzymaliście dostępu do naszej ankiety, skontaktujcie się z nami czym prędzej!",
+  "contact_landing" :  "Skontaktuj się",
+  "read_more_landing" :"Przeczytaj wiecęj"
 }

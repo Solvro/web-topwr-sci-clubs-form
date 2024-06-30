@@ -1,6 +1,9 @@
+import 'dart:collection';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:html_editor_enhanced/html_editor.dart';
+import 'package:pointer_interceptor/pointer_interceptor.dart';
 import 'package:reactive_forms_annotations/reactive_forms_annotations.dart';
 
 import '../../../utils/context_extensions.dart';
@@ -19,64 +22,74 @@ class HtmlField extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final controller = ref.watch(_htmlContoller);
 
-    return FormSubsection(
-      title: title,
-      buildChildren: (setError) => [
-        HtmlEditor(
-          controller: controller,
-          htmlEditorOptions: HtmlEditorOptions(
-            initialText: formControl?.value,
-            hint: "<p>${context.localize.form_sci_desc_hint}</p>",
-          ),
-          otherOptions: const OtherOptions(
-            height: 400,
-          ),
-          htmlToolbarOptions: const HtmlToolbarOptions(
-            defaultToolbarButtons: [
-              StyleButtons(),
-              FontButtons(clearAll: false),
-              ColorButtons(),
-              ListButtons(listStyles: false),
-              ParagraphButtons(
-                textDirection: false,
-                lineHeight: false,
-                caseConverter: false,
-              ),
-              InsertButtons(
-                video: false,
-                audio: false,
-                table: false,
-                hr: false,
-                otherFile: false,
-              ),
-            ],
-          ),
-          callbacks: Callbacks(
-            onChangeContent: (p0) {
-              formControl?.updateValue(p0);
-              formControl?.updateValueAndValidity();
-              setError(false);
-            },
-            onInit: () {
-              controller.setFullScreen();
-            },
-          ),
-        ),
-        IgnorePointer(
-          child: ReactiveMockField(
-            style: const TextStyle(
-              color: Colors.transparent,
-              fontSize: 0,
+    return PointerInterceptor(
+      child: FormSubsection(
+        title: title,
+        buildChildren: (setError) => [
+          HtmlEditor(
+            controller: controller,
+            htmlEditorOptions: HtmlEditorOptions(
+              initialText: formControl?.value,
+              hint: "<p>${context.localize.form_sci_desc_hint}</p>",
+              webInitialScripts: UnmodifiableListView([
+                WebScript(name: "onscroll", script: """
+        window.onscroll = function() {
+      sendScrollPosition(window.scrollY);
+        };
+      """),
+              ]),
             ),
-            formControl: formControl,
-            decoration: const InputDecoration.collapsed(
-              hintText: "",
-              enabled: false,
+            otherOptions: const OtherOptions(
+              height: 400,
+            ),
+            htmlToolbarOptions: const HtmlToolbarOptions(
+              defaultToolbarButtons: [
+                StyleButtons(),
+                FontButtons(clearAll: false),
+                ColorButtons(),
+                ListButtons(listStyles: false),
+                ParagraphButtons(
+                  textDirection: false,
+                  lineHeight: false,
+                  caseConverter: false,
+                ),
+                InsertButtons(
+                  video: false,
+                  audio: false,
+                  table: false,
+                  hr: false,
+                  otherFile: false,
+                ),
+              ],
+            ),
+            callbacks: Callbacks(
+              onChangeContent: (p0) {
+                formControl?.updateValue(p0);
+                formControl?.updateValueAndValidity();
+                setError(false);
+              },
+              onInit: () {
+                controller.setFullScreen();
+                // controller.evaluateJavascriptWeb("scroll");
+              },
             ),
           ),
-        ),
-      ],
-      onInitState: () {},
+          IgnorePointer(
+            child: ReactiveMockField(
+              style: const TextStyle(
+                color: Colors.transparent,
+                fontSize: 0,
+              ),
+              formControl: formControl,
+              decoration: const InputDecoration.collapsed(
+                hintText: "",
+                enabled: false,
+              ),
+            ),
+          ),
+        ],
+        onInitState: () {},
+      ),
     );
   }
 }

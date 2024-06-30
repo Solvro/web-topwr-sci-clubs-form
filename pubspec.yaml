@@ -81,6 +81,10 @@ flutter:
     - assets/logo_app_bar.svg
     - assets/created_by_vert.svg
     - assets/search_box/vectorsearch.svg
+    - assets/undraw/injured.svg
+    - assets/undraw/camping.svg
+    - assets/undraw/landing.svg
+    - assets/preview.png
     - assets/icons/ic_email.png
     - assets/icons/ic_fb.png
     - assets/icons/ic_insta.png
