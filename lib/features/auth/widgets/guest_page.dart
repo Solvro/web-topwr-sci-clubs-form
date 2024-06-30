@@ -46,25 +46,29 @@ class GuestPage extends StatelessWidget {
                 ),
               ),
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                MyTextButton(
-                  isOrange: false,
-                  actionTitle: context.localize.read_more_landing,
-                  onClick: () {
-                    LaunchUrlUtil.launch(GuestPageConfig.portfolioLink);
-                  },
-                ),
-                const SizedBox(width: 30),
-                MyOutlineButton(
-                  isOrange: true,
-                  actionTitle: context.localize.contact_landing,
-                  onClick: () {
-                    LaunchUrlUtil.launch(GuestPageConfig.contactLink);
-                  },
-                ),
-              ],
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 24.0),
+              child: Wrap(
+                alignment: WrapAlignment.center,
+                runSpacing: 10,
+                spacing: 30,
+                children: [
+                  MyTextButton(
+                    isOrange: false,
+                    actionTitle: context.localize.read_more_landing,
+                    onClick: () {
+                      LaunchUrlUtil.launch(GuestPageConfig.portfolioLink);
+                    },
+                  ),
+                  MyOutlineButton(
+                    isOrange: true,
+                    actionTitle: context.localize.contact_landing,
+                    onClick: () {
+                      LaunchUrlUtil.launch(GuestPageConfig.contactLink);
+                    },
+                  ),
+                ],
+              ),
             ),
             // SvgPicture.asset(
             //   UndrawConfig.landing,
