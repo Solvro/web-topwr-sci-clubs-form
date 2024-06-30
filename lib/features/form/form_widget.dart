@@ -27,7 +27,7 @@ class SciClubForm extends ConsumerWidget {
         children: [
           if (!context.showSplitView)
             const Padding(
-              padding: EdgeInsets.only(bottom: 4.0),
+              padding: EdgeInsets.only(bottom: 8.0),
               child: ShowPreviewFAB(),
             ),
           const FabSend(),
