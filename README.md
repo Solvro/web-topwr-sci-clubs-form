@@ -8,7 +8,7 @@ Web form with live preview (ToPWR mock app) for submiting or changing informatio
 # Developement
 This is Flutter project, at the moments works only in the web version (best with html renderer destination)
 
-1. You need working Firebase project with Firestore i Auth
+1. You need working Firebase project with Firestore, Storage and Auth
 - install firebase cli and run `flutterfire configure` to generate `firebase_options.dart`. You need to choose only `web` target.
 https://firebase.google.com/docs/web/setup
 
