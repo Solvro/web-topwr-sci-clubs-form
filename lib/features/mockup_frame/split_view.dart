@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:split_view/split_view.dart';
 
+import 'breakpoint.dart';
+
 class FormSplitView extends StatelessWidget {
   const FormSplitView({super.key, required this.form, required this.phone});
 
@@ -9,6 +11,9 @@ class FormSplitView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (!context.showSplitView) {
+      return form;
+    }
     return SplitView(
       viewMode: SplitViewMode.Horizontal,
       indicator: const SplitIndicator(viewMode: SplitViewMode.Horizontal),

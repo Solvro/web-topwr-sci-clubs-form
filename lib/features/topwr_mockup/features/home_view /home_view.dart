@@ -18,9 +18,7 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return _HomeView(
-      ReactiveSciClubFormModelForm.of(context, listen: false),
-    );
+    return _HomeView(ReactiveSciClubFormModelForm.of(context, listen: false));
   }
 }
 
@@ -68,13 +66,9 @@ class _HomeViewState extends State<_HomeView> {
     Future.delayed(
       Durations.medium4,
       () {
+        scrollDownToTarget();
         subscryption = widget.form?.form.valueChanges.listen(
-          (event) => itemScrollController.scrollTo(
-            index: sections.indexOf(studyCirclesSections),
-            duration: Durations.medium4,
-            alignment: 0.01,
-            curve: Curves.decelerate,
-          ),
+          (event) => scrollDownToTarget(),
         );
       },
     );
@@ -99,6 +93,15 @@ class _HomeViewState extends State<_HomeView> {
         separatorBuilder: (context, index) =>
             const SizedBox(height: HomeScreenConfig.paddingMedium),
       ),
+    );
+  }
+
+  void scrollDownToTarget() {
+    itemScrollController.scrollTo(
+      index: sections.indexOf(studyCirclesSections),
+      duration: Durations.medium4,
+      alignment: 0.01,
+      curve: Curves.decelerate,
     );
   }
 }

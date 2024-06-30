@@ -3,6 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../utils/context_extensions.dart';
 import '../image_dropzone/image_dropzone.dart';
+import '../mockup_frame/breakpoint.dart';
+import '../mockup_frame/preview_fab.dart';
 import '../social_links_subform/social_links_form.dart';
 import 'model/form_model.dart';
 import 'widgets/fab_send.dart';
@@ -18,7 +20,18 @@ class SciClubForm extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
-      floatingActionButton: const FabSend(),
+      floatingActionButton: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.end,
+        children: [
+          if (!context.showSplitView)
+            const Padding(
+              padding: EdgeInsets.only(bottom: 4.0),
+              child: ShowPreviewFAB(),
+            ),
+          const FabSend(),
+        ],
+      ),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 40.0, vertical: 40),

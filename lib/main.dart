@@ -12,6 +12,7 @@ import 'features/auth/auth_root.dart';
 import 'features/form/form_root_widget.dart';
 import 'features/form/form_widget.dart';
 import 'features/form/widgets/submit_button.dart';
+import 'features/mockup_frame/breakpoint.dart';
 import 'features/mockup_frame/mockup_frame.dart';
 import 'features/mockup_frame/split_view.dart';
 import 'features/navigation/go_router.dart';
@@ -70,7 +71,7 @@ class RootView extends ConsumerWidget {
             context,
             backgroundColor: context.colorTheme.greyLight,
             actions: [
-              const SubmitButton(),
+              if (context.showSplitView) const SubmitButton(),
               Container(
                 padding: const EdgeInsets.symmetric(vertical: 10.0),
                 child: SvgPicture.asset(
