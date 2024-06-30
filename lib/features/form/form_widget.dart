@@ -10,6 +10,7 @@ import 'model/form_model.dart';
 import 'widgets/fab_send.dart';
 import 'widgets/form_fields.dart';
 import 'widgets/form_header.dart';
+import 'widgets/form_padding.dart';
 import 'widgets/html_field.dart';
 import 'widgets/select_tags.dart';
 import 'widgets/type_choice_field.dart';
@@ -33,8 +34,7 @@ class SciClubForm extends ConsumerWidget {
         ],
       ),
       body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 40.0, vertical: 40),
+        child: FormPadding(
           child: Center(
             child: ConstrainedBox(
               constraints: const BoxConstraints(maxWidth: 1000),
