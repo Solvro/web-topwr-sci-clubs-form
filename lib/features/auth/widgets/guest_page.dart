@@ -54,6 +54,7 @@ class GuestPage extends StatelessWidget {
                   alignment: WrapAlignment.center,
                   runSpacing: 10,
                   spacing: 30,
+                  verticalDirection: VerticalDirection.up,
                   children: [
                     MyTextButton(
                       isOrange: false,
