@@ -32,6 +32,19 @@ class ShowPreviewFAB extends StatelessWidget {
                       color: context.colorTheme.blackMirage.withOpacity(0.8),
                     ),
                     const Center(child: MockupFrame()),
+                    Align(
+                      alignment: Alignment.topRight,
+                      child: Padding(
+                        padding: const EdgeInsets.all(12.0),
+                        child: CloseButton(
+                          color: context.colorTheme.whiteSoap,
+                          style: ButtonStyle(
+                            backgroundColor: WidgetStatePropertyAll(
+                                context.colorTheme.greyPigeon),
+                          ),
+                        ),
+                      ),
+                    ),
                   ],
                 ),
               ),
