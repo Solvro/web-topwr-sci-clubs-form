@@ -12,6 +12,10 @@ class ShowPreviewFAB extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final bool showFab = MediaQuery.viewInsetsOf(context).bottom == 0.0;
+    if (!showFab) {
+      return const SizedBox.shrink();
+    }
     final form = ReactiveSciClubFormModelForm.of(context)!;
     return PointerInterceptor(
       child: FloatingActionButton.extended(
