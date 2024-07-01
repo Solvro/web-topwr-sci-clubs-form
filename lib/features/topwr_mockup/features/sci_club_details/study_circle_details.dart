@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../../config/config.dart';
 import '../../../../theme/app_theme.dart';
 import '../../../../utils/context_extensions.dart';
 import '../../../../utils/where_non_null_iterable.dart';
 import '../../../current_sci_club/curr_sci_club_builder.dart';
 import '../../../firebase/models/sci_club.dart';
 import '../../../firebase/repositories/sci_clubs_repo.dart';
+import '../../../form/model/form_model.dart';
 import '../../config/ui_config.dart';
 import 'models/contact_section_data.dart';
 import 'widgets/details_screen_about_us_section.dart';
@@ -75,7 +77,11 @@ class _ViewWidget extends StatelessWidget {
             list: state.socialLinks.whereNonNull
                 .map((a) => ContactSectionData(
                       text: a.name,
-                      url: a.url,
+                      url: (a.url != null &&
+                              a.url!.isUrlEmail &&
+                              !a.url!.startsWith(FormConfig.mailto))
+                          ? FormConfig.mailto + a.url!
+                          : a.url,
                     ))
                 .toList(),
           ),
