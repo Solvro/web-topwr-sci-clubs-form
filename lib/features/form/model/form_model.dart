@@ -73,5 +73,9 @@ class SocialUrl with _$SocialUrl {
 }
 
 extension IsEmail on SocialUrl {
-  bool get isUrlEmail => EmailValidator.emailRegex.hasMatch(url ?? "");
+  bool get isUrlEmail => (url ?? "").isUrlEmail;
+}
+
+extension IsEmailString on String {
+  bool get isUrlEmail => EmailValidator.emailRegex.hasMatch(this);
 }
