@@ -22,7 +22,6 @@ class SplashScreenController extends _$SplashScreenController {
     // await MapController.initializeGoogleMapsRenderingAndroid();
 
     await AppBarLogo.precacheImageIfAbsent();
-    // await ref.read(firebaseProvider.future);
   }
 
   @override
