@@ -22,6 +22,7 @@ class MyFormField extends StatelessWidget {
     this.minLines,
     this.maxLines,
     this.counterText,
+    this.suffixIcon,
   });
 
   final Widget? prefixIcon;
@@ -30,6 +31,7 @@ class MyFormField extends StatelessWidget {
   final int? minLines;
   final int? maxLines;
   final String? counterText;
+  final Widget? suffixIcon;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -39,6 +41,7 @@ class MyFormField extends StatelessWidget {
         formControlName: formControlName,
         textInputAction: TextInputAction.next,
         decoration: InputDecoration(
+          suffixIcon: suffixIcon,
           labelText: label,
           border: FieldStateBorder(context),
           labelStyle: FieldTextStateStyle(context),

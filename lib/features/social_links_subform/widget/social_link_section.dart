@@ -2,14 +2,17 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 
+import '../../../theme/app_theme.dart';
 import '../../../utils/context_extensions.dart';
 import '../../form/model/form_model.dart';
 import '../../form/widgets/form_fields.dart';
 import 'link_field.dart';
 
 class SocialLinkSection extends StatefulWidget {
-  const SocialLinkSection(this.model, {super.key});
+  const SocialLinkSection(this.model,
+      {super.key, required this.removeCallback});
   final SocialUrlForm model;
+  final VoidCallback? removeCallback;
 
   @override
   State<SocialLinkSection> createState() => _SocialLinkSectionState();
@@ -41,6 +44,16 @@ class _SocialLinkSectionState extends State<SocialLinkSection> {
             widget.model.model,
             context.localize.url_field,
             hintText: context.localize.link_field_hint,
+            suffixIcon: Padding(
+              padding: const EdgeInsets.only(right: 4.0),
+              child: IconButton(
+                onPressed: widget.removeCallback,
+                icon: Icon(
+                  Icons.remove_circle,
+                  color: context.colorTheme.orangePomegranade,
+                ),
+              ),
+            ),
           ),
           if (!widget.model.model.isUrlEmail)
             MyFormField(

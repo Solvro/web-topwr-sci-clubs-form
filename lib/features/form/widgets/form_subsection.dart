@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:reactive_forms_annotations/reactive_forms_annotations.dart';
 
 import '../../../config/config.dart';
 import '../../../theme/app_theme.dart';

@@ -2,6 +2,7 @@ import 'dart:typed_data';
 
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:reactive_forms_annotations/reactive_forms_annotations.dart';
+import 'package:uuid/uuid.dart';
 
 import '../../firebase/models/uint8list_converter.dart';
 import 'enums.dart';
@@ -55,6 +56,7 @@ class SciClubFormModel with _$SciClubFormModel {
 @RfGroup()
 class SocialUrl with _$SocialUrl {
   const factory SocialUrl({
+    String? id,
     @RfControl(validators: [
       RequiredValidator(),
       ComposeOrValidator(
@@ -69,7 +71,12 @@ class SocialUrl with _$SocialUrl {
   }) = _SocialUrl;
 
   factory SocialUrl.fromJson(Map<String, Object?> json) =>
-      _$SocialUrlFromJson(json);
+      _$SocialUrlFromJson(() {
+        if (!json.containsKey("id") || json["id"] == null) {
+          json["id"] = const Uuid().v4();
+        }
+        return json;
+      }());
 }
 
 extension IsEmail on SocialUrl {

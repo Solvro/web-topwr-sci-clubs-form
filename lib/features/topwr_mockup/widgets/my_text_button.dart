@@ -19,9 +19,7 @@ class MyTextButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextButton.icon(
       onPressed: onClick,
-      style: TextButton.styleFrom(
-        padding: const EdgeInsets.all(8.0),
-      ),
+      style: TextButton.styleFrom(padding: const EdgeInsets.all(0)),
       icon: icon == null
           ? null
           : Icon(

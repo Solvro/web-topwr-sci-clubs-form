@@ -2,6 +2,7 @@ import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:reactive_forms_annotations/reactive_forms_annotations.dart';
 import 'package:separate/separate.dart';
+import 'package:uuid/uuid.dart';
 
 import '../../utils/context_extensions.dart';
 import '../form/model/form_model.dart';
@@ -13,6 +14,9 @@ class SocialLinksForm extends StatelessWidget {
   const SocialLinksForm({super.key, required this.formModel});
 
   final SciClubFormModelForm formModel;
+
+  static const uuid = Uuid();
+
   @override
   Widget build(BuildContext context) {
     return ReactiveFormArray(
@@ -27,7 +31,9 @@ class SocialLinksForm extends StatelessWidget {
                 ...formModel.socialLinksSocialUrlForm.mapIndexed(
                   (index, model) {
                     return SocialLinkSection(
-                      key: ValueKey(index),
+                      key: ValueKey(model.model.id),
+                      removeCallback: () =>
+                          formModel.removeSocialLinksItemAtIndex(index),
                       model,
                     );
                   },
@@ -38,7 +44,11 @@ class SocialLinksForm extends StatelessWidget {
                     actionTitle: context.localize.add_social_link_btn,
                     onClick: () {
                       formModel.addSocialLinksItem(
-                        const SocialUrl(name: "", url: ""),
+                        SocialUrl(
+                          name: "",
+                          url: "",
+                          id: uuid.v4(),
+                        ),
                       );
                     },
                   ),
