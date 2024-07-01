@@ -20,7 +20,7 @@ class MyTextButton extends StatelessWidget {
     return TextButton.icon(
       onPressed: onClick,
       style: TextButton.styleFrom(
-        padding: const EdgeInsets.all(12.0),
+        padding: const EdgeInsets.all(8.0),
       ),
       icon: icon == null
           ? null
