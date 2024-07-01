@@ -145,7 +145,7 @@ app.*.symbols
 *.graphql.dart
 *.tailor.dart
 *.gform.dart
-
+*.gr.dart
 
 #Env setup
 *.env
