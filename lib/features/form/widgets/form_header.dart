@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:separate/separate.dart';
 
@@ -43,11 +44,13 @@ class _Desc extends StatelessWidget {
     ];
     return Column(
       children: <Widget>[
-        ...descriptions.map(
-          (e) => Text(
+        ...descriptions.mapIndexed(
+          (i, e) => Text(
             e,
             style: context.textTheme.title,
-            textAlign: TextAlign.justify,
+            textAlign: (i == descriptions.length - 1)
+                ? TextAlign.left
+                : TextAlign.justify,
           ),
         )
       ].separate(
