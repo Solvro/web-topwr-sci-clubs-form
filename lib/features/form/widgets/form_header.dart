@@ -43,14 +43,13 @@ class _Desc extends StatelessWidget {
       context.localize.form_desc4,
     ];
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         ...descriptions.mapIndexed(
           (i, e) => Text(
             e,
             style: context.textTheme.title,
-            textAlign: (i == descriptions.length - 1)
-                ? TextAlign.left
-                : TextAlign.justify,
+            textAlign: TextAlign.justify,
           ),
         )
       ].separate(
