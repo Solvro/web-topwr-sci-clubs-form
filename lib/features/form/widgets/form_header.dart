@@ -39,6 +39,7 @@ class _Desc extends StatelessWidget {
       // context.localize.form_desc1,
       context.localize.form_desc2,
       context.localize.form_desc3,
+      context.localize.form_desc4,
     ];
     return Column(
       children: <Widget>[
