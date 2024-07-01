@@ -41,3 +41,9 @@ flutter build web --web-renderer html
 tar -cvf ./deploy.tar ./captain-definition ./build/web/*
 caprover deploy -t ./deploy.tar
 ```
+OR 
+use reade made make command:
+```bash
+make captain-deploy  // without fvm
+make fvm-captain-deploy // for fvm usage
+```
