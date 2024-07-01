@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pointer_interceptor/pointer_interceptor.dart';
 
 import '../../config/config.dart';
 import '../../theme/app_theme.dart';
@@ -12,31 +13,35 @@ class ShowPreviewFAB extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final form = ReactiveSciClubFormModelForm.of(context)!;
-    return FloatingActionButton.extended(
-      onPressed: () {
-        showAdaptiveDialog(
-          context: context,
-          builder: (context) => SciClubFormModelFormInheritedStreamer(
-            form: form,
-            stream: form.form.statusChanged,
-            child: Stack(
-              children: [
-                ModalBarrier(
-                  color: context.colorTheme.blackMirage.withOpacity(0.8),
+    return PointerInterceptor(
+      child: FloatingActionButton.extended(
+        onPressed: () {
+          showAdaptiveDialog(
+            context: context,
+            builder: (context) => PointerInterceptor(
+              child: SciClubFormModelFormInheritedStreamer(
+                form: form,
+                stream: form.form.statusChanged,
+                child: Stack(
+                  children: [
+                    ModalBarrier(
+                      color: context.colorTheme.blackMirage.withOpacity(0.8),
+                    ),
+                    const Center(child: MockupFrame()),
+                  ],
                 ),
-                const Center(child: MockupFrame()),
-              ],
+              ),
             ),
-          ),
-        );
-      },
-      label: Text(context.localize.show_preview),
-      icon: const Icon(Icons.smartphone_outlined),
-      backgroundColor: context.colorTheme.greyPigeon,
-      foregroundColor: context.colorTheme.whiteSoap,
-      splashColor: context.colorTheme.orangePomegranade,
-      shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.all(FormFieldConfig.radius),
+          );
+        },
+        label: Text(context.localize.show_preview),
+        icon: const Icon(Icons.smartphone_outlined),
+        backgroundColor: context.colorTheme.greyPigeon,
+        foregroundColor: context.colorTheme.whiteSoap,
+        splashColor: context.colorTheme.orangePomegranade,
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(FormFieldConfig.radius),
+        ),
       ),
     );
   }
