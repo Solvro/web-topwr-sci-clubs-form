@@ -9,8 +9,9 @@ import '../auth/widgets/pure_app_bar.dart';
 import '../topwr_mockup/widgets/my_text_button.dart';
 import 'router.dart';
 
-class Page404 extends StatelessWidget {
-  const Page404({super.key});
+@RoutePage()
+class Page404View extends StatelessWidget {
+  const Page404View({super.key});
 
   @override
   Widget build(BuildContext context) {
