@@ -20,6 +20,56 @@ class SciClubForm extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    return FormPadding(
+      child: Center(
+        child: ConstrainedBox(
+          constraints: const BoxConstraints(maxWidth: 1000),
+          child: ReactiveSciClubFormModelFormConsumer(
+            builder: (context, formModel, child) => Column(
+              children: [
+                const FormHeader(),
+                MyFormField(
+                  context.localize.form_sci_club_name,
+                  formControl: formModel.nameControl,
+                ),
+                MyFormField(
+                  context.localize.form_sci_club_department,
+                  formControl: formModel.departmentControl,
+                  counterText: context.localize.dept_form_info,
+                ),
+                TypeChoiceField(formModel.typeControl),
+                ImageDropzone(
+                  label: context.localize.form_logo,
+                  formControl: formModel.logoControl,
+                ),
+                ImageDropzone(
+                  label: context.localize.form_cover,
+                  formControl: formModel.coverControl,
+                ),
+                SocialLinksForm(formModel: formModel),
+                SelectTags(formModel.tagsControl),
+                MyFormField(
+                  context.localize.form_sci_short_desc,
+                  formControl: formModel.shortDescriptionControl,
+                ),
+                HtmlField(
+                  context.localize.form_sci_desc,
+                  formModel.descriptionControl,
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class SciClubFormScaffold extends StatelessWidget {
+  const SciClubFormScaffold({super.key, required this.child});
+  final Widget child;
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: Column(
         mainAxisSize: MainAxisSize.min,
@@ -33,50 +83,7 @@ class SciClubForm extends ConsumerWidget {
           const FabSend(),
         ],
       ),
-      body: SingleChildScrollView(
-        child: FormPadding(
-          child: Center(
-            child: ConstrainedBox(
-              constraints: const BoxConstraints(maxWidth: 1000),
-              child: ReactiveSciClubFormModelFormConsumer(
-                builder: (context, formModel, child) => Column(
-                  children: [
-                    const FormHeader(),
-                    MyFormField(
-                      context.localize.form_sci_club_name,
-                      formControl: formModel.nameControl,
-                    ),
-                    MyFormField(
-                      context.localize.form_sci_club_department,
-                      formControl: formModel.departmentControl,
-                      counterText: context.localize.dept_form_info,
-                    ),
-                    TypeChoiceField(formModel.typeControl),
-                    ImageDropzone(
-                      label: context.localize.form_logo,
-                      formControl: formModel.logoControl,
-                    ),
-                    ImageDropzone(
-                      label: context.localize.form_cover,
-                      formControl: formModel.coverControl,
-                    ),
-                    SocialLinksForm(formModel: formModel),
-                    SelectTags(formModel.tagsControl),
-                    MyFormField(
-                      context.localize.form_sci_short_desc,
-                      formControl: formModel.shortDescriptionControl,
-                    ),
-                    HtmlField(
-                      context.localize.form_sci_desc,
-                      formModel.descriptionControl,
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ),
-        ),
-      ),
+      body: child,
     );
   }
 }

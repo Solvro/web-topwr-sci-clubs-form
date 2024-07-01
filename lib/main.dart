@@ -14,6 +14,7 @@ import 'features/form/form_root_widget.dart';
 import 'features/form/form_widget.dart';
 import 'features/form/widgets/submit_button.dart';
 import 'features/mockup_frame/breakpoint.dart';
+import 'features/mockup_frame/floating_app_bar.dart';
 import 'features/mockup_frame/mockup_frame.dart';
 import 'features/mockup_frame/split_view.dart';
 import 'features/navigation/router.dart';
@@ -64,31 +65,41 @@ class RootView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return AuthRoot(
-      builder: (context, value) => FormRootWidget(
-        child: Scaffold(
-          appBar: LogoAppBar(
-            context,
-            backgroundColor: context.colorTheme.greyLight,
-            actions: [
-              if (context.showSplitView) const SubmitButton(),
-              Container(
-                padding: const EdgeInsets.symmetric(vertical: 10.0),
-                child: SvgPicture.asset(
-                  WebAppBarConfig.createdBySvg,
-                  width: 180,
-                ),
-              ),
-            ],
-          ),
-          body: const Padding(
-            padding: EdgeInsets.all(8.0),
-            child: FormSplitView(
-              form: SciClubForm(),
-              phone: MockupFrame(),
-            ),
+    final appBar = LogoAppBar(
+      context,
+      backgroundColor: context.colorTheme.greyLight,
+      actions: [
+        if (context.showSplitView) const SubmitButton(),
+        Container(
+          padding: const EdgeInsets.symmetric(vertical: 10.0),
+          child: SvgPicture.asset(
+            WebAppBarConfig.createdBySvg,
+            width: 180,
           ),
         ),
+      ],
+    );
+
+    return AuthRoot(
+      builder: (context, value) => FormRootWidget(
+        child: context.showSplitView
+            ? Scaffold(
+                appBar: appBar,
+                body: const Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: FormSplitView(
+                    form: SciClubFormScaffold(
+                        child: SingleChildScrollView(child: SciClubForm())),
+                    phone: MockupFrame(),
+                  ),
+                ),
+              )
+            : SciClubFormScaffold(
+                child: FloatingAppBarScaffold(
+                  appBar: appBar,
+                  child: const SciClubForm(),
+                ),
+              ),
       ),
     );
   }

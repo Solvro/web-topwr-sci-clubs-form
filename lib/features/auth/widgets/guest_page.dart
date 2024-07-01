@@ -6,6 +6,7 @@ import '../../../theme/app_theme.dart';
 import '../../../utils/context_extensions.dart';
 import '../../../utils/launch_url_util.dart';
 import '../../form/widgets/my_outline_button.dart';
+import '../../mockup_frame/floating_app_bar.dart';
 import '../../topwr_mockup/widgets/my_text_button.dart';
 import 'pure_app_bar.dart';
 
@@ -15,8 +16,8 @@ class GuestPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: PureWebAppBar(context),
-      body: SingleChildScrollView(
+      body: FloatingAppBarScaffold(
+        appBar: PureWebAppBar(context),
         child: SizedBox(
           width: double.infinity,
           child: Column(
@@ -73,10 +74,6 @@ class GuestPage extends StatelessWidget {
                   ],
                 ),
               ),
-              // SvgPicture.asset(
-              //   UndrawConfig.landing,
-              //   height: 300,
-              // )
               Padding(
                 padding: const EdgeInsets.all(60.0),
                 child: Image.asset(GuestPageConfig.landingPng),

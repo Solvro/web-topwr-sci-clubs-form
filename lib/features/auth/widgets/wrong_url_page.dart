@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:separate/separate.dart';
 
@@ -9,11 +10,11 @@ import '../../../utils/launch_url_util.dart';
 import '../../topwr_mockup/widgets/my_text_button.dart';
 import 'pure_app_bar.dart';
 
-class WrongUrlPage extends StatelessWidget {
+class WrongUrlPage extends ConsumerWidget {
   const WrongUrlPage({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       appBar: PureWebAppBar(context),
       body: SizedBox(
@@ -71,10 +72,7 @@ class WrongUrlPage extends StatelessWidget {
                   constraints:
                       const BoxConstraints(maxHeight: 600, minHeight: 10),
                   padding: const EdgeInsets.all(40.0),
-                  child: SvgPicture.asset(
-                    UndrawConfig.wrong,
-                    // height: 300,
-                  ),
+                  child: SvgPicture.asset(UndrawConfig.wrong),
                 ),
               ),
             )

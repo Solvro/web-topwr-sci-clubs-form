@@ -17,40 +17,43 @@ class Page404View extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PureWebAppBar(context),
-      body: SizedBox(
-        width: double.infinity,
-        child: Column(
-          children: [
-            const SizedBox(height: 60),
-            Text(
-              context.localize.text404,
-              style: context.greetingTheme.boldTextStyle,
-              textAlign: TextAlign.justify,
-            ),
-            Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: MyTextButton(
-                isOrange: true,
-                actionTitle: context.localize.take_me_home,
-                onClick: () {
-                  context.router.navigate(const RootRoute());
-                },
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 40.0, vertical: 20.0),
+        child: SizedBox(
+          width: double.infinity,
+          child: Column(
+            children: [
+              const SizedBox(height: 60),
+              Text(
+                context.localize.text404,
+                style: context.greetingTheme.boldTextStyle,
+                textAlign: TextAlign.justify,
               ),
-            ),
-            Expanded(
-              child: Align(
-                alignment: const Alignment(0, -0.6),
-                child: Container(
-                  constraints:
-                      const BoxConstraints(maxHeight: 400, minHeight: 10),
-                  padding: const EdgeInsets.all(40.0),
-                  child: SvgPicture.asset(
-                    UndrawConfig.p404,
-                  ),
+              Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: MyTextButton(
+                  isOrange: true,
+                  actionTitle: context.localize.take_me_home,
+                  onClick: () {
+                    context.router.navigate(const RootRoute());
+                  },
                 ),
               ),
-            )
-          ],
+              Expanded(
+                child: Align(
+                  alignment: const Alignment(0, -0.6),
+                  child: Container(
+                    constraints:
+                        const BoxConstraints(maxHeight: 400, minHeight: 10),
+                    padding: const EdgeInsets.all(40.0),
+                    child: SvgPicture.asset(
+                      UndrawConfig.p404,
+                    ),
+                  ),
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );

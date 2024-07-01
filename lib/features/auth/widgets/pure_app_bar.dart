@@ -8,11 +8,12 @@ import '../../navigation/router.dart';
 import '../../topwr_mockup/features/home_view /widgets/logo_app_bar.dart';
 
 class PureWebAppBar extends LogoAppBar {
-  PureWebAppBar(super.context, {super.key})
+  PureWebAppBar(super.context, {super.key, VoidCallback? onLogoTap})
       : super(
-          onLogoTap: () {
-            context.router.navigate(const RootRoute());
-          },
+          onLogoTap: onLogoTap ??
+              () {
+                context.router.navigate(const RootRoute());
+              },
           backgroundColor: context.colorTheme.greyLight,
           actions: [
             Container(
