@@ -26,11 +26,14 @@ class DragAndDropImagePreview extends StatelessWidget {
     return Stack(
       fit: StackFit.expand,
       children: [
-        Container(
-          padding: const EdgeInsets.all(20.0),
-          child: Image.memory(
-            image!,
-            fit: BoxFit.cover,
+        Padding(
+          padding: const EdgeInsets.only(top: 12.0),
+          child: Container(
+            padding: const EdgeInsets.all(20.0),
+            child: Image.memory(
+              image!,
+              fit: BoxFit.cover,
+            ),
           ),
         ),
         Align(
