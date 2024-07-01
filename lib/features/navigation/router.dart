@@ -3,8 +3,8 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../main.dart';
 
-part 'go_router.g.dart';
-part 'go_router.gr.dart';
+part 'router.g.dart';
+part 'router.gr.dart';
 
 @AutoRouterConfig(replaceInRouteName: "View,Route")
 class AppRouter extends _$AppRouter {

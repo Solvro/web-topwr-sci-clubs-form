@@ -7,7 +7,7 @@ import '../../../theme/app_theme.dart';
 import '../../../utils/context_extensions.dart';
 import '../auth/widgets/pure_app_bar.dart';
 import '../topwr_mockup/widgets/my_text_button.dart';
-import 'go_router.dart';
+import 'router.dart';
 
 class Page404 extends StatelessWidget {
   const Page404({super.key});

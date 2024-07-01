@@ -4,7 +4,7 @@ import 'package:flutter_svg/svg.dart';
 
 import '../../../config/config.dart';
 import '../../../theme/app_theme.dart';
-import '../../navigation/go_router.dart';
+import '../../navigation/router.dart';
 import '../../topwr_mockup/features/home_view /widgets/logo_app_bar.dart';
 
 class PureWebAppBar extends LogoAppBar {

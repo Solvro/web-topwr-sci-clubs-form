@@ -16,7 +16,7 @@ import 'features/form/widgets/submit_button.dart';
 import 'features/mockup_frame/breakpoint.dart';
 import 'features/mockup_frame/mockup_frame.dart';
 import 'features/mockup_frame/split_view.dart';
-import 'features/navigation/go_router.dart';
+import 'features/navigation/router.dart';
 import 'features/splash_screen/splash_screen.dart';
 import 'features/splash_screen/splash_screen_controller.dart';
 import 'features/topwr_mockup/config/ui_config.dart';
