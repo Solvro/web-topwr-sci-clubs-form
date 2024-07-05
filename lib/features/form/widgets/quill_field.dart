@@ -46,39 +46,38 @@ class ReactiveQuillField extends ReactiveFormField<String, String> {
   /// ### Example:
   /// Binds a text field.
   /// ```
-  /// final form = fb.group({'email': Validators.required});
+  /// final form = fb.group({'html': Validators.required});
   ///
-  /// ReactiveTextField(
-  ///   formControlName: 'email',
+  /// ReactiveQuillField(
+  ///   formControlName: 'html',
   /// ),
   ///
   /// ```
   ///
   /// Binds a text field directly with a *FormControl*.
   /// ```
-  /// final form = fb.group({'email': Validators.required});
+  /// final form = fb.group({'hmtl': Validators.required});
   ///
-  /// ReactiveTextField(
-  ///   formControl: form.control('email'),
+  /// ReactiveQuillField(
+  ///   formControl: form.control('html'),
   /// ),
   ///
   /// ```
   ///
   /// Customize validation messages
   /// ```dart
-  /// ReactiveTextField(
-  ///   formControlName: 'email',
+  /// ReactiveQuillField(
+  ///   formControlName: 'hmtml',
   ///   validationMessages: {
-  ///     ValidationMessage.required: 'The email must not be empty',
-  ///     ValidationMessage.email: 'The email must be a valid email',
+  ///     ValidationMessage.required: 'The my field must must must not be empty',
   ///   }
   /// ),
   /// ```
   ///
   /// Customize when to show up validation messages.
   /// ```dart
-  /// ReactiveTextField(
-  ///   formControlName: 'email',
+  /// ReactiveQuillField(
+  ///   formControlName: 'html',
   ///   showErrors: (control) => control.invalid && control.touched && control.dirty,
   /// ),
   /// ```
@@ -135,82 +134,6 @@ class ReactiveQuillField extends ReactiveFormField<String, String> {
                 ),
               ],
             );
-            // return TextField(
-            //   controller: state._textController,
-            //   focusNode: state.focusNode,
-            //   decoration:
-            //       effectiveDecoration.copyWith(errorText: state.errorText),
-            //   keyboardType: keyboardType,
-            //   textInputAction: textInputAction,
-            //   style: style,
-            //   strutStyle: strutStyle,
-            //   textAlign: textAlign,
-            //   textAlignVertical: textAlignVertical,
-            //   textDirection: textDirection,
-            //   textCapitalization: textCapitalization,
-            //   autofocus: autofocus,
-            //   contextMenuBuilder: contextMenuBuilder,
-            //   readOnly: readOnly,
-            //   showCursor: showCursor,
-            //   obscureText: obscureText,
-            //   autocorrect: autocorrect,
-            //   smartDashesType: smartDashesType ??
-            //       (obscureText
-            //           ? SmartDashesType.disabled
-            //           : SmartDashesType.enabled),
-            //   smartQuotesType: smartQuotesType ??
-            //       (obscureText
-            //           ? SmartQuotesType.disabled
-            //           : SmartQuotesType.enabled),
-            //   enableSuggestions: enableSuggestions,
-            //   maxLengthEnforcement: maxLengthEnforcement,
-            //   maxLines: maxLines,
-            //   minLines: minLines,
-            //   expands: expands,
-            //   maxLength: maxLength,
-            //   inputFormatters: inputFormatters,
-            //   enabled: field.control.enabled,
-            //   cursorWidth: cursorWidth,
-            //   cursorHeight: cursorHeight,
-            //   cursorRadius: cursorRadius,
-            //   cursorColor: cursorColor,
-            //   scrollPadding: scrollPadding,
-            //   scrollPhysics: scrollPhysics,
-            //   keyboardAppearance: keyboardAppearance,
-            //   enableInteractiveSelection: enableInteractiveSelection,
-            //   buildCounter: buildCounter,
-            //   autofillHints: autofillHints,
-            //   mouseCursor: mouseCursor,
-            //   obscuringCharacter: obscuringCharacter,
-            //   dragStartBehavior: dragStartBehavior,
-            //   onAppPrivateCommand: onAppPrivateCommand,
-            //   restorationId: restorationId,
-            //   scrollController: scrollController,
-            //   selectionControls: selectionControls,
-            //   selectionHeightStyle: selectionHeightStyle,
-            //   selectionWidthStyle: selectionWidthStyle,
-            //   clipBehavior: clipBehavior,
-            //   enableIMEPersonalizedLearning: enableIMEPersonalizedLearning,
-            //   scribbleEnabled: scribbleEnabled,
-            //   onTap: onTap != null ? () => onTap(field.control) : null,
-            //   onSubmitted: onSubmitted != null
-            //       ? (_) => onSubmitted(field.control)
-            //       : null,
-            //   onEditingComplete: onEditingComplete != null
-            //       ? () => onEditingComplete.call(field.control)
-            //       : null,
-            //   onChanged: (value) {
-            //     field.didChange(value);
-            //     onChanged?.call(field.control);
-            //   },
-            //   undoController: undoController,
-            //   cursorOpacityAnimates: cursorOpacityAnimates,
-            //   onTapOutside: onTapOutside,
-            //   contentInsertionConfiguration: contentInsertionConfiguration,
-            //   canRequestFocus: canRequestFocus,
-            //   spellCheckConfiguration: spellCheckConfiguration,
-            //   magnifierConfiguration: magnifierConfiguration,
-            // );
           },
         );
 
@@ -223,7 +146,7 @@ class _ReactiveQuillFieldState
     extends ReactiveFocusableFormFieldState<String, String> {
   late QuillController _controller;
 
-  StreamSubscription<DocChange>? subscription;
+  StreamSubscription<DocChange>? _subscription;
 
   @override
   void initState() {
@@ -237,21 +160,6 @@ class _ReactiveQuillFieldState
     super.onControlValueChanged(value);
   }
 
-  @override
-  ControlValueAccessor<String, String> selectValueAccessor() {
-    // if (control is FormControl<int>) {
-    //   return IntValueAccessor() as ControlValueAccessor<T, String>;
-    // } else if (control is FormControl<double>) {
-    //   return DoubleValueAccessor() as ControlValueAccessor<T, String>;
-    // } else if (control is FormControl<DateTime>) {
-    //   return DateTimeValueAccessor() as ControlValueAccessor<T, String>;
-    // } else if (control is FormControl<TimeOfDay>) {
-    //   return TimeOfDayValueAccessor() as ControlValueAccessor<T, String>;
-    // }
-
-    return super.selectValueAccessor();
-  }
-
   void _initializeController() {
     final initialValue = value;
     final currentWidget = widget as ReactiveQuillField;
@@ -259,12 +167,12 @@ class _ReactiveQuillFieldState
         ? currentWidget._controller!
         : QuillController.basic();
     _controller.document = Document.fromHtml(initialValue ?? '');
-    subscription = _controller.changes.listen(listenOnData);
+    _subscription = _controller.changes.listen(listenOnData);
   }
 
   @override
   void dispose() {
-    subscription?.cancel();
+    _subscription?.cancel();
     final currentWidget = widget as ReactiveQuillField;
     if (currentWidget._controller == null) {
       _controller.dispose();
