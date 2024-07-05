@@ -112,11 +112,11 @@ class ReactiveQuillField extends ReactiveFormField<String, String> {
                 ),
                 QuillEditor.basic(
                   configurations: QuillEditorConfigurations(
-                    controller: state._controller,
-                    sharedConfigurations: sharedConfigurations,
-                    minHeight: 400,
-                    placeholder: context.localize.form_sci_desc_hint,
-                  ),
+                      controller: state._controller,
+                      sharedConfigurations: sharedConfigurations,
+                      minHeight: 400,
+                      placeholder: context.localize.form_sci_desc_hint,
+                      padding: const EdgeInsets.all(8)),
                   focusNode: field.focusNode,
                 ),
                 IgnorePointer(
