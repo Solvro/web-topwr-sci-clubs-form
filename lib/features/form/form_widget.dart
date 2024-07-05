@@ -52,7 +52,7 @@ class SciClubForm extends ConsumerWidget {
                   context.localize.form_sci_short_desc,
                   formControl: formModel.shortDescriptionControl,
                 ),
-                HtmlField(
+                WYSIWYGEditor(
                   context.localize.form_sci_desc,
                   formModel.descriptionControl,
                 ),

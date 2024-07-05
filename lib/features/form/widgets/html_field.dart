@@ -1,94 +1,77 @@
-import 'dart:collection';
-
-import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:html_editor_enhanced/html_editor.dart';
+import 'package:flutter_quill/flutter_quill.dart';
 import 'package:pointer_interceptor/pointer_interceptor.dart';
 import 'package:reactive_forms_annotations/reactive_forms_annotations.dart';
 
-import '../../../utils/context_extensions.dart';
+import '../../../config/config.dart';
+import '../../../theme/app_theme.dart';
 import 'form_subsection.dart';
-import 'reactive_mock_field.dart';
+import 'quill_field.dart';
 
-final _htmlContoller = Provider((ref) => HtmlEditorController());
-
-class HtmlField extends ConsumerWidget {
-  const HtmlField(this.title, this.formControl, {super.key});
+class WYSIWYGEditor extends StatefulWidget {
+  const WYSIWYGEditor(this.title, this.formControl, {super.key});
 
   final String title;
   final FormControl<String>? formControl;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final controller = ref.watch(_htmlContoller);
+  State<WYSIWYGEditor> createState() => _WYSIWYGEditorState();
+}
 
+class _WYSIWYGEditorState extends State<WYSIWYGEditor> {
+  // final controller = QuillController.basic();
+
+  // StreamSubscription<DocChange>? subscription;
+
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   initValue();
+  // }
+
+  // void initValue() {
+  //   controller.document = Document.fromHtml(widget.formControl?.value ?? "");
+  //   subscription = controller.document.changes.listen(listener);
+  // }
+
+  // @override
+  // void dispose() {
+  //   subscription?.cancel();
+  //   controller.dispose();
+  //   super.dispose();
+  // }
+
+  // void listener(_) {
+  //   Future.microtask(() {
+  //     final html = controller.document.toDelta().toHtml();
+  //     widget.formControl?.updateValue(html);
+  //     widget.formControl?.updateValueAndValidity();
+  //   });
+  // }
+
+  @override
+  Widget build(BuildContext context) {
     return PointerInterceptor(
       child: FormSubsection(
-        title: title,
-        buildChildren: (setError) => [
-          HtmlEditor(
-            controller: controller,
-            htmlEditorOptions: HtmlEditorOptions(
-              initialText: formControl?.value,
-              hint: "<p>${context.localize.form_sci_desc_hint}</p>",
-              webInitialScripts: UnmodifiableListView([
-                WebScript(name: "onscroll", script: """
-        window.onscroll = function() {
-      sendScrollPosition(window.scrollY);
-        };
-      """),
-              ]),
-            ),
-            otherOptions: const OtherOptions(
-              height: 400,
-            ),
-            htmlToolbarOptions: const HtmlToolbarOptions(
-              defaultToolbarButtons: [
-                StyleButtons(),
-                FontButtons(clearAll: false),
-                ColorButtons(),
-                ListButtons(listStyles: false),
-                ParagraphButtons(
-                  textDirection: false,
-                  lineHeight: false,
-                  caseConverter: false,
-                ),
-                InsertButtons(
-                  video: false,
-                  audio: false,
-                  table: false,
-                  hr: false,
-                  otherFile: false,
-                ),
-              ],
-            ),
-            callbacks: Callbacks(
-              onChangeContent: (p0) {
-                formControl?.updateValue(p0);
-                formControl?.updateValueAndValidity();
-                setError(false);
-              },
-              onInit: () {
-                controller.setFullScreen();
-                // controller.evaluateJavascriptWeb("scroll");
-              },
-            ),
-          ),
-          IgnorePointer(
-            child: ReactiveMockField(
-              style: const TextStyle(
-                color: Colors.transparent,
-                fontSize: 0,
-              ),
-              formControl: formControl,
-              decoration: const InputDecoration.collapsed(
-                hintText: "",
-                enabled: false,
-              ),
-            ),
-          ),
-        ],
         onInitState: () {},
+        title: widget.title,
+        buildChildren: (setError) {
+          final quillSharedConfigurations = QuillSharedConfigurations(
+            locale: const Locale('pl'),
+            dialogTheme: QuillDialogTheme(
+              dialogBackgroundColor: context.colorTheme.greyLight,
+              shape: const RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(FormFieldConfig.radius),
+              ),
+            ),
+          );
+          return [
+            ReactiveQuillField(
+              formControl: widget.formControl,
+              context: context,
+              sharedConfigurations: quillSharedConfigurations,
+            ),
+          ];
+        },
       ),
     );
   }
