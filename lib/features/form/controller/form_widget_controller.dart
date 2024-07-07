@@ -1,3 +1,4 @@
+import 'package:restart_app/restart_app.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../auth/models/auth_state.dart';
@@ -38,7 +39,6 @@ class FormWidgetController extends _$FormWidgetController {
 
   void backToEditing() {
     state = const AsyncLoading();
-    ref.invalidate(sciClubsRepoProvider);
-    ref.invalidateSelf();
+    Restart.restartApp();
   }
 }

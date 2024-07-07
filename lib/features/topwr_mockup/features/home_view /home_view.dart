@@ -97,11 +97,13 @@ class _HomeViewState extends State<_HomeView> {
   }
 
   void scrollDownToTarget() {
-    itemScrollController.scrollTo(
-      index: sections.indexOf(studyCirclesSections),
-      duration: Durations.medium4,
-      alignment: 0.01,
-      curve: Curves.decelerate,
-    );
+    if (itemScrollController.isAttached) {
+      itemScrollController.scrollTo(
+        index: sections.indexOf(studyCirclesSections),
+        duration: Durations.medium4,
+        alignment: 0.01,
+        curve: Curves.decelerate,
+      );
+    }
   }
 }

@@ -42,15 +42,14 @@ class _ScrollDownSciClubListState extends ConsumerState<_ScrollUpSciClubList> {
   void initState() {
     Future.delayed(
       Durations.medium4,
-      () {
-        subscryption = widget.form?.form.valueChanges.listen(
-          (event) => scrollController.animateTo(
-            0,
-            duration: Durations.medium2,
-            curve: Curves.decelerate,
-          ),
-        );
-      },
+      () => subscryption = widget.form?.form.valueChanges.listen(
+        (event) {
+          if (scrollController.hasClients) {
+            scrollController.animateTo(0,
+                duration: Durations.medium2, curve: Curves.decelerate);
+          }
+        },
+      ),
     );
     super.initState();
   }

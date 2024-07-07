@@ -3,9 +3,14 @@
 // found in the LICENSE file.
 
 import 'dart:async';
+import 'dart:convert';
+import 'dart:math';
 
+import 'package:delta_markdown/delta_markdown.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_quill/flutter_quill.dart';
+
+import 'package:html2md/html2md.dart';
 import 'package:quill_html_converter/quill_html_converter.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
@@ -108,13 +113,20 @@ class ReactiveQuillField extends ReactiveFormField<String, String> {
                     showFontFamily: false,
                     showSearchButton: false,
                     showDividers: false,
+                    showColorButton: false,
+                    showListCheck: false,
+                    showListNumbers: false,
+                    showBackgroundColorButton: false,
+                    showIndent: false,
                   ),
                 ),
                 QuillEditor.basic(
                   configurations: QuillEditorConfigurations(
                     controller: state._controller,
                     sharedConfigurations: sharedConfigurations,
-                    minHeight: 400,
+                    minHeight:
+                        min(MediaQuery.sizeOf(context).height * 0.5, 300),
+                    maxHeight: MediaQuery.sizeOf(context).height * 0.5,
                     placeholder: context.localize.form_sci_desc_hint,
                     padding: const EdgeInsets.all(8),
                   ),
@@ -152,12 +164,12 @@ class _ReactiveQuillFieldState
   @override
   void initState() {
     super.initState();
-    Future.microtask(_initializeController);
+    _initializeController();
   }
 
   @override
   void onControlValueChanged(dynamic value) {
-    _controller.document = Document.fromHtml(value?.toDelta()?.toHtml() ?? "");
+    _controller.document = Document.fromHtml(value ?? "");
     super.onControlValueChanged(value);
   }
 
@@ -167,8 +179,10 @@ class _ReactiveQuillFieldState
     _controller = (currentWidget._controller != null)
         ? currentWidget._controller!
         : QuillController.basic();
-    _controller.document = Document.fromHtml(initialValue ?? '');
-    _subscription = _controller.changes.listen(listenOnData);
+    Future.microtask(() {
+      _controller.document = FixHtmlConv.fromHtmlFixed(initialValue ?? '');
+      _subscription = _controller.changes.listen(listenOnData);
+    });
   }
 
   @override
@@ -182,6 +196,18 @@ class _ReactiveQuillFieldState
   }
 
   void listenOnData(DocChange event) {
-    didChange(_controller.document.toDelta().toHtml());
+    didChange(
+      _controller.document.toDelta().toHtml(),
+    );
+  }
+}
+
+extension FixHtmlConv on Document {
+  static const customTag = "<custom/>";
+
+  static Document fromHtmlFixed(String? htmlString) {
+    return Document.fromJson(
+      jsonDecode(markdownToDelta(convert(htmlString ?? ""))),
+    );
   }
 }
