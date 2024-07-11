@@ -1,4 +1,4 @@
-WEB_RENDERER=html
+WEB_RENDERER=canvaskit
 TAR_FILE=./deploy.tar
 BUILD_DIR=./build/web
 CAPTAIN_DEF=./captain-definition
