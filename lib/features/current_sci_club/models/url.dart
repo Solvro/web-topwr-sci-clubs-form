@@ -1,4 +1,5 @@
 import 'dart:typed_data';
+import 'dart:html' as html;
 
 import '../utils/temp_image_url_utils.dart';
 
@@ -20,16 +21,17 @@ class TempUrl extends AbstractUrl {
 
   @override
   final String url;
+  final html.Blob? blob;
 
-  TempUrl._(this.url);
+  TempUrl._(this.url, this.blob);
 
   factory TempUrl.fromUint8List(Uint8List bytes) {
     if (_cache.containsKey(bytes)) {
       return _cache[bytes]!;
     }
 
-    final url = TempImageUrlUtils.getTemporaryUrl(bytes);
-    final wrapper = TempUrl._(url);
+    final (url, blob) = TempImageUrlUtils.getTemporaryUrl(bytes);
+    final wrapper = TempUrl._(url, blob);
     _finalizer.attach(wrapper, url, detach: wrapper);
     _cache[bytes] = wrapper;
     return wrapper;

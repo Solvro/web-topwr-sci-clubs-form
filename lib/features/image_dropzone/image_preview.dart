@@ -3,6 +3,8 @@ import 'dart:typed_data';
 import 'package:flutter/material.dart';
 
 import '../../theme/app_theme.dart';
+import '../current_sci_club/models/url.dart';
+import '../topwr_mockup/widgets/my_cached_image.dart';
 import 'none_preview.dart';
 
 class DragAndDropImagePreview extends StatelessWidget {
@@ -13,7 +15,7 @@ class DragAndDropImagePreview extends StatelessWidget {
     this.onPickFile,
   });
 
-  final Uint8List? image;
+  final AbstractUrl? image;
   final VoidCallback? onRemoveFile;
   final VoidCallback? onPickFile;
   @override
@@ -67,13 +69,13 @@ class _Image extends StatelessWidget {
     required this.image,
   });
 
-  final Uint8List? image;
+  final AbstractUrl? image;
 
   @override
   Widget build(BuildContext context) {
-    return Image.memory(
-      image!,
-      fit: BoxFit.cover,
+    return MyCachedImage(
+      image?.url ?? "",
+      boxFit: BoxFit.cover,
       filterQuality: FilterQuality.none,
     );
   }

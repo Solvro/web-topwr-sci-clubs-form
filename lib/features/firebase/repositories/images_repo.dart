@@ -11,9 +11,10 @@ class ImagesRepository {
       FirebaseStorage.instance.ref().child(FirebaseConfig.storageRoot);
 
   static Future<String> submitImage(
-      Uint8List image, String folder, String fileName) async {
+      TempUrl image, String folder, String fileName) async {
     final ref = _collection.child(folder).child(fileName);
-    await ref.putData(image);
+    await ref.putBlob(image.blob);
+    // await ref.putData(image);
     return await ref.getDownloadURL();
   }
 

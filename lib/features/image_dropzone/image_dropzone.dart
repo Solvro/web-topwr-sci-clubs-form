@@ -1,5 +1,3 @@
-import 'dart:typed_data';
-
 import 'package:dotted_border/dotted_border.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
@@ -8,6 +6,7 @@ import 'package:super_drag_and_drop/super_drag_and_drop.dart';
 
 import '../../config/config.dart';
 import '../../theme/app_theme.dart';
+import '../current_sci_club/models/url.dart';
 import '../form/widgets/reactive_mock_field.dart';
 import '../form/widgets/text_style.dart';
 import 'image_preview.dart';
@@ -20,7 +19,7 @@ class ImageDropzone extends StatefulWidget {
     required this.label,
   });
 
-  final FormControl<Uint8List>? formControl;
+  final FormControl<AbstractUrl>? formControl;
   final double height;
   final String label;
   @override
@@ -69,7 +68,7 @@ class _ImageDropzoneState extends State<ImageDropzone> {
                           : Colors.transparent,
                     ),
                     IgnorePointer(
-                      child: ReactiveMockField<Uint8List>(
+                      child: ReactiveMockField<AbstractUrl>(
                         maxLines: double.maxFinite.toInt(),
                         formControl: widget.formControl,
                         decoration: InputDecoration(
@@ -97,7 +96,7 @@ class _ImageDropzoneState extends State<ImageDropzone> {
     );
   }
 
-  void didChange(Uint8List value) async {
+  void didChange(AbstractUrl value) async {
     widget.formControl?.updateValue(value);
     widget.formControl?.markAsTouched();
   }
@@ -120,7 +119,7 @@ class _ImageDropzoneState extends State<ImageDropzone> {
         reader.getFile(
           FormFieldConfig.dragAndDropFormats.firstWhere(reader.canProvide),
           (file) async {
-            didChange(await file.readAll());
+            didChange(TempUrl.fromUint8List((await file.readAll())));
           },
           onError: (error) => setError(),
         );
@@ -134,7 +133,7 @@ class _ImageDropzoneState extends State<ImageDropzone> {
       allowedExtensions: FormFieldConfig.filePickerFormats,
     );
     final data = await result?.xFiles.first.readAsBytes();
-    if (data != null) didChange(data);
+    if (data != null) didChange(TempUrl.fromUint8List(data));
   }
 
   void showDroppingAllowed() {

@@ -9,7 +9,6 @@ import 'dart:math';
 import 'package:delta_markdown/delta_markdown.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_quill/flutter_quill.dart';
-
 import 'package:html2md/html2md.dart';
 import 'package:quill_html_converter/quill_html_converter.dart';
 import 'package:reactive_forms/reactive_forms.dart';
@@ -129,8 +128,9 @@ class ReactiveQuillField extends ReactiveFormField<String, String> {
                     maxHeight: MediaQuery.sizeOf(context).height * 0.5,
                     placeholder: context.localize.form_sci_desc_hint,
                     padding: const EdgeInsets.all(8),
+                    autoFocus: false,
                   ),
-                  focusNode: field.focusNode,
+                  focusNode: state.focusNode,
                 ),
                 IgnorePointer(
                   child: ReactiveMockField(

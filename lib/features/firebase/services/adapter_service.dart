@@ -22,20 +22,20 @@ class AdapterService {
     json["tags"] = await determineTagsFromBools(model).toList();
     json["id"] ??= const Uuid().v4();
     return SciClub.fromJson(json).copyWith(
-      cover: model.cover == null
+      cover: model.cover == null || model.cover is! TempUrl
           ? null
           : NormalUrl(
               await ImagesRepository.submitImage(
-                model.cover!,
+                model.cover as TempUrl,
                 json["id"],
                 "cover",
               ),
             ),
-      logo: model.logo == null
+      logo: model.logo == null || model.cover is! TempUrl
           ? null
           : NormalUrl(
               await ImagesRepository.submitImage(
-                model.logo!,
+                model.logo as TempUrl,
                 json["id"],
                 "logo",
               ),
@@ -47,22 +47,16 @@ class AdapterService {
     final json = model.toJson();
     json["tags"] = await determineTagsFromBools(model).toList();
     return SciClub.fromJson(json).copyWith(
-      cover: model.cover == null ? null : TempUrl.fromUint8List(model.cover!),
-      logo: model.logo == null ? null : TempUrl.fromUint8List(model.logo!),
+      cover: model.cover,
+      logo: model.logo,
     );
   }
 
   Future<SciClubFormModel> fromFirebaseToForm(SciClub model) async {
     final json = model.toJson();
     json["tags"] = await determinBoolsFromTags(model).toList();
-    return SciClubFormModel.fromJson(json).copyWith(
-      cover: model.cover == null
-          ? null
-          : await ImagesRepository.downloadImage(model.cover!),
-      logo: model.logo == null
-          ? null
-          : await ImagesRepository.downloadImage(model.logo!),
-    );
+    return SciClubFormModel.fromJson(json)
+        .copyWith(cover: model.cover, logo: model.logo);
   }
 
   Stream<String> determineTagsFromBools(SciClubFormModel model) async* {

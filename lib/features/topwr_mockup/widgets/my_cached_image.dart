@@ -11,13 +11,14 @@ class MyCachedImage extends StatelessWidget {
     this.noShimmeringLoading = false,
     this.boxFit = BoxFit.cover,
     this.size,
+    this.filterQuality,
   });
 
   final String? imageUrl;
   final bool noShimmeringLoading;
   final BoxFit boxFit;
   final Size? size;
-
+  final FilterQuality? filterQuality;
   @override
   Widget build(BuildContext context) {
     if (imageUrl == null || imageUrl!.isEmpty) {
@@ -39,6 +40,7 @@ class MyCachedImage extends StatelessWidget {
           FlutterSplashScreen(size: size?.height),
       height: size?.height,
       width: size?.width,
+      filterQuality: filterQuality ?? FilterQuality.low,
     );
   }
 }

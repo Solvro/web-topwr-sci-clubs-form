@@ -4,6 +4,8 @@ import 'dart:typed_data';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:json_annotation/json_annotation.dart';
 
+import '../../current_sci_club/models/url.dart';
+
 class Base64Converter implements JsonConverter<Uint8List?, String?> {
   const Base64Converter();
 
@@ -18,7 +20,7 @@ class Base64Converter implements JsonConverter<Uint8List?, String?> {
   }
 }
 
-class IgnoreConverter implements JsonConverter<Uint8List?, String?> {
+class IgnoreConverter implements JsonConverter<AbstractUrl?, String?> {
   const IgnoreConverter();
 
   @override
@@ -27,7 +29,21 @@ class IgnoreConverter implements JsonConverter<Uint8List?, String?> {
   }
 
   @override
-  Null toJson(Uint8List? object) {
+  Null toJson(AbstractUrl? object) {
     return null;
+  }
+}
+
+class UrlConverter implements JsonConverter<AbstractUrl?, String?> {
+  const UrlConverter();
+
+  @override
+  AbstractUrl? fromJson(json) {
+    return json == null ? null : NormalUrl(json);
+  }
+
+  @override
+  String? toJson(AbstractUrl? object) {
+    return object?.url;
   }
 }
