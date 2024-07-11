@@ -16,7 +16,7 @@ class GuestPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: FloatingAppBarScaffold(
+      body: FloatingAppBarScrollView(
         appBar: PureWebAppBar(context),
         child: SliverToBoxAdapter(
           child: SizedBox(

@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'breakpoint.dart';
 
-class FloatingAppBarScaffold extends StatelessWidget {
-  const FloatingAppBarScaffold({
+class FloatingAppBarScrollView extends StatelessWidget {
+  const FloatingAppBarScrollView({
     super.key,
     required this.appBar,
     required this.child,

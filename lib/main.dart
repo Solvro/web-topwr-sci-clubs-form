@@ -85,6 +85,7 @@ class RootView extends ConsumerWidget {
         child: context.showSplitView
             ? Scaffold(
                 appBar: appBar,
+                resizeToAvoidBottomInset: false,
                 body: const Padding(
                   padding: EdgeInsets.all(8.0),
                   child: FormSplitView(
@@ -100,7 +101,7 @@ class RootView extends ConsumerWidget {
                 ),
               )
             : SciClubFormScaffold(
-                child: FloatingAppBarScaffold(
+                child: FloatingAppBarScrollView(
                   appBar: appBar,
                   child: const SciClubForm(),
                 ),
