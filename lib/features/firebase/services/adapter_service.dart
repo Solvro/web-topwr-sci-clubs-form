@@ -23,7 +23,7 @@ class AdapterService {
     json["id"] ??= const Uuid().v4();
     return SciClub.fromJson(json).copyWith(
       cover: model.cover == null || model.cover is! TempUrl
-          ? null
+          ? model.cover
           : NormalUrl(
               await ImagesRepository.submitImage(
                 model.cover as TempUrl,
@@ -31,8 +31,8 @@ class AdapterService {
                 "cover",
               ),
             ),
-      logo: model.logo == null || model.cover is! TempUrl
-          ? null
+      logo: model.logo == null || model.logo is! TempUrl
+          ? model.logo
           : NormalUrl(
               await ImagesRepository.submitImage(
                 model.logo as TempUrl,
