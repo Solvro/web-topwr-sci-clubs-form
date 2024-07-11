@@ -178,6 +178,7 @@ class SciClubFormScaffold extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       floatingActionButton: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.end,
@@ -191,6 +192,7 @@ class SciClubFormScaffold extends StatelessWidget {
         ],
       ),
       body: child,
+      primary: false,
     );
   }
 }
