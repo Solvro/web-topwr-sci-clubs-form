@@ -32,13 +32,16 @@ class SciClubForm extends ConsumerWidget {
   ];
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return const FormPadding(
-      child: SliverConstrainedCrossAxis(
-        maxExtent: 1000,
-        sliver: SliverToBoxAdapter(
-            child: Column(
-          children: children,
-        )),
+    return FormPadding(
+      child: SliverToBoxAdapter(
+        child: Center(
+          child: ConstrainedBox(
+            constraints: const BoxConstraints(maxWidth: 1000),
+            child: const Column(
+              children: children,
+            ),
+          ),
+        ),
       ),
     );
   }

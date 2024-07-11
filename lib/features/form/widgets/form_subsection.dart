@@ -10,7 +10,7 @@ class FormSubsection<T> extends StatefulWidget {
     this.errorMessage,
     required this.buildChildren,
     required this.onInitState,
-    this.expandableMode = false,
+    this.expandableMode = true,
   });
 
   final String title;
@@ -68,7 +68,7 @@ class _TagsCheckboxListState<T> extends State<FormSubsection<T>> {
                 ],
               ),
             ),
-            enabled: true,
+            enabled: widget.expandableMode,
             initiallyExpanded: true,
             children: widget.buildChildren(
               (isErr) => setState(

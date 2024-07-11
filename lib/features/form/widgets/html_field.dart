@@ -18,6 +18,7 @@ class WYSIWYGEditor extends StatelessWidget {
     return PointerInterceptor(
       child: FormSubsection(
         onInitState: () {},
+        expandableMode: false,
         title: title,
         buildChildren: (setError) {
           final quillSharedConfigurations = QuillSharedConfigurations(
