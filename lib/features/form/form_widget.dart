@@ -179,17 +179,21 @@ class SciClubFormScaffold extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      floatingActionButton: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.end,
-        children: [
-          if (!context.showSplitView)
-            const Padding(
-              padding: EdgeInsets.only(bottom: 8.0),
-              child: ShowPreviewFAB(),
-            ),
-          const FabSend(),
-        ],
+      floatingActionButton: Padding(
+        padding:
+            EdgeInsets.only(bottom: MediaQuery.viewInsetsOf(context).bottom),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.end,
+          children: [
+            if (!context.showSplitView)
+              const Padding(
+                padding: EdgeInsets.only(bottom: 8.0),
+                child: ShowPreviewFAB(),
+              ),
+            const FabSend(),
+          ],
+        ),
       ),
       body: child,
       primary: false,
