@@ -20,7 +20,7 @@ class FloatingAppBarScaffold extends StatelessWidget {
           floating: !context.showSplitView,
           pinned: context.showSplitView,
         ),
-        SliverToBoxAdapter(child: child),
+        child,
       ],
     );
   }

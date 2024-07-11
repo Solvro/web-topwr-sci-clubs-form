@@ -18,56 +18,160 @@ import 'widgets/type_choice_field.dart';
 class SciClubForm extends ConsumerWidget {
   const SciClubForm({super.key});
 
+  static const children = [
+    FormHeader(),
+    _NameField(),
+    _DeptField(),
+    _TypeChoiceField(),
+    _LogoField(),
+    _CoverField(),
+    _LinksForm(),
+    _TagsField(),
+    _ShortDescField(),
+    _DescField(),
+  ];
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return FormPadding(
-      child: Center(
-        child: ConstrainedBox(
-          constraints: const BoxConstraints(maxWidth: 1000),
-          child: ReactiveSciClubFormModelFormConsumer(
-            builder: (context, formModel, child) => Column(
-              children: [
-                const FormHeader(),
-                MyFormField(
-                  context.localize.form_sci_club_name,
-                  formControl: formModel.nameControl,
-                ),
-                MyFormField(
-                  context.localize.form_sci_club_department,
-                  formControl: formModel.departmentControl,
-                  counterText: context.localize.dept_form_info,
-                ),
-                TypeChoiceField(formModel.typeControl),
-                ImageDropzone(
-                  label: context.localize.form_logo,
-                  formControl: formModel.logoControl,
-                ),
-                ImageDropzone(
-                  label: context.localize.form_cover,
-                  formControl: formModel.coverControl,
-                ),
-                SocialLinksForm(formModel: formModel),
-                SelectTags(formModel.tagsControl),
-                MyFormField(
-                  context.localize.form_sci_short_desc,
-                  formControl: formModel.shortDescriptionControl,
-                ),
-                WYSIWYGEditor(
-                  context.localize.form_sci_desc,
-                  formModel.descriptionControl,
-                ),
-              ],
-            ),
-          ),
+      child: SliverConstrainedCrossAxis(
+        maxExtent: 1000,
+        sliver: SliverList.builder(
+          itemBuilder: (context, index) => children[index],
+          itemCount: children.length,
         ),
       ),
     );
   }
 }
 
+class _DescField extends StatelessWidget {
+  const _DescField();
+
+  @override
+  Widget build(BuildContext context) {
+    final formModel = ReactiveSciClubFormModelForm.of(context)!;
+
+    return WYSIWYGEditor(
+      context.localize.form_sci_desc,
+      formModel.descriptionControl,
+    );
+  }
+}
+
+class _ShortDescField extends StatelessWidget {
+  const _ShortDescField();
+
+  @override
+  Widget build(BuildContext context) {
+    final formModel = ReactiveSciClubFormModelForm.of(context)!;
+
+    return MyFormField(
+      context.localize.form_sci_short_desc,
+      formControl: formModel.shortDescriptionControl,
+    );
+  }
+}
+
+class _TagsField extends StatelessWidget {
+  const _TagsField();
+
+  @override
+  Widget build(BuildContext context) {
+    final formModel = ReactiveSciClubFormModelForm.of(context)!;
+
+    return SelectTags(
+      formModel.tagsControl,
+    );
+  }
+}
+
+class _LinksForm extends StatelessWidget {
+  const _LinksForm();
+
+  @override
+  Widget build(BuildContext context) {
+    final formModel = ReactiveSciClubFormModelForm.of(context)!;
+
+    return SocialLinksForm(
+      formModel: formModel,
+    );
+  }
+}
+
+class _CoverField extends StatelessWidget {
+  const _CoverField();
+
+  @override
+  Widget build(BuildContext context) {
+    final formModel = ReactiveSciClubFormModelForm.of(context)!;
+
+    return ImageDropzone(
+      label: context.localize.form_cover,
+      formControl: formModel.coverControl,
+    );
+  }
+}
+
+class _LogoField extends StatelessWidget {
+  const _LogoField();
+
+  @override
+  Widget build(BuildContext context) {
+    final formModel = ReactiveSciClubFormModelForm.of(context)!;
+
+    return ImageDropzone(
+      label: context.localize.form_logo,
+      formControl: formModel.logoControl,
+    );
+  }
+}
+
+class _TypeChoiceField extends StatelessWidget {
+  const _TypeChoiceField();
+
+  @override
+  Widget build(BuildContext context) {
+    final formModel = ReactiveSciClubFormModelForm.of(context)!;
+
+    return TypeChoiceField(
+      formModel.typeControl,
+    );
+  }
+}
+
+class _DeptField extends StatelessWidget {
+  const _DeptField();
+
+  @override
+  Widget build(BuildContext context) {
+    final formModel = ReactiveSciClubFormModelForm.of(context)!;
+
+    return MyFormField(
+      context.localize.form_sci_club_department,
+      formControl: formModel.departmentControl,
+      counterText: context.localize.dept_form_info,
+    );
+  }
+}
+
+class _NameField extends StatelessWidget {
+  const _NameField();
+
+  @override
+  Widget build(BuildContext context) {
+    final formModel = ReactiveSciClubFormModelForm.of(context)!;
+    return MyFormField(
+      context.localize.form_sci_club_name,
+      formControl: formModel.nameControl,
+    );
+  }
+}
+
 class SciClubFormScaffold extends StatelessWidget {
-  const SciClubFormScaffold({super.key, required this.child});
   final Widget child;
+
+  const SciClubFormScaffold({super.key, required this.child});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

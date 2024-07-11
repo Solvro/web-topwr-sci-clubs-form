@@ -89,7 +89,12 @@ class RootView extends ConsumerWidget {
                   padding: EdgeInsets.all(8.0),
                   child: FormSplitView(
                     form: SciClubFormScaffold(
-                        child: SingleChildScrollView(child: SciClubForm())),
+                      child: CustomScrollView(
+                        slivers: [
+                          SciClubForm(),
+                        ],
+                      ),
+                    ),
                     phone: MockupFrame(),
                   ),
                 ),

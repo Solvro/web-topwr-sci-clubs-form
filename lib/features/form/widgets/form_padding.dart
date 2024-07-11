@@ -20,13 +20,13 @@ class FormPadding extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return LayoutBuilder(
+    return SliverLayoutBuilder(
       builder: (context, constraints) {
-        final width = constraints.maxWidth;
+        final width = constraints.asBoxConstraints().maxWidth;
         final padding = getPadding(width);
-        return Padding(
+        return SliverPadding(
           padding: padding,
-          child: child,
+          sliver: child,
         );
       },
     );

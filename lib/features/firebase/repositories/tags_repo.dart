@@ -8,7 +8,7 @@ import '../models/tag.dart';
 
 part 'tags_repo.g.dart';
 
-@riverpod
+@Riverpod(keepAlive: true)
 class RemoteTagsRepository extends _$RemoteTagsRepository {
   late final _collection = FirebaseFirestore.instance
       .collection(FirebaseConfig.firestoreTags)

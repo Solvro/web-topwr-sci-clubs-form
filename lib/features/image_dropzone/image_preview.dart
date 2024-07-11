@@ -30,24 +30,51 @@ class DragAndDropImagePreview extends StatelessWidget {
           padding: const EdgeInsets.only(top: 12.0),
           child: Container(
             padding: const EdgeInsets.all(20.0),
-            child: Image.memory(
-              image!,
-              fit: BoxFit.cover,
-            ),
+            child: _Image(image: image),
           ),
         ),
-        Align(
-          alignment: Alignment.topRight,
-          child: IconButton.filled(
-            onPressed: onRemoveFile,
-            icon: const Icon(Icons.close_outlined),
-            style: ButtonStyle(
-                backgroundColor: WidgetStatePropertyAll(
-              context.colorTheme.blueAzure,
-            )),
-          ),
-        ),
+        _CloseButton(onRemoveFile: onRemoveFile),
       ],
+    );
+  }
+}
+
+class _CloseButton extends StatelessWidget {
+  const _CloseButton({
+    required this.onRemoveFile,
+  });
+
+  final VoidCallback? onRemoveFile;
+
+  @override
+  Widget build(BuildContext context) {
+    return Align(
+      alignment: Alignment.topRight,
+      child: IconButton.filled(
+        onPressed: onRemoveFile,
+        icon: const Icon(Icons.close_outlined),
+        style: ButtonStyle(
+            backgroundColor: WidgetStatePropertyAll(
+          context.colorTheme.blueAzure,
+        )),
+      ),
+    );
+  }
+}
+
+class _Image extends StatelessWidget {
+  const _Image({
+    required this.image,
+  });
+
+  final Uint8List? image;
+
+  @override
+  Widget build(BuildContext context) {
+    return Image.memory(
+      image!,
+      fit: BoxFit.cover,
+      filterQuality: FilterQuality.none,
     );
   }
 }

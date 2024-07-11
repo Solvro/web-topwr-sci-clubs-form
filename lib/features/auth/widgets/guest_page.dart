@@ -18,67 +18,69 @@ class GuestPage extends StatelessWidget {
     return Scaffold(
       body: FloatingAppBarScaffold(
         appBar: PureWebAppBar(context),
-        child: SizedBox(
-          width: double.infinity,
-          child: Column(
-            children: [
-              Container(
-                padding: const EdgeInsets.all(20),
-                constraints: const BoxConstraints(maxWidth: 1000),
-                child: Center(
-                  child: Column(
-                    children: <Widget>[
-                      Text(
-                        context.localize.guest_page,
-                        style: context.greetingTheme.boldTextStyle,
-                        textAlign: TextAlign.justify,
+        child: SliverToBoxAdapter(
+          child: SizedBox(
+            width: double.infinity,
+            child: Column(
+              children: [
+                Container(
+                  padding: const EdgeInsets.all(20),
+                  constraints: const BoxConstraints(maxWidth: 1000),
+                  child: Center(
+                    child: Column(
+                      children: <Widget>[
+                        Text(
+                          context.localize.guest_page,
+                          style: context.greetingTheme.boldTextStyle,
+                          textAlign: TextAlign.justify,
+                        ),
+                        Text(
+                          context.localize.guest_page2,
+                          style: context.textTheme.headline,
+                          textAlign: TextAlign.justify,
+                        ),
+                        Text(
+                          context.localize.guest_page3,
+                          style: context.textTheme.headline,
+                          textAlign: TextAlign.justify,
+                        ),
+                      ].separate(
+                        (i, e0, e1) => const SizedBox(height: 15),
                       ),
-                      Text(
-                        context.localize.guest_page2,
-                        style: context.textTheme.headline,
-                        textAlign: TextAlign.justify,
-                      ),
-                      Text(
-                        context.localize.guest_page3,
-                        style: context.textTheme.headline,
-                        textAlign: TextAlign.justify,
-                      ),
-                    ].separate(
-                      (i, e0, e1) => const SizedBox(height: 15),
                     ),
                   ),
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 24.0),
-                child: Wrap(
-                  alignment: WrapAlignment.center,
-                  runSpacing: 10,
-                  spacing: 30,
-                  verticalDirection: VerticalDirection.up,
-                  children: [
-                    MyTextButton(
-                      isOrange: false,
-                      actionTitle: context.localize.read_more_landing,
-                      onClick: () {
-                        LaunchUrlUtil.launch(GuestPageConfig.portfolioLink);
-                      },
-                    ),
-                    MyOutlineButton(
-                      isOrange: true,
-                      actionTitle: context.localize.contact_landing,
-                      onClick: () {
-                        LaunchUrlUtil.launch(GuestPageConfig.contactLink);
-                      },
-                    ),
-                  ],
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                  child: Wrap(
+                    alignment: WrapAlignment.center,
+                    runSpacing: 10,
+                    spacing: 30,
+                    verticalDirection: VerticalDirection.up,
+                    children: [
+                      MyTextButton(
+                        isOrange: false,
+                        actionTitle: context.localize.read_more_landing,
+                        onClick: () {
+                          LaunchUrlUtil.launch(GuestPageConfig.portfolioLink);
+                        },
+                      ),
+                      MyOutlineButton(
+                        isOrange: true,
+                        actionTitle: context.localize.contact_landing,
+                        onClick: () {
+                          LaunchUrlUtil.launch(GuestPageConfig.contactLink);
+                        },
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(60.0),
-                child: Image.asset(GuestPageConfig.landingPng),
-              ),
-            ],
+                Padding(
+                  padding: const EdgeInsets.all(60.0),
+                  child: Image.asset(GuestPageConfig.landingPng),
+                ),
+              ],
+            ),
           ),
         ),
       ),
