@@ -121,7 +121,7 @@ class ReactiveQuillField extends ReactiveFormField<String, String> {
                     config: EditorConfigM(
                       minHeight:
                           min(MediaQuery.sizeOf(context).height * 0.5, 300),
-                      scrollable: false,
+                      maxHeight: MediaQuery.sizeOf(context).height * 0.5,
                       placeholder: context.localize.form_sci_desc_hint,
                       padding: const EdgeInsets.all(8),
                       autoFocus: false,

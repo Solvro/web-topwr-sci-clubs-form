@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -170,33 +172,80 @@ class _NameField extends StatelessWidget {
   }
 }
 
-class SciClubFormScaffold extends StatelessWidget {
+class SciClubFormScaffold extends StatefulWidget {
   final Widget child;
 
   const SciClubFormScaffold({super.key, required this.child});
+
+  @override
+  State<SciClubFormScaffold> createState() => _SciClubFormScaffoldState();
+}
+
+class _SciClubFormScaffoldState extends State<SciClubFormScaffold> {
+  StreamSubscription<bool>? _subs;
+
+  bool isBuggedEditorVisible = false;
+
+  Stream<bool>? get weirdFocusNode =>
+      ReactiveSciClubFormModelForm.of(context)!.departmentControl?.focusChanges;
+
+  @override
+  void initState() {
+    super.initState();
+    Future.microtask(() {
+      _subs = weirdFocusNode?.listen(weirdFocusListener);
+    });
+  }
+
+  @override
+  void dispose() {
+    _subs?.cancel();
+    super.dispose();
+  }
+
+  void weirdFocusListener(bool hasFocus) {
+    setState(() {
+      isBuggedEditorVisible = hasFocus;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       floatingActionButton: Padding(
-        padding:
-            EdgeInsets.only(bottom: MediaQuery.viewInsetsOf(context).bottom),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.end,
-          children: [
-            if (!context.showSplitView)
-              const Padding(
-                padding: EdgeInsets.only(bottom: 8.0),
-                child: ShowPreviewFAB(),
-              ),
-            const FabSend(),
-          ],
+        padding: EdgeInsets.only(
+          // workaround, but the editor is buggy :/
+          bottom: isBuggedEditorVisible
+              ? 0
+              : MediaQuery.viewInsetsOf(context).bottom,
         ),
+        child: const _FABs(),
       ),
-      body: child,
+      body: widget.child,
       primary: false,
+    );
+  }
+}
+
+class _FABs extends StatelessWidget {
+  const _FABs({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.end,
+      children: [
+        if (!context.showSplitView)
+          const Padding(
+            padding: EdgeInsets.only(bottom: 8.0),
+            child: ShowPreviewFAB(),
+          ),
+        const FabSend(),
+      ],
     );
   }
 }
