@@ -5,6 +5,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 import 'package:visual_editor/document/models/delta/delta-changes.model.dart';
+import 'package:visual_editor/document/services/delta.utils.dart';
 import 'package:visual_editor/visual-editor.dart';
 
 import '../../../config/config.dart';
@@ -161,7 +162,7 @@ class _ReactiveQuillFieldState
 
   @override
   void onControlValueChanged(dynamic value) {
-    // _controller.document = Document.fromHtml(value ?? "");
+    _controller.document.delta = DeltaUtil.tryFromJson(value).delta;
     super.onControlValueChanged(value);
   }
 
@@ -170,9 +171,8 @@ class _ReactiveQuillFieldState
     final currentWidget = widget as ReactiveQuillField;
     _controller = (currentWidget._controller != null)
         ? currentWidget._controller!
-        : EditorController();
+        : EditorController(document: DeltaUtil.tryFromJson(initialValue));
     Future.microtask(() {
-      // _controller.document = FixHtmlConv.fromHtmlFixed(initialValue ?? '');
       _subscription = _controller.changes$.listen(listenOnData);
     });
   }
@@ -194,13 +194,15 @@ class _ReactiveQuillFieldState
   }
 }
 
-extension FixHtmlConv on DeltaDocM {
-  static const customTag = "<custom/>";
-
-  static DeltaDocM fromHtmlFixed(String? htmlString) {
-    return DeltaDocM();
-    // return Document.fromJson(
-    //   jsonDecode(markdownToDelta(convert(htmlString ?? ""))),
-    // );
+extension DeltaUtil on DeltaDocM {
+  static DeltaDocM tryFromJson(String? json) {
+    try {
+      return DeltaDocM.fromJson(jsonDecode(json ?? ""));
+    } catch (e) {
+      final du = DeltaUtils();
+      final delta = DeltaDocM();
+      du.insert(delta.delta, "$json\n");
+      return delta;
+    }
   }
 }
