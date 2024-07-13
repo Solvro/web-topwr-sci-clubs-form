@@ -8,10 +8,12 @@ import 'dart:math';
 
 import 'package:delta_markdown/delta_markdown.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_quill/flutter_quill.dart';
 import 'package:html2md/html2md.dart';
+import 'package:markdown/markdown.dart';
 import 'package:quill_html_converter/quill_html_converter.dart';
 import 'package:reactive_forms/reactive_forms.dart';
+import 'package:visual_editor/document/models/delta/delta-changes.model.dart';
+import 'package:visual_editor/visual-editor.dart';
 
 import '../../../utils/context_extensions.dart';
 import 'reactive_mock_field.dart';
@@ -24,7 +26,7 @@ import 'reactive_mock_field.dart';
 /// A [ReactiveForm] ancestor is required.
 ///
 class ReactiveQuillField extends ReactiveFormField<String, String> {
-  final QuillController? _controller;
+  final EditorController? _controller;
 
   /// Creates a [ReactiveQuillField] that contains a [QuillEditor].
   ///
@@ -96,33 +98,48 @@ class ReactiveQuillField extends ReactiveFormField<String, String> {
     super.valueAccessor,
     super.showErrors,
     super.focusNode,
-    QuillController? controller,
+    EditorController? controller,
     required BuildContext context,
-    required QuillSharedConfigurations sharedConfigurations,
   })  : _controller = controller,
         super(
           builder: (ReactiveFormFieldState<String, String> field) {
             final state = field as _ReactiveQuillFieldState;
             return Column(
               children: [
-                QuillToolbar.simple(
-                  configurations: QuillSimpleToolbarConfigurations(
-                    controller: state._controller,
-                    sharedConfigurations: sharedConfigurations,
-                    showFontFamily: false,
-                    showSearchButton: false,
-                    showDividers: false,
-                    showColorButton: false,
-                    showListCheck: false,
-                    showListNumbers: false,
-                    showBackgroundColorButton: false,
-                    showIndent: false,
-                  ),
+                EditorToolbar.basic(
+                  controller: state._controller,
                 ),
-                QuillEditor.basic(
-                  configurations: QuillEditorConfigurations(
-                    controller: state._controller,
-                    sharedConfigurations: sharedConfigurations,
+                // QuillToolbar.simple(
+                //   configurations: QuillSimpleToolbarConfigurations(
+                //     controller: state._controller,
+                // sharedConfigurations: sharedConfigurations,
+                // showFontFamily: false,
+                // showSearchButton: false,
+                // showDividers: false,
+                // showColorButton: false,
+                // showListCheck: false,
+                // showListNumbers: false,
+                // showBackgroundColorButton: false,
+                // showIndent: false,
+                //   ),
+                // ),
+                // QuillEditor.basic(
+                //   configurations: QuillEditorConfigurations(
+                //     controller: state._controller,
+                //     sharedConfigurations: sharedConfigurations,
+                //     minHeight:
+                //         min(MediaQuery.sizeOf(context).height * 0.5, 300),
+                //     maxHeight: MediaQuery.sizeOf(context).height * 0.5,
+                //     placeholder: context.localize.form_sci_desc_hint,
+                //     padding: const EdgeInsets.all(8),
+                //     autoFocus: false,
+                //   ),
+                //   focusNode: state.focusNode,
+                // ),
+                VisualEditor(
+                  controller: state._controller,
+                  focusNode: state.focusNode,
+                  config: EditorConfigM(
                     minHeight:
                         min(MediaQuery.sizeOf(context).height * 0.5, 300),
                     maxHeight: MediaQuery.sizeOf(context).height * 0.5,
@@ -130,7 +147,6 @@ class ReactiveQuillField extends ReactiveFormField<String, String> {
                     padding: const EdgeInsets.all(8),
                     autoFocus: false,
                   ),
-                  focusNode: state.focusNode,
                 ),
                 IgnorePointer(
                   child: ReactiveMockField(
@@ -157,9 +173,9 @@ class ReactiveQuillField extends ReactiveFormField<String, String> {
 
 class _ReactiveQuillFieldState
     extends ReactiveFocusableFormFieldState<String, String> {
-  late QuillController _controller;
+  late EditorController _controller;
 
-  StreamSubscription<DocChange>? _subscription;
+  StreamSubscription<DocAndChangeM>? _subscription;
 
   @override
   void initState() {
@@ -169,7 +185,7 @@ class _ReactiveQuillFieldState
 
   @override
   void onControlValueChanged(dynamic value) {
-    _controller.document = Document.fromHtml(value ?? "");
+    // _controller.document = Document.fromHtml(value ?? "");
     super.onControlValueChanged(value);
   }
 
@@ -178,10 +194,10 @@ class _ReactiveQuillFieldState
     final currentWidget = widget as ReactiveQuillField;
     _controller = (currentWidget._controller != null)
         ? currentWidget._controller!
-        : QuillController.basic();
+        : EditorController();
     Future.microtask(() {
-      _controller.document = FixHtmlConv.fromHtmlFixed(initialValue ?? '');
-      _subscription = _controller.changes.listen(listenOnData);
+      // _controller.document = FixHtmlConv.fromHtmlFixed(initialValue ?? '');
+      _subscription = _controller.changes$.listen(listenOnData);
     });
   }
 
@@ -190,24 +206,25 @@ class _ReactiveQuillFieldState
     _subscription?.cancel();
     final currentWidget = widget as ReactiveQuillField;
     if (currentWidget._controller == null) {
-      _controller.dispose();
+      _controller.close();
     }
     super.dispose();
   }
 
-  void listenOnData(DocChange event) {
-    didChange(
-      _controller.document.toDelta().toHtml(),
-    );
+  void listenOnData(DocAndChangeM event) {
+    didChange(jsonEncode(
+      _controller.document.delta.toJson(),
+    ));
   }
 }
 
-extension FixHtmlConv on Document {
+extension FixHtmlConv on DeltaDocM {
   static const customTag = "<custom/>";
 
-  static Document fromHtmlFixed(String? htmlString) {
-    return Document.fromJson(
-      jsonDecode(markdownToDelta(convert(htmlString ?? ""))),
-    );
+  static DeltaDocM fromHtmlFixed(String? htmlString) {
+    return DeltaDocM();
+    // return Document.fromJson(
+    //   jsonDecode(markdownToDelta(convert(htmlString ?? ""))),
+    // );
   }
 }
