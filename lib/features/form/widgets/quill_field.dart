@@ -110,6 +110,8 @@ class ReactiveQuillField extends ReactiveFormField<String, String> {
                       borderRadius: BorderRadius.all(FormFieldConfig.radius),
                     ),
                   ),
+                  showFontSize: false,
+                  showDividers: false,
                 ),
                 DefaultTextStyle(
                   style: context.textTheme.body,
@@ -123,6 +125,14 @@ class ReactiveQuillField extends ReactiveFormField<String, String> {
                       placeholder: context.localize.form_sci_desc_hint,
                       padding: const EdgeInsets.all(8),
                       autoFocus: false,
+                      customStyles: EditorStylesM(
+                        bold: const TextStyle(fontWeight: FontWeight.w900),
+                        link: TextStyle(
+                          color: context.colorTheme.orangePomegranade,
+                          decoration: TextDecoration.underline,
+                        ),
+                      ),
+                      linkMenuDisabled: true,
                     ),
                   ),
                 ),

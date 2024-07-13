@@ -68,6 +68,13 @@ class _VisualEditorReadOnlyState extends State<VisualEditorReadOnly> {
           textSelectionControls: emptyTextSelectionControls,
           markersVisibility: false,
           enableInteractiveSelection: false,
+          customStyles: EditorStylesM(
+            bold: const TextStyle(fontWeight: FontWeight.w900),
+            link: TextStyle(
+              color: context.colorTheme.orangePomegranade,
+              decoration: TextDecoration.underline,
+            ),
+          ),
         ),
       ),
     );
