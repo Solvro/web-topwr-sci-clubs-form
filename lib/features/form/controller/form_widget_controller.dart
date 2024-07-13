@@ -38,12 +38,6 @@ class FormWidgetController extends _$FormWidgetController {
   }
 
   void backToEditing() async {
-    Future.microtask(() {
-      state = const AsyncLoading();
-      ref.invalidate(remoteAuthRepoProvider);
-      ref.invalidate(sciClubsRepoProvider);
-      ref.invalidate(routerProvider);
-      ref.invalidateSelf();
-    });
+    ref.invalidateSelf();
   }
 }

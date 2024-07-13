@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:separate/separate.dart';
 
 import '../../../theme/app_theme.dart';
 import '../../../utils/context_extensions.dart';
 import '../auth/widgets/pure_app_bar.dart';
-import '../form/controller/form_widget_controller.dart';
-import '../topwr_mockup/widgets/my_text_button.dart';
 
 class SavingPage extends StatelessWidget {
   const SavingPage({super.key});
@@ -39,21 +36,6 @@ class SavingPage extends StatelessWidget {
           ),
         ),
       ),
-    );
-  }
-}
-
-class _GoBackEditing extends ConsumerWidget {
-  const _GoBackEditing();
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    return MyTextButton(
-      isOrange: true,
-      actionTitle: context.localize.back_to_edit,
-      onClick: () {
-        ref.read(formWidgetControllerProvider.notifier).backToEditing();
-      },
     );
   }
 }
