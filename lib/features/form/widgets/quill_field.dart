@@ -1,16 +1,8 @@
-// Copyright 2020 Joan Pablo Jimenez Milian. All rights reserved.
-// Use of this source code is governed by the MIT license that can be
-// found in the LICENSE file.
-
 import 'dart:async';
 import 'dart:convert';
 import 'dart:math';
 
-import 'package:delta_markdown/delta_markdown.dart';
 import 'package:flutter/material.dart';
-import 'package:html2md/html2md.dart';
-import 'package:markdown/markdown.dart';
-import 'package:quill_html_converter/quill_html_converter.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 import 'package:visual_editor/document/models/delta/delta-changes.model.dart';
 import 'package:visual_editor/visual-editor.dart';
@@ -109,33 +101,6 @@ class ReactiveQuillField extends ReactiveFormField<String, String> {
                 EditorToolbar.basic(
                   controller: state._controller,
                 ),
-                // QuillToolbar.simple(
-                //   configurations: QuillSimpleToolbarConfigurations(
-                //     controller: state._controller,
-                // sharedConfigurations: sharedConfigurations,
-                // showFontFamily: false,
-                // showSearchButton: false,
-                // showDividers: false,
-                // showColorButton: false,
-                // showListCheck: false,
-                // showListNumbers: false,
-                // showBackgroundColorButton: false,
-                // showIndent: false,
-                //   ),
-                // ),
-                // QuillEditor.basic(
-                //   configurations: QuillEditorConfigurations(
-                //     controller: state._controller,
-                //     sharedConfigurations: sharedConfigurations,
-                //     minHeight:
-                //         min(MediaQuery.sizeOf(context).height * 0.5, 300),
-                //     maxHeight: MediaQuery.sizeOf(context).height * 0.5,
-                //     placeholder: context.localize.form_sci_desc_hint,
-                //     padding: const EdgeInsets.all(8),
-                //     autoFocus: false,
-                //   ),
-                //   focusNode: state.focusNode,
-                // ),
                 VisualEditor(
                   controller: state._controller,
                   focusNode: state.focusNode,
