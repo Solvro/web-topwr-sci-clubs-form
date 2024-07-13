@@ -75,6 +75,7 @@ class _VisualEditorReadOnlyState extends State<VisualEditorReadOnly> {
               decoration: TextDecoration.underline,
             ),
           ),
+          scrollable: false,
         ),
       ),
     );
