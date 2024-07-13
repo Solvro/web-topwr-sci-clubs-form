@@ -50,7 +50,6 @@ dependencies:
   auto_route: ^8.2.0
   delta_markdown:
     git: https://github.com/bschmalb/delta_markdown.git
-  restart_app: ^1.2.1
   flutter_inappwebview_web: ^1.0.8
   visual_editor:
     git: https://github.com/simon-the-shark/visual-editor.git

@@ -1,4 +1,3 @@
-import 'package:restart_app/restart_app.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../auth/models/auth_state.dart';
@@ -6,6 +5,7 @@ import '../../auth/repository/remote_auth_repo.dart';
 import '../../firebase/repositories/sci_clubs_repo.dart';
 import '../../firebase/services/adapter_service.dart';
 import '../../firebase/services/submit_service.dart';
+import '../../navigation/router.dart';
 import '../model/form_model.dart';
 import 'form_widgets_states.dart';
 
@@ -37,8 +37,13 @@ class FormWidgetController extends _$FormWidgetController {
     state = AsyncData(FormWidgetState.saved(model));
   }
 
-  void backToEditing() {
-    state = const AsyncLoading();
-    Restart.restartApp();
+  void backToEditing() async {
+    Future.microtask(() {
+      state = const AsyncLoading();
+      ref.invalidate(remoteAuthRepoProvider);
+      ref.invalidate(sciClubsRepoProvider);
+      ref.invalidate(routerProvider);
+      ref.invalidateSelf();
+    });
   }
 }
