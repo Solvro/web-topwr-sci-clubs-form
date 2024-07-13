@@ -1,9 +1,6 @@
-import 'package:flutter_quill/flutter_quill.dart';
 import 'package:pointer_interceptor/pointer_interceptor.dart';
 import 'package:reactive_forms_annotations/reactive_forms_annotations.dart';
 
-import '../../../config/config.dart';
-import '../../../theme/app_theme.dart';
 import 'form_subsection.dart';
 import 'quill_field.dart';
 
@@ -21,15 +18,6 @@ class WYSIWYGEditor extends StatelessWidget {
         expandableMode: false,
         title: title,
         buildChildren: (setError) {
-          final quillSharedConfigurations = QuillSharedConfigurations(
-            locale: const Locale('pl'),
-            dialogTheme: QuillDialogTheme(
-              dialogBackgroundColor: context.colorTheme.greyLight,
-              shape: const RoundedRectangleBorder(
-                borderRadius: BorderRadius.all(FormFieldConfig.radius),
-              ),
-            ),
-          );
           return [
             ReactiveQuillField(
               formControl: formControl,

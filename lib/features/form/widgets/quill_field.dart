@@ -7,6 +7,7 @@ import 'package:reactive_forms/reactive_forms.dart';
 import 'package:visual_editor/document/models/delta/delta-changes.model.dart';
 import 'package:visual_editor/visual-editor.dart';
 
+import '../../../config/config.dart';
 import '../../../theme/app_theme.dart';
 import '../../../utils/context_extensions.dart';
 import 'reactive_mock_field.dart';
@@ -101,6 +102,12 @@ class ReactiveQuillField extends ReactiveFormField<String, String> {
               children: [
                 EditorToolbar.basic(
                   controller: state._controller,
+                  dialogTheme: EditorDialogThemeM(
+                    dialogBackgroundColor: context.colorTheme.greyLight,
+                    shape: const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(FormFieldConfig.radius),
+                    ),
+                  ),
                 ),
                 DefaultTextStyle(
                   style: context.textTheme.body,

@@ -53,7 +53,7 @@ dependencies:
   restart_app: ^1.2.1
   flutter_inappwebview_web: ^1.0.8
   visual_editor:
-    git: https://github.com/simon-the-shark/visual-editor
+    git: https://github.com/simon-the-shark/visual-editor.git
 
 dev_dependencies:
   flutter_test:
