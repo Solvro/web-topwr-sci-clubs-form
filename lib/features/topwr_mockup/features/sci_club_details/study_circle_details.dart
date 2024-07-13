@@ -87,6 +87,7 @@ class _ViewWidget extends StatelessWidget {
           ),
           const SizedBox(height: DetailsScreenConfig.spacerHeight),
           AboutUsSection(
+            id: state.id ?? "",
             text: state.description ?? '',
           )
         ]),

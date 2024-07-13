@@ -11,6 +11,7 @@ import 'package:visual_editor/visual-editor.dart';
 import '../../../config/config.dart';
 import '../../../theme/app_theme.dart';
 import '../../../utils/context_extensions.dart';
+import '../../../utils/delta_utils.dart';
 import 'reactive_mock_field.dart';
 
 /// A [ReactiveQuillField] that contains a [QuillEditor].
@@ -191,18 +192,5 @@ class _ReactiveQuillFieldState
     didChange(jsonEncode(
       _controller.document.delta.toJson(),
     ));
-  }
-}
-
-extension DeltaUtil on DeltaDocM {
-  static DeltaDocM tryFromJson(String? json) {
-    try {
-      return DeltaDocM.fromJson(jsonDecode(json ?? ""));
-    } catch (e) {
-      final du = DeltaUtils();
-      final delta = DeltaDocM();
-      du.insert(delta.delta, "$json\n");
-      return delta;
-    }
   }
 }

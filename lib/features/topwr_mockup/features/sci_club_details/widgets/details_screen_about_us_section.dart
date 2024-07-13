@@ -4,10 +4,10 @@ import '../../../../../utils/context_extensions.dart';
 import 'visual_editor_read_only.dart';
 
 class AboutUsSection extends StatelessWidget {
-  const AboutUsSection({super.key, required this.text});
+  const AboutUsSection({super.key, required this.id, required this.text});
 
   final String text;
-
+  final String id;
   @override
   Widget build(BuildContext context) {
     return text.isEmpty
@@ -20,7 +20,7 @@ class AboutUsSection extends StatelessWidget {
                 Text(context.localize.about_us,
                     style: context.textTheme.headline),
                 const SizedBox(height: 16),
-                VisualEditorReadOnly(json: text),
+                VisualEditorReadOnly(id, json: text),
               ],
             ),
           );
