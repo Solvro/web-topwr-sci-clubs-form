@@ -7,6 +7,7 @@ import 'package:reactive_forms/reactive_forms.dart';
 import 'package:visual_editor/document/models/delta/delta-changes.model.dart';
 import 'package:visual_editor/visual-editor.dart';
 
+import '../../../theme/app_theme.dart';
 import '../../../utils/context_extensions.dart';
 import 'reactive_mock_field.dart';
 
@@ -101,16 +102,19 @@ class ReactiveQuillField extends ReactiveFormField<String, String> {
                 EditorToolbar.basic(
                   controller: state._controller,
                 ),
-                VisualEditor(
-                  controller: state._controller,
-                  focusNode: state.focusNode,
-                  config: EditorConfigM(
-                    minHeight:
-                        min(MediaQuery.sizeOf(context).height * 0.5, 300),
-                    maxHeight: MediaQuery.sizeOf(context).height * 0.5,
-                    placeholder: context.localize.form_sci_desc_hint,
-                    padding: const EdgeInsets.all(8),
-                    autoFocus: false,
+                DefaultTextStyle(
+                  style: context.textTheme.body,
+                  child: VisualEditor(
+                    controller: state._controller,
+                    focusNode: state.focusNode,
+                    config: EditorConfigM(
+                      minHeight:
+                          min(MediaQuery.sizeOf(context).height * 0.5, 300),
+                      maxHeight: MediaQuery.sizeOf(context).height * 0.5,
+                      placeholder: context.localize.form_sci_desc_hint,
+                      padding: const EdgeInsets.all(8),
+                      autoFocus: false,
+                    ),
                   ),
                 ),
                 IgnorePointer(

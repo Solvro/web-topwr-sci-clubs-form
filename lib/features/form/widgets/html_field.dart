@@ -34,7 +34,6 @@ class WYSIWYGEditor extends StatelessWidget {
             ReactiveQuillField(
               formControl: formControl,
               context: context,
-              // sharedConfigurations: quillSharedConfigurations,
             ),
           ];
         },
