@@ -1,7 +1,6 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:reactive_forms/reactive_forms.dart';
 
 import '../../utils/context_extensions.dart';
 import '../image_dropzone/image_dropzone.dart';
@@ -182,30 +181,28 @@ class SciClubFormScaffold extends StatefulWidget {
 }
 
 class _SciClubFormScaffoldState extends State<SciClubFormScaffold> {
-  StreamSubscription<bool>? _subs;
-
-  bool isBuggedEditorVisible = false;
-
-  Stream<bool>? get weirdFocusNode =>
-      ReactiveSciClubFormModelForm.of(context)!.departmentControl?.focusChanges;
+  bool shouldElevateBtns = false;
 
   @override
   void initState() {
+    FocusManager.instance.addListener(weirdFocusListener);
     super.initState();
-    Future.microtask(() {
-      _subs = weirdFocusNode?.listen(weirdFocusListener);
-    });
   }
 
   @override
   void dispose() {
-    _subs?.cancel();
+    FocusManager.instance.removeListener(weirdFocusListener);
     super.dispose();
   }
 
-  void weirdFocusListener(bool hasFocus) {
+  void weirdFocusListener() {
     setState(() {
-      isBuggedEditorVisible = hasFocus;
+      shouldElevateBtns = ReactiveSciClubFormModelForm.of(
+            context,
+          )?.form.anyControls(
+                (controll) => controll is FormControl && controll.hasFocus,
+              ) ??
+          false;
     });
   }
 
@@ -215,10 +212,8 @@ class _SciClubFormScaffoldState extends State<SciClubFormScaffold> {
       resizeToAvoidBottomInset: false,
       floatingActionButton: Padding(
         padding: EdgeInsets.only(
-          // workaround, but the editor is buggy :/
-          bottom: isBuggedEditorVisible
-              ? 0
-              : MediaQuery.viewInsetsOf(context).bottom,
+          bottom: // workaround, but the editor is buggy :/
+              shouldElevateBtns ? MediaQuery.viewInsetsOf(context).bottom : 0,
         ),
         child: const _FABs(),
       ),
@@ -229,9 +224,7 @@ class _SciClubFormScaffoldState extends State<SciClubFormScaffold> {
 }
 
 class _FABs extends StatelessWidget {
-  const _FABs({
-    super.key,
-  });
+  const _FABs();
 
   @override
   Widget build(BuildContext context) {
