@@ -52,6 +52,7 @@ class MyApp extends ConsumerWidget {
           surface: ColorsConsts.whiteSoap,
           primary: ColorsConsts.blueAzure,
           error: ColorsConsts.orangePomegranade,
+          secondary: ColorsConsts.orangePomegranade,
         ),
       ),
       debugShowCheckedModeBanner: false,

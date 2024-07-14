@@ -1,16 +1,11 @@
-import 'dart:async';
-import 'dart:convert';
 import 'dart:math';
 
+import 'package:fleather/fleather.dart';
 import 'package:flutter/material.dart';
+import 'package:parchment/codecs.dart';
 import 'package:reactive_forms/reactive_forms.dart';
-import 'package:visual_editor/document/models/delta/delta-changes.model.dart';
-import 'package:visual_editor/document/services/delta.utils.dart';
-import 'package:visual_editor/visual-editor.dart';
 
-import '../../../config/config.dart';
 import '../../../theme/app_theme.dart';
-import '../../../utils/context_extensions.dart';
 import '../../../utils/delta_utils.dart';
 import 'reactive_mock_field.dart';
 
@@ -22,7 +17,7 @@ import 'reactive_mock_field.dart';
 /// A [ReactiveForm] ancestor is required.
 ///
 class ReactiveQuillField extends ReactiveFormField<String, String> {
-  final EditorController? _controller;
+  final FleatherController? _controller;
 
   /// Creates a [ReactiveQuillField] that contains a [QuillEditor].
   ///
@@ -94,7 +89,7 @@ class ReactiveQuillField extends ReactiveFormField<String, String> {
     super.valueAccessor,
     super.showErrors,
     super.focusNode,
-    EditorController? controller,
+    FleatherController? controller,
     required BuildContext context,
   })  : _controller = controller,
         super(
@@ -102,38 +97,20 @@ class ReactiveQuillField extends ReactiveFormField<String, String> {
             final state = field as _ReactiveQuillFieldState;
             return Column(
               children: [
-                EditorToolbar.basic(
+                FleatherToolbar.basic(
                   controller: state._controller,
-                  dialogTheme: EditorDialogThemeM(
-                    dialogBackgroundColor: context.colorTheme.greyLight,
-                    shape: const RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(FormFieldConfig.radius),
-                    ),
-                  ),
-                  showFontSize: false,
-                  showDividers: false,
+                  hideListChecks: true,
                 ),
                 DefaultTextStyle(
                   style: context.textTheme.body,
-                  child: VisualEditor(
+                  child: FleatherEditor(
                     controller: state._controller,
                     focusNode: state.focusNode,
-                    config: EditorConfigM(
-                      minHeight:
-                          min(MediaQuery.sizeOf(context).height * 0.5, 300),
-                      maxHeight: MediaQuery.sizeOf(context).height * 0.5,
-                      placeholder: context.localize.form_sci_desc_hint,
-                      padding: const EdgeInsets.all(8),
-                      autoFocus: false,
-                      customStyles: EditorStylesM(
-                        bold: const TextStyle(fontWeight: FontWeight.w900),
-                        link: TextStyle(
-                          color: context.colorTheme.orangePomegranade,
-                          decoration: TextDecoration.underline,
-                        ),
-                      ),
-                      linkMenuDisabled: true,
-                    ),
+                    minHeight:
+                        min(MediaQuery.sizeOf(context).height * 0.5, 300),
+                    maxHeight: MediaQuery.sizeOf(context).height * 0.5,
+                    padding: const EdgeInsets.all(8),
+                    autofocus: false,
                   ),
                 ),
                 IgnorePointer(
@@ -161,9 +138,7 @@ class ReactiveQuillField extends ReactiveFormField<String, String> {
 
 class _ReactiveQuillFieldState
     extends ReactiveFocusableFormFieldState<String, String> {
-  late EditorController _controller;
-
-  StreamSubscription<DocAndChangeM>? _subscription;
+  late FleatherController _controller;
 
   @override
   void initState() {
@@ -173,8 +148,10 @@ class _ReactiveQuillFieldState
 
   @override
   void onControlValueChanged(dynamic value) {
-    _controller.document.delta = DeltaUtil.tryFromJson(value).delta;
     super.onControlValueChanged(value);
+    setState(() {
+      _controller = FleatherController(document: DeltaUtil.tryFromHtml(value));
+    });
   }
 
   void _initializeController() {
@@ -182,25 +159,22 @@ class _ReactiveQuillFieldState
     final currentWidget = widget as ReactiveQuillField;
     _controller = (currentWidget._controller != null)
         ? currentWidget._controller!
-        : EditorController(document: DeltaUtil.tryFromJson(initialValue));
-    Future.microtask(() {
-      _subscription = _controller.changes$.listen(listenOnData);
-    });
+        : FleatherController(document: DeltaUtil.tryFromHtml(initialValue));
+    _controller.addListener(listenOnData);
   }
 
   @override
   void dispose() {
-    _subscription?.cancel();
+    _controller.removeListener(listenOnData);
     final currentWidget = widget as ReactiveQuillField;
     if (currentWidget._controller == null) {
-      _controller.close();
+      _controller.dispose();
     }
     super.dispose();
   }
 
-  void listenOnData(DocAndChangeM event) {
-    didChange(jsonEncode(
-      _controller.document.delta.toJson(),
-    ));
+  static const codec = ParchmentHtmlCodec();
+  void listenOnData() {
+    didChange(codec.encode(_controller.document));
   }
 }

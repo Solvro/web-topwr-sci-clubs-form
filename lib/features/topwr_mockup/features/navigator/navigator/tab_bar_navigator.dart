@@ -18,4 +18,10 @@ extension TabBarNavigator on NestedNavigator {
       );
     }
   }
+
+  void reset() {
+    navigatorKey.currentState?.popUntil(
+      (route) => route.settings.name == AppRoutes.root,
+    );
+  }
 }

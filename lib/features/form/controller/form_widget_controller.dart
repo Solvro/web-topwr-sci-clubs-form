@@ -5,7 +5,8 @@ import '../../auth/repository/remote_auth_repo.dart';
 import '../../firebase/repositories/sci_clubs_repo.dart';
 import '../../firebase/services/adapter_service.dart';
 import '../../firebase/services/submit_service.dart';
-import '../../navigation/router.dart';
+import '../../topwr_mockup/features/bottom_nav_bar/bottom_nav_bar_controller.dart';
+import '../../topwr_mockup/features/navigator/navigator/nested_navigator.dart';
 import '../model/form_model.dart';
 import 'form_widgets_states.dart';
 
@@ -38,6 +39,11 @@ class FormWidgetController extends _$FormWidgetController {
   }
 
   void backToEditing() async {
-    ref.invalidateSelf();
+    state = const AsyncLoading();
+    Future.sync(() {
+      ref.invalidate(navigatorProvider);
+      ref.invalidate(bottomNavBarControllerProvider);
+      ref.invalidateSelf();
+    });
   }
 }

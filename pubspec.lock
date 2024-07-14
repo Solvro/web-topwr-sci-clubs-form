@@ -206,14 +206,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.3.0"
-  charcode:
-    dependency: transitive
-    description:
-      name: charcode
-      sha256: fb98c0f6d12c920a02ee2d998da788bca066ca5f148492b7085ee23372b12306
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.3.1"
   checked_yaml:
     dependency: transitive
     description:
@@ -358,14 +350,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.6.3"
-  dart_quill_delta:
-    dependency: transitive
-    description:
-      name: dart_quill_delta
-      sha256: a6e8147feda5735518ec93ec4c0eddfcdd1ed470cc84825fd3d597a56ac42c69
-      url: "https://pub.dev"
-    source: hosted
-    version: "9.5.3"
   dart_style:
     dependency: transitive
     description:
@@ -374,15 +358,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.3.6"
-  delta_markdown:
-    dependency: "direct main"
-    description:
-      path: "."
-      ref: HEAD
-      resolved-ref: d51a372d316f04a737a068fde60d0b9fce8aa303
-      url: "https://github.com/bschmalb/delta_markdown.git"
-    source: git
-    version: "0.8.0"
   device_frame:
     dependency: "direct main"
     description:
@@ -607,6 +582,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.1.0"
+  fleather:
+    dependency: "direct main"
+    description:
+      name: fleather
+      sha256: "00033c24bb8676a83727ceff691bcc27b26b68b54365921825070561ecdb2dd5"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.16.0"
   flutter:
     dependency: "direct main"
     description: flutter
@@ -620,30 +603,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.3.2"
-  flutter_colorpicker:
-    dependency: transitive
-    description:
-      name: flutter_colorpicker
-      sha256: "969de5f6f9e2a570ac660fb7b501551451ea2a1ab9e2097e89475f60e07816ea"
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.1.0"
-  flutter_inappwebview:
-    dependency: transitive
-    description:
-      name: flutter_inappwebview
-      sha256: "3e9a443a18ecef966fb930c3a76ca5ab6a7aafc0c7b5e14a4a850cf107b09959"
-      url: "https://pub.dev"
-    source: hosted
-    version: "6.0.0"
-  flutter_inappwebview_android:
-    dependency: transitive
-    description:
-      name: flutter_inappwebview_android
-      sha256: d247f6ed417f1f8c364612fa05a2ecba7f775c8d0c044c1d3b9ee33a6515c421
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.0.13"
   flutter_inappwebview_internal_annotations:
     dependency: transitive
     description:
@@ -652,22 +611,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.1.1"
-  flutter_inappwebview_ios:
-    dependency: transitive
-    description:
-      name: flutter_inappwebview_ios
-      sha256: f363577208b97b10b319cd0c428555cd8493e88b468019a8c5635a0e4312bd0f
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.0.13"
-  flutter_inappwebview_macos:
-    dependency: transitive
-    description:
-      name: flutter_inappwebview_macos
-      sha256: b55b9e506c549ce88e26580351d2c71d54f4825901666bd6cfa4be9415bb2636
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.0.11"
   flutter_inappwebview_platform_interface:
     dependency: transitive
     description:
@@ -684,54 +627,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.8"
-  flutter_keyboard_visibility:
-    dependency: transitive
-    description:
-      name: flutter_keyboard_visibility
-      sha256: "98664be7be0e3ffca00de50f7f6a287ab62c763fc8c762e0a21584584a3ff4f8"
-      url: "https://pub.dev"
-    source: hosted
-    version: "6.0.0"
-  flutter_keyboard_visibility_linux:
-    dependency: transitive
-    description:
-      name: flutter_keyboard_visibility_linux
-      sha256: "6fba7cd9bb033b6ddd8c2beb4c99ad02d728f1e6e6d9b9446667398b2ac39f08"
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.0.0"
-  flutter_keyboard_visibility_macos:
-    dependency: transitive
-    description:
-      name: flutter_keyboard_visibility_macos
-      sha256: c5c49b16fff453dfdafdc16f26bdd8fb8d55812a1d50b0ce25fc8d9f2e53d086
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.0.0"
-  flutter_keyboard_visibility_platform_interface:
-    dependency: transitive
-    description:
-      name: flutter_keyboard_visibility_platform_interface
-      sha256: e43a89845873f7be10cb3884345ceb9aebf00a659f479d1c8f4293fcb37022a4
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.0.0"
-  flutter_keyboard_visibility_web:
-    dependency: transitive
-    description:
-      name: flutter_keyboard_visibility_web
-      sha256: d3771a2e752880c79203f8d80658401d0c998e4183edca05a149f5098ce6e3d1
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.0.0"
-  flutter_keyboard_visibility_windows:
-    dependency: transitive
-    description:
-      name: flutter_keyboard_visibility_windows
-      sha256: fc4b0f0b6be9b93ae527f3d527fb56ee2d918cd88bbca438c478af7bcfd0ef73
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.0.0"
   flutter_launcher_icons:
     dependency: "direct dev"
     description:
@@ -769,14 +664,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.20"
-  flutter_quill:
-    dependency: transitive
-    description:
-      name: flutter_quill
-      sha256: b2d8d8add7eabc18bf5577de72081aa4961777b373c1c17fdd2f14f65361d3fd
-      url: "https://pub.dev"
-    source: hosted
-    version: "9.5.3"
   flutter_riverpod:
     dependency: "direct main"
     description:
@@ -843,14 +730,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.2"
-  google_fonts:
-    dependency: transitive
-    description:
-      name: google_fonts
-      sha256: b1ac0fe2832c9cc95e5e88b57d627c5e68c223b9657f4b96e1487aa9098c7b82
-      url: "https://pub.dev"
-    source: hosted
-    version: "6.2.1"
   gql:
     dependency: transitive
     description:
@@ -971,14 +850,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.15.4"
-  html2md:
-    dependency: transitive
-    description:
-      name: html2md
-      sha256: "465cf8ffa1b510fe0e97941579bf5b22e2d575f2cecb500a9c0254efe33a8036"
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.3.2"
   http:
     dependency: "direct main"
     description:
@@ -1003,22 +874,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.0.2"
-  i18n_extension:
-    dependency: transitive
-    description:
-      name: i18n_extension
-      sha256: "296f7b091b9feb7f682360cece9c335f5b0b35121c31bd1993bbdcf1985c272e"
-      url: "https://pub.dev"
-    source: hosted
-    version: "12.0.1"
-  i18n_extension_core:
-    dependency: transitive
-    description:
-      name: i18n_extension_core
-      sha256: f45157bcd04d4fd88811e8e7c104a66ffbf77d16a6cf8526197c30cb78cbf1c4
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.0.6"
   image:
     dependency: transitive
     description:
@@ -1047,10 +902,10 @@ packages:
     dependency: transitive
     description:
       name: image_picker_for_web
-      sha256: "5d6eb13048cd47b60dbf1a5495424dea226c5faf3950e20bf8120a58efb5b5f3"
+      sha256: "869fe8a64771b7afbc99fc433a5f7be2fea4d1cb3d7c11a48b6b579eb9c797f0"
       url: "https://pub.dev"
     source: hosted
-    version: "3.0.4"
+    version: "2.2.0"
   image_picker_ios:
     dependency: transitive
     description:
@@ -1203,14 +1058,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.1.0-main.0"
-  markdown:
-    dependency: transitive
-    description:
-      name: markdown
-      sha256: ef2a1298144e3f985cc736b22e0ccdaf188b5b3970648f2d9dc13efd1d9df051
-      url: "https://pub.dev"
-    source: hosted
-    version: "7.2.2"
   matcher:
     dependency: transitive
     description:
@@ -1275,6 +1122,22 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.0"
+  parchment:
+    dependency: "direct main"
+    description:
+      name: parchment
+      sha256: "42bbe427bdc53aaee836b493b4b03e269f04d636eba822a6a18cc77df2567e4e"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.15.0"
+  parchment_delta:
+    dependency: "direct main"
+    description:
+      name: parchment_delta
+      sha256: "8b360d0138eb591c7fe193670e2d05466e482792af9c5b4d3f568c5c61530f08"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.0"
   path:
     dependency: transitive
     description:
@@ -1355,14 +1218,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "6.0.2"
-  photo_view:
-    dependency: transitive
-    description:
-      name: photo_view
-      sha256: "1fc3d970a91295fbd1364296575f854c9863f225505c28c46e0a03e48960c75e"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.15.0"
   pixel_snap:
     dependency: transitive
     description:
@@ -1721,14 +1576,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.2.0"
-  string_validator:
-    dependency: transitive
-    description:
-      name: string_validator
-      sha256: a278d038104aa2df15d0e09c47cb39a49f907260732067d0034dc2f2e4e2ac94
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.1.0"
   super_clipboard:
     dependency: transitive
     description:
@@ -1977,15 +1824,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.3.1"
-  visual_editor:
-    dependency: "direct main"
-    description:
-      path: "."
-      ref: HEAD
-      resolved-ref: "71954fb7fc8d25729d080c2c6f3f955695fb7cba"
-      url: "https://github.com/simon-the-shark/visual-editor.git"
-    source: git
-    version: "0.0.3"
   vm_service:
     dependency: transitive
     description:
@@ -2066,14 +1904,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.1.2"
-  youtube_player_flutter:
-    dependency: transitive
-    description:
-      name: youtube_player_flutter
-      sha256: "899f1fd15e924eb41150c78c5e2adfd7310100c26b2e1996c148d79e42737d72"
-      url: "https://pub.dev"
-    source: hosted
-    version: "9.0.1"
 sdks:
   dart: ">=3.4.1 <4.0.0"
   flutter: ">=3.22.0"
