@@ -161,3 +161,4 @@ env.g.dart
 **/firebase_options.dart
 
 deploy.tar
+secrets

@@ -69,6 +69,8 @@ dev_dependencies:
   freezed: ^2.5.3
   json_serializable: ^6.8.0
   auto_route_generator: ^8.0.0
+  shared_preferences: ^2.2.3
+  dart_firebase_admin: ^0.3.1
 
 dependency_overrides:
   analyzer: ^6.5.0
