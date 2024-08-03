@@ -1,11 +1,11 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import "package:flutter/material.dart";
+import "package:flutter_riverpod/flutter_riverpod.dart";
 
-import '../../../theme/colors.dart';
-import '../../../utils/context_extensions.dart';
-import '../controller/form_widget_controller.dart';
-import '../model/form_model.dart';
-import 'my_outline_button.dart';
+import "../../../theme/colors.dart";
+import "../../../utils/context_extensions.dart";
+import "../controller/form_widget_controller.dart";
+import "../model/form_model.dart";
+import "my_outline_button.dart";
 
 class SubmitButton extends ConsumerWidget {
   const SubmitButton({
@@ -24,8 +24,8 @@ class SubmitButton extends ConsumerWidget {
         child: MyOutlineButton(
           icon: Icons.send_rounded,
           actionTitle: context.localize.submit,
-          onClick: formModel.form.valid == true
-              ? () => ref
+          onClick: formModel.form.valid
+              ? () async => ref
                   .watch(formWidgetControllerProvider.notifier)
                   .submit(formModel.model)
               : formModel.form.markAllAsTouched,

@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import "package:flutter/material.dart";
 
 abstract class MyAppConfig {
   static const title = "ToPwr";
@@ -13,8 +13,8 @@ abstract class CountdownConfig {
 }
 
 abstract class DepartmentsConfig {
-  static const defaultColorFirst = '#BFBEBE';
-  static const defaultColorSecond = '#999898';
+  static const defaultColorFirst = "#BFBEBE";
+  static const defaultColorSecond = "#999898";
 
   static const listSeparatorSize = 16.0;
 
@@ -28,7 +28,7 @@ abstract class DepartmentsConfig {
 }
 
 abstract class DateChipConfig {
-  static const dateTimeFormat = 'dd.MM.yyyy';
+  static const dateTimeFormat = "dd.MM.yyyy";
 }
 
 abstract class HomeScreenConfig {
@@ -58,15 +58,15 @@ abstract class WideTileCardConfig {
   static const defaultActiveShadows = [
     BoxShadow(
       color: Color.fromRGBO(250, 100, 101, 0.16),
-      blurRadius: 11.0,
-      spreadRadius: 6.0,
-    )
+      blurRadius: 11,
+      spreadRadius: 6,
+    ),
   ];
 }
 
 abstract class DetailsScreenConfig {
   static const double spacerHeight = 16;
-  static const String defaultIconUrl = 'assets/icons/ic_web.png';
+  static const String defaultIconUrl = "assets/icons/ic_web.png";
 }
 
 abstract class DetailsScreenHeaderConfig {
@@ -108,5 +108,5 @@ abstract class IParkingConfig {
     bottom: 16,
     right: 10,
   );
-  static const extraIndentPadd = EdgeInsets.only(left: 2.0);
+  static const extraIndentPadd = EdgeInsets.only(left: 2);
 }

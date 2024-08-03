@@ -1,24 +1,26 @@
-import 'dart:math';
+// ignore_for_file: avoid_print, depend_on_referenced_packages
 
-import 'package:collection/collection.dart';
-import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:dart_firebase_admin/firestore.dart';
-import 'package:dart_firebase_admin/auth.dart';
-import 'package:dart_firebase_admin/dart_firebase_admin.dart';
+import "dart:math";
 
-import 'package:uuid/uuid.dart';
-import '../api_base/directus_assets_url.dart';
-import '../config/api_base_config.dart';
-import '../config/firebase.dart';
-import '../features/current_sci_club/models/url.dart';
-import '../features/firebase/models/sci_club.dart';
-import '../features/form/model/enums.dart';
-import '../features/form/model/form_model.dart';
-import '../features/navigation/utils/hex_converter.dart';
-import '../utils/where_non_null_iterable.dart';
-import 'sci_clubs_repository/scientific_circles_repository.dart';
+import "package:collection/collection.dart";
+import "package:dart_firebase_admin/auth.dart";
+import "package:dart_firebase_admin/dart_firebase_admin.dart";
+import "package:dart_firebase_admin/firestore.dart";
+import "package:riverpod_annotation/riverpod_annotation.dart";
+import "package:uuid/uuid.dart";
 
-part 'migrate_to_firebase.g.dart';
+import "../api_base/directus_assets_url.dart";
+import "../config/api_base_config.dart";
+import "../config/firebase.dart";
+import "../features/current_sci_club/models/url.dart";
+import "../features/firebase/models/sci_club.dart";
+import "../features/form/model/enums.dart";
+import "../features/form/model/form_model.dart";
+import "../features/navigation/utils/hex_converter.dart";
+import "../utils/where_non_null_iterable.dart";
+import "sci_clubs_repository/scientific_circles_repository.dart";
+
+part "migrate_to_firebase.g.dart";
 
 @riverpod
 class MigrateToFirebase extends _$MigrateToFirebase {
@@ -31,12 +33,13 @@ class MigrateToFirebase extends _$MigrateToFirebase {
 
   CollectionReference<SciClub> initFirestore() {
     final admin = FirebaseAdminApp.initializeApp(
-        ApiBaseEnv.firebaseName,
-        Credential.fromServiceAccountParams(
-          clientId: "", // TODO: load from env
-          privateKey: "",
-          email: "",
-        ));
+      ApiBaseEnv.firebaseName,
+      Credential.fromServiceAccountParams(
+        clientId: "", // TODO(simon-the-shark): load from env
+        privateKey: "",
+        email: "",
+      ),
+    );
     auth = Auth(admin);
     final firestore = Firestore(admin);
     return firestore
@@ -63,7 +66,8 @@ class MigrateToFirebase extends _$MigrateToFirebase {
   Future<SciClub?> migrateUserAndModel(ScientificCircle club) async {
     final email = club.links
         ?.firstWhereOrNull(
-            (element) => element?.link?.startsWith("mailto:") ?? false)
+          (element) => element?.link?.startsWith("mailto:") ?? false,
+        )
         ?.link
         ?.replaceFirst("mailto:", "");
 
@@ -71,22 +75,25 @@ class MigrateToFirebase extends _$MigrateToFirebase {
       print("${club.name} $email ");
       final user = await createUser(email, club.name);
       print("https://topwr-form.sharkserver.kowalinski.dev/${user.$2}");
-      return await fromFormToFirebase(user.$1, club);
+      return fromFormToFirebase(user.$1, club);
     } else if (club.links?.isNotEmpty ?? false) {
       print("${club.links?[0]?.link} ");
       final user =
           await createUser("${generateWEPKey(6)}@kowalinski.dev", club.name);
       print(
-          "${club.name} https://topwr-form.sharkserver.kowalinski.dev/${user.$2}");
-      return await fromFormToFirebase(user.$1, club);
+        "${club.name} https://topwr-form.sharkserver.kowalinski.dev/${user.$2}",
+      );
+      return fromFormToFirebase(user.$1, club);
     } else {
       // print(club.name + club.links!.map((e) => e?.link).toString());
-      return await fromFormToFirebase(null, club);
+      return fromFormToFirebase(null, club);
     }
   }
 
   Future<SciClub> fromFormToFirebase(
-      String? userId, ScientificCircle model) async {
+    String? userId,
+    ScientificCircle model,
+  ) async {
     return SciClub(
       id: model.id,
       userId: userId,
@@ -100,11 +107,13 @@ class MigrateToFirebase extends _$MigrateToFirebase {
           ? null
           : NormalUrl(model.cover!.filename_disk!.directusUrl),
       socialLinks: model.links.whereNonNull
-          .map((e) => SocialUrl(
-                id: const Uuid().v4(),
-                url: e.link,
-                name: e.name,
-              ))
+          .map(
+            (e) => SocialUrl(
+              id: const Uuid().v4(),
+              url: e.link,
+              name: e.name,
+            ),
+          )
           .toList(),
       type: SciClubType.fromJsonVal(model.type),
       source: Source.fromJsonVal(model.source),
@@ -113,15 +122,17 @@ class MigrateToFirebase extends _$MigrateToFirebase {
     );
   }
 
-  Future<(String, String)> createUser(email, display) async {
+  Future<(String, String)> createUser(String email, String? display) async {
     final pass = generateWEPKey(64);
-    final user = await auth.createUser(CreateRequest(
-      email: email,
-      password: pass,
-      displayName: display,
-      emailVerified: true,
-      uid: generateWEPKey(12),
-    ));
+    final user = await auth.createUser(
+      CreateRequest(
+        email: email,
+        password: pass,
+        displayName: display,
+        emailVerified: true,
+        uid: generateWEPKey(12),
+      ),
+    );
     return (user.uid, "?1=${const HexConverter().toJson(email)}&2=$pass");
   }
 }
@@ -129,6 +140,6 @@ class MigrateToFirebase extends _$MigrateToFirebase {
 Random random = Random.secure();
 
 String generateWEPKey(int length) {
-  const chars = '0123456789ABCDEF';
+  const chars = "0123456789ABCDEF";
   return List.generate(length, (index) => chars[random.nextInt(16)]).join();
 }

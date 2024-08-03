@@ -1,4 +1,4 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
+import "package:freezed_annotation/freezed_annotation.dart";
 
 class HexConverter implements JsonConverter<String, String> {
   const HexConverter();
@@ -7,7 +7,7 @@ class HexConverter implements JsonConverter<String, String> {
   String fromJson(String json) {
     try {
       return String.fromCharCodes(_hexDecode(json));
-    } catch (_) {
+    } on Exception {
       return "";
     }
   }
@@ -25,6 +25,6 @@ class HexConverter implements JsonConverter<String, String> {
   }
 
   String _hexEncode(List<int> bytes) {
-    return bytes.map((byte) => byte.toRadixString(16).padLeft(2, '0')).join();
+    return bytes.map((byte) => byte.toRadixString(16).padLeft(2, "0")).join();
   }
 }

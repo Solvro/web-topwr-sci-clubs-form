@@ -2,16 +2,18 @@
 // Use of this source code is governed by the MIT license that can be
 // found in the LICENSE file.
 
-import 'dart:ui' as ui show BoxHeightStyle, BoxWidthStyle;
+import "dart:ui" as ui show BoxHeightStyle, BoxWidthStyle;
 
-import 'package:flutter/gestures.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:reactive_forms/reactive_forms.dart';
+import "package:flutter/gestures.dart";
+import "package:flutter/material.dart";
+import "package:flutter/services.dart";
+import "package:reactive_forms/reactive_forms.dart";
 
-class ReactiveMockField<T> extends ReactiveFormField<T, Null> {
+class ReactiveMockField<T> extends ReactiveFormField<T, void> {
   static Widget _defaultContextMenuBuilder(
-      BuildContext context, EditableTextState editableTextState) {
+    BuildContext context,
+    EditableTextState editableTextState,
+  ) {
     return AdaptiveTextSelectionToolbar.editableText(
       editableTextState: editableTextState,
     );
@@ -38,7 +40,7 @@ class ReactiveMockField<T> extends ReactiveFormField<T, Null> {
         _defaultContextMenuBuilder,
     bool? showCursor,
     bool obscureText = false,
-    String obscuringCharacter = '•',
+    String obscuringCharacter = "•",
     bool autocorrect = true,
     SmartDashesType? smartDashesType,
     SmartQuotesType? smartQuotesType,
@@ -54,7 +56,7 @@ class ReactiveMockField<T> extends ReactiveFormField<T, Null> {
     Radius? cursorRadius,
     Color? cursorColor,
     Brightness? keyboardAppearance,
-    EdgeInsets scrollPadding = const EdgeInsets.all(20.0),
+    EdgeInsets scrollPadding = const EdgeInsets.all(20),
     bool enableInteractiveSelection = true,
     InputCounterWidgetBuilder? buildCounter,
     ScrollPhysics? scrollPhysics,
@@ -67,14 +69,12 @@ class ReactiveMockField<T> extends ReactiveFormField<T, Null> {
     TextSelectionControls? selectionControls,
     ui.BoxHeightStyle selectionHeightStyle = ui.BoxHeightStyle.tight,
     ui.BoxWidthStyle selectionWidthStyle = ui.BoxWidthStyle.tight,
-    TextEditingController? controller,
     Clip clipBehavior = Clip.hardEdge,
     bool enableIMEPersonalizedLearning = true,
     bool scribbleEnabled = true,
     ReactiveFormFieldCallback<T>? onTap,
     ReactiveFormFieldCallback<T>? onEditingComplete,
     ReactiveFormFieldCallback<T>? onSubmitted,
-    ReactiveFormFieldCallback<T>? onChanged,
     UndoHistoryController? undoController,
     bool? cursorOpacityAnimates,
     TapRegionCallback? onTapOutside,
@@ -83,7 +83,7 @@ class ReactiveMockField<T> extends ReactiveFormField<T, Null> {
     SpellCheckConfiguration? spellCheckConfiguration,
     TextMagnifierConfiguration? magnifierConfiguration,
   }) : super(
-          builder: (ReactiveFormFieldState<T, Null> field) {
+          builder: (ReactiveFormFieldState<T, void> field) {
             final state = field as _ReactiveTextFieldState<T>;
             final effectiveDecoration = decoration
                 .applyDefaults(Theme.of(state.context).inputDecorationTheme);
@@ -162,25 +162,25 @@ class ReactiveMockField<T> extends ReactiveFormField<T, Null> {
         );
 
   @override
-  ReactiveFormFieldState<T, Null> createState() => _ReactiveTextFieldState<T>();
+  ReactiveFormFieldState<T, void> createState() => _ReactiveTextFieldState<T>();
 }
 
 class _ReactiveTextFieldState<T>
-    extends ReactiveFocusableFormFieldState<T, Null> {
+    extends ReactiveFocusableFormFieldState<T, void> {
   @override
-  ControlValueAccessor<T, Null> selectValueAccessor() {
-    return NullValueAncesor<T>() as ControlValueAccessor<T, Null>;
+  ControlValueAccessor<T, void> selectValueAccessor() {
+    return NullValueAncesor<T>() as ControlValueAccessor<T, void>;
   }
 }
 
-class NullValueAncesor<T> extends ControlValueAccessor<T, Null> {
+class NullValueAncesor<T> extends ControlValueAccessor<T, void> {
   @override
-  Null modelToViewValue(T? modelValue) {
-    return null;
+  void modelToViewValue(T? modelValue) {
+    return;
   }
 
   @override
-  T? viewToModelValue(Null viewValue) {
+  T? viewToModelValue(void viewValue) {
     return null;
   }
 }

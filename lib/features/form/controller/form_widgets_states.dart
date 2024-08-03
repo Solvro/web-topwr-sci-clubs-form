@@ -1,8 +1,8 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
+import "package:freezed_annotation/freezed_annotation.dart";
 
-import '../model/form_model.dart';
+import "../model/form_model.dart";
 
-part 'form_widgets_states.freezed.dart';
+part "form_widgets_states.freezed.dart";
 
 @freezed
 sealed class FormWidgetState with _$FormWidgetState {

@@ -11,6 +11,9 @@ linter:
     sort_pub_dependencies: false
 
 analyzer:
+  errors:
+    avoid_positional_boolean_parameters: ignore
+    avoid_web_libraries_in_flutter: ignore
   exclude:
     - "**/*.g.dart"
     - "**/*.freezed.dart"
@@ -20,3 +23,4 @@ analyzer:
     - "**/*.gen.dart"
     - "**/*.graphql.dart"
     - "**/*.icons.dart"
+    - "**/firebase_options.dart"

@@ -1,6 +1,6 @@
-import 'package:flutter/material.dart';
+import "package:flutter/material.dart";
 
-import 'colors.dart';
+import "colors.dart";
 
 class BodyTextStyle extends TextStyle {
   const BodyTextStyle({
@@ -10,7 +10,7 @@ class BodyTextStyle extends TextStyle {
     super.height = 1.2,
     super.shadows,
   }) : super(
-          fontFamily: 'Rubik',
+          fontFamily: "Rubik",
           letterSpacing: 0,
         );
 }

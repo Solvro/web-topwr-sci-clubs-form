@@ -1,12 +1,12 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:riverpod_annotation/riverpod_annotation.dart';
+import "package:cloud_firestore/cloud_firestore.dart";
+import "package:riverpod_annotation/riverpod_annotation.dart";
 
-import '../../../config/firebase.dart';
-import '../../../utils/watch_locale.dart';
-import '../../../utils/where_non_null_iterable.dart';
-import '../models/tag.dart';
+import "../../../config/firebase.dart";
+import "../../../utils/watch_locale.dart";
+import "../../../utils/where_non_null_iterable.dart";
+import "../models/tag.dart";
 
-part 'tags_repo.g.dart';
+part "tags_repo.g.dart";
 
 @Riverpod(keepAlive: true)
 class RemoteTagsRepository extends _$RemoteTagsRepository {

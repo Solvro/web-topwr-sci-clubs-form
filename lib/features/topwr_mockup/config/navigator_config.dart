@@ -1,8 +1,8 @@
-import 'package:flutter/cupertino.dart';
+import "package:flutter/cupertino.dart";
 
-import '../features/home_view /home_view.dart';
-import '../features/sci_clubs_tab/scientific_circles_tab.dart';
-import 'nav_bar_config.dart';
+import "../features/home_view /home_view.dart";
+import "../features/sci_clubs_tab/scientific_circles_tab.dart";
+import "nav_bar_config.dart";
 
 abstract class NavigatorConfig {
   static const initialTab = NavBarEnum.home;
@@ -11,8 +11,8 @@ abstract class NavigatorConfig {
 abstract class AppRoutes {
   AppRoutes._();
 
-  static const root = '/';
-  static const studyCircleDetails = 'study-circle-details';
+  static const root = "/";
+  static const studyCircleDetails = "study-circle-details";
 }
 
 abstract class TabsConfig {

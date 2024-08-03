@@ -1,9 +1,9 @@
-import 'package:flutter/material.dart';
+import "package:flutter/material.dart";
 
-import '../../config/config.dart';
-import '../../theme/app_theme.dart';
-import '../../utils/context_extensions.dart';
-import '../topwr_mockup/widgets/my_text_button.dart';
+import "../../config/config.dart";
+import "../../theme/app_theme.dart";
+import "../../utils/context_extensions.dart";
+import "../topwr_mockup/widgets/my_text_button.dart";
 
 class DragAndDropNonePreview extends StatelessWidget {
   const DragAndDropNonePreview({super.key, this.onPressed});
@@ -19,7 +19,7 @@ class DragAndDropNonePreview extends StatelessWidget {
           style: context.textTheme.lightTitle,
         ),
         Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: const EdgeInsets.all(8),
           child: MyTextButton(
             actionTitle: context.localize.or_choose_btn_msg,
             onClick: onPressed,
@@ -29,7 +29,7 @@ class DragAndDropNonePreview extends StatelessWidget {
           child: Align(
             alignment: Alignment.bottomRight,
             child: Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.all(8),
               child: Text(
                 context.localize.allowed_ext +
                     FormFieldConfig.dragAndDropFormats
@@ -41,7 +41,7 @@ class DragAndDropNonePreview extends StatelessWidget {
               ),
             ),
           ),
-        )
+        ),
       ],
     );
   }

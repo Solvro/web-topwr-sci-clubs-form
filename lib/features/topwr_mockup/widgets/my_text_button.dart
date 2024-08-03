@@ -1,6 +1,6 @@
-import 'package:flutter/material.dart';
+import "package:flutter/material.dart";
 
-import '../../../theme/app_theme.dart';
+import "../../../theme/app_theme.dart";
 
 class MyTextButton extends StatelessWidget {
   const MyTextButton({
@@ -19,7 +19,7 @@ class MyTextButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextButton.icon(
       onPressed: onClick,
-      style: TextButton.styleFrom(padding: const EdgeInsets.all(0)),
+      style: TextButton.styleFrom(padding: EdgeInsets.zero),
       icon: icon == null
           ? null
           : Icon(

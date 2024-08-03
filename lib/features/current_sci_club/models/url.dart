@@ -1,7 +1,7 @@
-import 'dart:typed_data';
-import 'dart:html' as html;
+import "dart:html" as html;
+import "dart:typed_data";
 
-import '../utils/temp_image_url_utils.dart';
+import "../utils/temp_image_url_utils.dart";
 
 sealed class AbstractUrl {
   abstract final String url;

@@ -1,9 +1,9 @@
-import 'package:flutter/material.dart';
-import 'package:separate/separate.dart';
+import "package:flutter/material.dart";
+import "package:separate/separate.dart";
 
-import '../../../theme/app_theme.dart';
-import '../../../utils/context_extensions.dart';
-import '../auth/widgets/pure_app_bar.dart';
+import "../../../theme/app_theme.dart";
+import "../../../utils/context_extensions.dart";
+import "../auth/widgets/pure_app_bar.dart";
 
 class SavingPage extends StatelessWidget {
   const SavingPage({super.key});
@@ -15,7 +15,7 @@ class SavingPage extends StatelessWidget {
       body: Align(
         alignment: const Alignment(0, -0.5),
         child: Padding(
-          padding: const EdgeInsets.all(50.0),
+          padding: const EdgeInsets.all(50),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[

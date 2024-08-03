@@ -1,10 +1,10 @@
-import 'package:enum_map/enum_map.dart';
-import 'package:flutter/material.dart';
+import "package:enum_map/enum_map.dart";
+import "package:flutter/material.dart";
 
-import '../features/bottom_nav_bar/bottom_nav_bar_icon_icons.dart';
-import '../features/iparking/i_parking_icons_icons.dart';
+import "../features/bottom_nav_bar/bottom_nav_bar_icon.icons.dart";
+import "../features/iparking/i_parking_icons.icons.dart";
 
-part 'nav_bar_config.g.dart';
+part "nav_bar_config.g.dart";
 
 @unmodifiableEnumMap
 enum NavBarEnum {

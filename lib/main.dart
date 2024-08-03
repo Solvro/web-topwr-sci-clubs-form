@@ -1,27 +1,30 @@
-import 'package:auto_route/auto_route.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:flutter_web_plugins/url_strategy.dart';
+// ignore_for_file: unreachable_from_main
 
-import '../../theme/app_theme.dart';
-import '../../theme/colors.dart';
-import 'config/config.dart';
-import 'config/firebase.dart';
-import 'features/auth/auth_root.dart';
-import 'features/form/form_root_widget.dart';
-import 'features/form/form_widget.dart';
-import 'features/form/widgets/submit_button.dart';
-import 'features/mockup_frame/breakpoint.dart';
-import 'features/mockup_frame/floating_app_bar.dart';
-import 'features/mockup_frame/mockup_frame.dart';
-import 'features/mockup_frame/split_view.dart';
-import 'features/navigation/router.dart';
-import 'features/splash_screen/splash_screen.dart';
-import 'features/splash_screen/splash_screen_controller.dart';
-import 'features/topwr_mockup/config/ui_config.dart';
-import 'features/topwr_mockup/features/home_view /widgets/logo_app_bar.dart';
+import "package:auto_route/auto_route.dart";
+import "package:flutter/material.dart";
+import "package:flutter_gen/gen_l10n/app_localizations.dart";
+import "package:flutter_riverpod/flutter_riverpod.dart";
+import "package:flutter_svg/svg.dart";
+// ignore: depend_on_referenced_packages
+import "package:flutter_web_plugins/url_strategy.dart";
+
+import "../../theme/app_theme.dart";
+import "../../theme/colors.dart";
+import "config/config.dart";
+import "config/firebase.dart";
+import "features/auth/auth_root.dart";
+import "features/form/form_root_widget.dart";
+import "features/form/form_widget.dart";
+import "features/form/widgets/submit_button.dart";
+import "features/mockup_frame/breakpoint.dart";
+import "features/mockup_frame/floating_app_bar.dart";
+import "features/mockup_frame/mockup_frame.dart";
+import "features/mockup_frame/split_view.dart";
+import "features/navigation/router.dart";
+import "features/splash_screen/splash_screen.dart";
+import "features/splash_screen/splash_screen_controller.dart";
+import "features/topwr_mockup/config/ui_config.dart";
+import "features/topwr_mockup/features/home_view /widgets/logo_app_bar.dart";
 
 void main() async {
   usePathUrlStrategy();
@@ -72,7 +75,7 @@ class RootView extends ConsumerWidget {
       actions: [
         if (context.showSplitView) const SubmitButton(),
         Container(
-          padding: const EdgeInsets.symmetric(vertical: 10.0),
+          padding: const EdgeInsets.symmetric(vertical: 10),
           child: SvgPicture.asset(
             WebAppBarConfig.createdBySvg,
             width: 180,
@@ -88,7 +91,7 @@ class RootView extends ConsumerWidget {
                 appBar: appBar,
                 resizeToAvoidBottomInset: false,
                 body: const Padding(
-                  padding: EdgeInsets.all(8.0),
+                  padding: EdgeInsets.all(8),
                   child: FormSplitView(
                     form: SciClubFormScaffold(
                       child: CustomScrollView(

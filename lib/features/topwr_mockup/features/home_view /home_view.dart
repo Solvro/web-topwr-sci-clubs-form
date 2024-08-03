@@ -1,17 +1,17 @@
-import 'dart:async';
+import "dart:async";
 
-import 'package:flutter/material.dart';
-import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
+import "package:flutter/material.dart";
+import "package:scrollable_positioned_list/scrollable_positioned_list.dart";
 
-import '../../../../theme/app_theme.dart';
-import '../../../../utils/context_extensions.dart';
-import '../../../form/model/form_model.dart';
-import '../../config/nav_bar_config.dart';
-import '../../config/ui_config.dart';
-import 'widgets/logo_app_bar.dart';
-import 'widgets/placeholders/horizontal_placeholder.dart';
-import 'widgets/placeholders/subsection_placeholder.dart';
-import 'widgets/study_circles_section.dart';
+import "../../../../theme/app_theme.dart";
+import "../../../../utils/context_extensions.dart";
+import "../../../form/model/form_model.dart";
+import "../../config/nav_bar_config.dart";
+import "../../config/ui_config.dart";
+import "widgets/logo_app_bar.dart";
+import "widgets/placeholders/horizontal_placeholder.dart";
+import "widgets/placeholders/subsection_placeholder.dart";
+import "widgets/study_circles_section.dart";
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
@@ -66,9 +66,9 @@ class _HomeViewState extends State<_HomeView> {
     Future.delayed(
       Durations.medium4,
       () {
-        scrollDownToTarget();
+        unawaited(scrollDownToTarget());
         subscryption = widget.form?.form.valueChanges.listen(
-          (event) => scrollDownToTarget(),
+          (event) async => scrollDownToTarget(),
         );
       },
     );
@@ -76,7 +76,7 @@ class _HomeViewState extends State<_HomeView> {
 
   @override
   void dispose() {
-    subscryption?.cancel();
+    unawaited(subscryption?.cancel());
     super.dispose();
   }
 
@@ -96,9 +96,9 @@ class _HomeViewState extends State<_HomeView> {
     );
   }
 
-  void scrollDownToTarget() {
+  Future<void> scrollDownToTarget() async {
     if (itemScrollController.isAttached) {
-      itemScrollController.scrollTo(
+      await itemScrollController.scrollTo(
         index: sections.indexOf(studyCirclesSections),
         duration: Durations.medium4,
         alignment: 0.01,

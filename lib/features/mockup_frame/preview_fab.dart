@@ -1,11 +1,11 @@
-import 'package:flutter/material.dart';
-import 'package:pointer_interceptor/pointer_interceptor.dart';
+import "package:flutter/material.dart";
+import "package:pointer_interceptor/pointer_interceptor.dart";
 
-import '../../config/config.dart';
-import '../../theme/app_theme.dart';
-import '../../utils/context_extensions.dart';
-import '../form/model/form_model.dart';
-import 'mockup_frame.dart';
+import "../../config/config.dart";
+import "../../theme/app_theme.dart";
+import "../../utils/context_extensions.dart";
+import "../form/model/form_model.dart";
+import "mockup_frame.dart";
 
 class ShowPreviewFAB extends StatelessWidget {
   const ShowPreviewFAB({super.key});
@@ -19,8 +19,8 @@ class ShowPreviewFAB extends StatelessWidget {
     final form = ReactiveSciClubFormModelForm.of(context)!;
     return PointerInterceptor(
       child: FloatingActionButton.extended(
-        onPressed: () {
-          showAdaptiveDialog(
+        onPressed: () async {
+          await showAdaptiveDialog(
             context: context,
             builder: (context) => PointerInterceptor(
               child: SciClubFormModelFormInheritedStreamer(
@@ -35,12 +35,13 @@ class ShowPreviewFAB extends StatelessWidget {
                     Align(
                       alignment: Alignment.topRight,
                       child: Padding(
-                        padding: const EdgeInsets.all(12.0),
+                        padding: const EdgeInsets.all(12),
                         child: CloseButton(
                           color: context.colorTheme.whiteSoap,
                           style: ButtonStyle(
                             backgroundColor: WidgetStatePropertyAll(
-                                context.colorTheme.greyPigeon),
+                              context.colorTheme.greyPigeon,
+                            ),
                           ),
                         ),
                       ),

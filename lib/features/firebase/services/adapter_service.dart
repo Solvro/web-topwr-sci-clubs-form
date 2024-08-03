@@ -1,16 +1,16 @@
-import 'package:collection/collection.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:uuid/uuid.dart';
+import "package:collection/collection.dart";
+import "package:flutter_riverpod/flutter_riverpod.dart";
+import "package:riverpod_annotation/riverpod_annotation.dart";
+import "package:uuid/uuid.dart";
 
-import '../../current_sci_club/models/url.dart';
-import '../../form/model/form_model.dart';
-import '../models/sci_club.dart';
-import '../models/tag.dart';
-import '../repositories/images_repo.dart';
-import '../repositories/tags_repo.dart';
+import "../../current_sci_club/models/url.dart";
+import "../../form/model/form_model.dart";
+import "../models/sci_club.dart";
+import "../models/tag.dart";
+import "../repositories/images_repo.dart";
+import "../repositories/tags_repo.dart";
 
-part 'adapter_service.g.dart';
+part "adapter_service.g.dart";
 
 class AdapterService {
   final Ref ref;
@@ -26,7 +26,7 @@ class AdapterService {
           ? model.cover
           : NormalUrl(
               await ImagesRepository.submitImage(
-                model.cover as TempUrl,
+                model.cover! as TempUrl,
                 json["id"],
                 "cover",
               ),
@@ -35,7 +35,7 @@ class AdapterService {
           ? model.logo
           : NormalUrl(
               await ImagesRepository.submitImage(
-                model.logo as TempUrl,
+                model.logo! as TempUrl,
                 json["id"],
                 "logo",
               ),

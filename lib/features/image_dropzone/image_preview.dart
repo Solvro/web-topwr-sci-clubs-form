@@ -1,11 +1,9 @@
-import 'dart:typed_data';
+import "package:flutter/material.dart";
 
-import 'package:flutter/material.dart';
-
-import '../../theme/app_theme.dart';
-import '../current_sci_club/models/url.dart';
-import '../topwr_mockup/widgets/my_cached_image.dart';
-import 'none_preview.dart';
+import "../../theme/app_theme.dart";
+import "../current_sci_club/models/url.dart";
+import "../topwr_mockup/widgets/my_cached_image.dart";
+import "none_preview.dart";
 
 class DragAndDropImagePreview extends StatelessWidget {
   const DragAndDropImagePreview(
@@ -29,9 +27,9 @@ class DragAndDropImagePreview extends StatelessWidget {
       fit: StackFit.expand,
       children: [
         Padding(
-          padding: const EdgeInsets.only(top: 12.0),
+          padding: const EdgeInsets.only(top: 12),
           child: Container(
-            padding: const EdgeInsets.all(20.0),
+            padding: const EdgeInsets.all(20),
             child: _Image(image: image),
           ),
         ),
@@ -56,9 +54,10 @@ class _CloseButton extends StatelessWidget {
         onPressed: onRemoveFile,
         icon: const Icon(Icons.close_outlined),
         style: ButtonStyle(
-            backgroundColor: WidgetStatePropertyAll(
-          context.colorTheme.blueAzure,
-        )),
+          backgroundColor: WidgetStatePropertyAll(
+            context.colorTheme.blueAzure,
+          ),
+        ),
       ),
     );
   }
@@ -75,7 +74,6 @@ class _Image extends StatelessWidget {
   Widget build(BuildContext context) {
     return MyCachedImage(
       image?.url ?? "",
-      boxFit: BoxFit.cover,
       filterQuality: FilterQuality.none,
     );
   }

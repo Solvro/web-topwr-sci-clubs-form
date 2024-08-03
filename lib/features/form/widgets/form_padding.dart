@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import "package:flutter/material.dart";
 
 class FormPadding extends StatelessWidget {
   const FormPadding({super.key, required this.child});
@@ -6,13 +6,13 @@ class FormPadding extends StatelessWidget {
 
   EdgeInsets getPadding(double width) {
     if (width > 800) {
-      return const EdgeInsets.all(40.0);
+      return const EdgeInsets.all(40);
     } else if (width > 650) {
-      return const EdgeInsets.all(24.0);
+      return const EdgeInsets.all(24);
     } else if (width > 550) {
-      return const EdgeInsets.all(16.0);
+      return const EdgeInsets.all(16);
     } else if (width > 450) {
-      return const EdgeInsets.all(8.0);
+      return const EdgeInsets.all(8);
     } else {
       return EdgeInsets.zero;
     }

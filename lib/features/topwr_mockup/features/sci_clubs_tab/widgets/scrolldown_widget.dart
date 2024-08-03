@@ -1,9 +1,9 @@
-import 'dart:async';
+import "dart:async";
 
-import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import "package:flutter/material.dart";
+import "package:flutter_riverpod/flutter_riverpod.dart";
 
-import '../../../../form/model/form_model.dart';
+import "../../../../form/model/form_model.dart";
 
 class ScrollUpSciClubList extends StatelessWidget {
   const ScrollUpSciClubList({super.key, required this.builder});
@@ -34,7 +34,7 @@ class _ScrollDownSciClubListState extends ConsumerState<_ScrollUpSciClubList> {
 
   @override
   void dispose() {
-    subscryption?.cancel();
+    unawaited(subscryption?.cancel());
     super.dispose();
   }
 
@@ -43,10 +43,13 @@ class _ScrollDownSciClubListState extends ConsumerState<_ScrollUpSciClubList> {
     Future.delayed(
       Durations.medium4,
       () => subscryption = widget.form?.form.valueChanges.listen(
-        (event) {
+        (event) async {
           if (scrollController.hasClients) {
-            scrollController.animateTo(0,
-                duration: Durations.medium2, curve: Curves.decelerate);
+            await scrollController.animateTo(
+              0,
+              duration: Durations.medium2,
+              curve: Curves.decelerate,
+            );
           }
         },
       ),

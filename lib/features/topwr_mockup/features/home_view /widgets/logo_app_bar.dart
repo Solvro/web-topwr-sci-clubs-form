@@ -1,8 +1,8 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
+import "package:flutter/material.dart";
+import "package:flutter_svg/svg.dart";
 
-import '../../../../../theme/app_theme.dart';
-import '../../../config/ui_config.dart';
+import "../../../../../theme/app_theme.dart";
+import "../../../config/ui_config.dart";
 
 class LogoAppBar extends AppBar {
   /// AppBar with ToPwr colorful logo

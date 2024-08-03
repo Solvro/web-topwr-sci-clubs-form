@@ -1,14 +1,14 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:separate/separate.dart';
+import "package:flutter/material.dart";
+import "package:flutter_riverpod/flutter_riverpod.dart";
+import "package:flutter_svg/svg.dart";
+import "package:separate/separate.dart";
 
-import '../../../config/config.dart';
-import '../../../theme/app_theme.dart';
-import '../../../utils/context_extensions.dart';
-import '../auth/widgets/pure_app_bar.dart';
-import '../form/controller/form_widget_controller.dart';
-import '../topwr_mockup/widgets/my_text_button.dart';
+import "../../../config/config.dart";
+import "../../../theme/app_theme.dart";
+import "../../../utils/context_extensions.dart";
+import "../auth/widgets/pure_app_bar.dart";
+import "../form/controller/form_widget_controller.dart";
+import "../topwr_mockup/widgets/my_text_button.dart";
 
 class SavedPage extends StatelessWidget {
   const SavedPage({super.key});
@@ -45,7 +45,7 @@ class SavedPage extends StatelessWidget {
                 ),
               ),
               const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 24.0),
+                padding: EdgeInsets.symmetric(horizontal: 24),
                 child: Wrap(
                   alignment: WrapAlignment.center,
                   runSpacing: 10,
@@ -56,7 +56,7 @@ class SavedPage extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.all(60.0),
+                padding: const EdgeInsets.all(60),
                 child: SvgPicture.asset(UndrawConfig.sent, height: 400),
               ),
             ],
@@ -73,10 +73,9 @@ class _GoBackEditing extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return MyTextButton(
-      isOrange: true,
       actionTitle: context.localize.back_to_edit,
-      onClick: () {
-        ref.read(formWidgetControllerProvider.notifier).backToEditing();
+      onClick: () async {
+        await ref.read(formWidgetControllerProvider.notifier).backToEditing();
       },
     );
   }

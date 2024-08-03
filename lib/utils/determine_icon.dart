@@ -1,8 +1,8 @@
-import 'package:collection/collection.dart';
-import 'package:reactive_forms_annotations/reactive_forms_annotations.dart';
+import "package:collection/collection.dart";
+import "package:reactive_forms_annotations/reactive_forms_annotations.dart";
 
-import '../config/url_icons.dart';
-import '../features/topwr_mockup/config/ui_config.dart';
+import "../config/url_icons.dart";
+import "../features/topwr_mockup/config/ui_config.dart";
 
 @immutable
 class UrlIconsModel {

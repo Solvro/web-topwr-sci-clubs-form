@@ -1,13 +1,13 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
+import "package:freezed_annotation/freezed_annotation.dart";
 
-import '../../current_sci_club/models/converter.dart';
-import '../../current_sci_club/models/url.dart';
-import '../../form/model/enums.dart';
-import '../../form/model/form_model.dart';
-import '../../form/model/social_url_converter.dart';
+import "../../current_sci_club/models/converter.dart";
+import "../../current_sci_club/models/url.dart";
+import "../../form/model/enums.dart";
+import "../../form/model/form_model.dart";
+import "../../form/model/social_url_converter.dart";
 
-part 'sci_club.freezed.dart';
-part 'sci_club.g.dart';
+part "sci_club.freezed.dart";
+part "sci_club.g.dart";
 
 @freezed
 class SciClub with _$SciClub {

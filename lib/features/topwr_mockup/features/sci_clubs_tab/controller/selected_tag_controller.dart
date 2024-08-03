@@ -1,9 +1,9 @@
-import 'package:riverpod_annotation/riverpod_annotation.dart';
+import "package:riverpod_annotation/riverpod_annotation.dart";
 
-import '../../../../firebase/models/tag.dart';
-import '../../../../firebase/repositories/tags_repo.dart';
+import "../../../../firebase/models/tag.dart";
+import "../../../../firebase/repositories/tags_repo.dart";
 
-part 'selected_tag_controller.g.dart';
+part "selected_tag_controller.g.dart";
 
 @riverpod
 class SelectedTagController extends _$SelectedTagController {

@@ -1,6 +1,6 @@
-import 'package:flutter/material.dart';
+import "package:flutter/material.dart";
 
-import 'breakpoint.dart';
+import "breakpoint.dart";
 
 class FloatingAppBarScrollView extends StatelessWidget {
   const FloatingAppBarScrollView({

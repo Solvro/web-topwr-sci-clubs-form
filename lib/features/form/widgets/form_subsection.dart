@@ -1,7 +1,7 @@
-import 'package:flutter/material.dart';
+import "package:flutter/material.dart";
 
-import '../../../config/config.dart';
-import '../../../theme/app_theme.dart';
+import "../../../config/config.dart";
+import "../../../theme/app_theme.dart";
 
 class FormSubsection<T> extends StatefulWidget {
   const FormSubsection({
@@ -37,7 +37,7 @@ class _TagsCheckboxListState<T> extends State<FormSubsection<T>> {
   Widget build(BuildContext context) {
     return Padding(
       padding: FormFieldConfig.padding,
-      child: Container(
+      child: DecoratedBox(
         decoration: BoxDecoration(
           border: Border.all(
             color: context.colorTheme.blackMirage,
@@ -49,7 +49,7 @@ class _TagsCheckboxListState<T> extends State<FormSubsection<T>> {
           child: ExpansionTile(
             title: Padding(
               padding: const EdgeInsets.symmetric(
-                vertical: 16.0,
+                vertical: 16,
               ),
               child: Column(
                 children: [

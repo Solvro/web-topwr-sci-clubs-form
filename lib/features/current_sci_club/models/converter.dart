@@ -1,6 +1,6 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
+import "package:freezed_annotation/freezed_annotation.dart";
 
-import 'url.dart';
+import "url.dart";
 
 class UrlConverter implements JsonConverter<AbstractUrl?, String?> {
   const UrlConverter();

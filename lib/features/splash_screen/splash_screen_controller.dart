@@ -1,14 +1,14 @@
-import 'dart:io';
+import "dart:io";
 
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_native_splash/flutter_native_splash.dart';
-import 'package:riverpod_annotation/riverpod_annotation.dart';
+import "package:flutter/foundation.dart";
+import "package:flutter/material.dart";
+import "package:flutter_native_splash/flutter_native_splash.dart";
+import "package:riverpod_annotation/riverpod_annotation.dart";
 
-import '../../config/splash.dart';
-import '../topwr_mockup/features/home_view /widgets/logo_app_bar.dart';
+import "../../config/splash.dart";
+import "../topwr_mockup/features/home_view /widgets/logo_app_bar.dart";
 
-part 'splash_screen_controller.g.dart';
+part "splash_screen_controller.g.dart";
 
 @riverpod
 class SplashScreenController extends _$SplashScreenController {
@@ -32,12 +32,13 @@ class SplashScreenController extends _$SplashScreenController {
   }
 
   /// Whether preserves native splash or show flutter one
-  static get _preserveNativeSplash => kIsWeb || !Platform.isAndroid;
+  static bool get _preserveNativeSplash => kIsWeb || !Platform.isAndroid;
 
   /// Preserves native splash screen, except of Android, where FlutterSplashScreen is showed as soon as possible
   static void preserveNativeSplashScreen() {
     if (_preserveNativeSplash) {
-      WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+      final WidgetsBinding widgetsBinding =
+          WidgetsFlutterBinding.ensureInitialized();
       FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
     }
   }

@@ -1,10 +1,10 @@
-import 'dart:convert';
-import 'dart:typed_data';
+import "dart:convert";
+import "dart:typed_data";
 
-import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:json_annotation/json_annotation.dart';
+import "package:freezed_annotation/freezed_annotation.dart";
+import "package:json_annotation/json_annotation.dart";
 
-import '../../current_sci_club/models/url.dart';
+import "../../current_sci_club/models/url.dart";
 
 class Base64Converter implements JsonConverter<Uint8List?, String?> {
   const Base64Converter();
@@ -24,7 +24,7 @@ class IgnoreConverter implements JsonConverter<AbstractUrl?, String?> {
   const IgnoreConverter();
 
   @override
-  Null fromJson(json) {
+  Null fromJson(String? json) {
     return null;
   }
 
@@ -38,7 +38,7 @@ class UrlConverter implements JsonConverter<AbstractUrl?, String?> {
   const UrlConverter();
 
   @override
-  AbstractUrl? fromJson(json) {
+  AbstractUrl? fromJson(String? json) {
     return json == null ? null : NormalUrl(json);
   }
 

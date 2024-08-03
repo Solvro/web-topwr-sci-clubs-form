@@ -1,12 +1,12 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:pointer_interceptor/pointer_interceptor.dart';
+import "package:flutter/material.dart";
+import "package:flutter_riverpod/flutter_riverpod.dart";
+import "package:pointer_interceptor/pointer_interceptor.dart";
 
-import '../../../config/config.dart';
-import '../../../theme/app_theme.dart';
-import '../../../utils/context_extensions.dart';
-import '../controller/form_widget_controller.dart';
-import '../model/form_model.dart';
+import "../../../config/config.dart";
+import "../../../theme/app_theme.dart";
+import "../../../utils/context_extensions.dart";
+import "../controller/form_widget_controller.dart";
+import "../model/form_model.dart";
 
 class FabSend extends ConsumerWidget {
   const FabSend({super.key});
@@ -16,8 +16,8 @@ class FabSend extends ConsumerWidget {
     return ReactiveSciClubFormModelFormConsumer(
       builder: (context, formModel, child) => PointerInterceptor(
         child: FloatingActionButton.extended(
-          onPressed: formModel.form.valid == true
-              ? () => ref
+          onPressed: formModel.form.valid
+              ? () async => ref
                   .watch(formWidgetControllerProvider.notifier)
                   .submit(formModel.model)
               : formModel.form.markAllAsTouched,

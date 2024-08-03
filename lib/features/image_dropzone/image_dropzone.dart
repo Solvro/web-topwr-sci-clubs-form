@@ -1,15 +1,15 @@
-import 'package:dotted_border/dotted_border.dart';
-import 'package:file_picker/file_picker.dart';
-import 'package:flutter/material.dart';
-import 'package:reactive_forms_annotations/reactive_forms_annotations.dart';
-import 'package:super_drag_and_drop/super_drag_and_drop.dart';
+import "package:dotted_border/dotted_border.dart";
+import "package:file_picker/file_picker.dart";
+import "package:flutter/material.dart";
+import "package:reactive_forms_annotations/reactive_forms_annotations.dart";
+import "package:super_drag_and_drop/super_drag_and_drop.dart";
 
-import '../../config/config.dart';
-import '../../theme/app_theme.dart';
-import '../current_sci_club/models/url.dart';
-import '../form/widgets/reactive_mock_field.dart';
-import '../form/widgets/text_style.dart';
-import 'image_preview.dart';
+import "../../config/config.dart";
+import "../../theme/app_theme.dart";
+import "../current_sci_club/models/url.dart";
+import "../form/widgets/reactive_mock_field.dart";
+import "../form/widgets/text_style.dart";
+import "image_preview.dart";
 
 class ImageDropzone extends StatefulWidget {
   const ImageDropzone({
@@ -56,7 +56,6 @@ class _ImageDropzoneState extends State<ImageDropzone> {
                   if (fieldState.errorText != null) WidgetState.error,
                   if (canDrop) WidgetState.focused,
                 }),
-                strokeWidth: 1,
                 radius: FormFieldConfig.radius,
                 child: Stack(
                   fit: StackFit.expand,
@@ -74,7 +73,7 @@ class _ImageDropzoneState extends State<ImageDropzone> {
                         decoration: InputDecoration(
                           border: InputBorder.none,
                           label: Padding(
-                            padding: const EdgeInsets.only(left: 8.0),
+                            padding: const EdgeInsets.only(left: 8),
                             child: Text(widget.label),
                           ),
                           floatingLabelBehavior: FloatingLabelBehavior.always,
@@ -96,7 +95,7 @@ class _ImageDropzoneState extends State<ImageDropzone> {
     );
   }
 
-  void didChange(AbstractUrl value) async {
+  Future<void> didChange(AbstractUrl value) async {
     widget.formControl?.updateValue(value);
     widget.formControl?.markAsTouched();
   }
@@ -119,7 +118,7 @@ class _ImageDropzoneState extends State<ImageDropzone> {
         reader.getFile(
           FormFieldConfig.dragAndDropFormats.firstWhere(reader.canProvide),
           (file) async {
-            didChange(TempUrl.fromUint8List((await file.readAll())));
+            await didChange(TempUrl.fromUint8List(await file.readAll()));
           },
           onError: (error) => setError(),
         );
@@ -127,13 +126,13 @@ class _ImageDropzoneState extends State<ImageDropzone> {
     }
   }
 
-  void onPickFile() async {
+  Future<void> onPickFile() async {
     final result = await FilePicker.platform.pickFiles(
       type: FileType.custom,
       allowedExtensions: FormFieldConfig.filePickerFormats,
     );
     final data = await result?.xFiles.first.readAsBytes();
-    if (data != null) didChange(TempUrl.fromUint8List(data));
+    if (data != null) await didChange(TempUrl.fromUint8List(data));
   }
 
   void showDroppingAllowed() {

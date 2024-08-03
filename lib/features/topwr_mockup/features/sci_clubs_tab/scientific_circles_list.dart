@@ -1,19 +1,19 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import "package:flutter/material.dart";
+import "package:flutter_riverpod/flutter_riverpod.dart";
 
-import '../../../../theme/app_theme.dart';
-import '../../../../utils/context_extensions.dart';
-import '../../../../utils/where_non_null_iterable.dart';
-import '../../../current_sci_club/curr_sci_club_builder.dart';
-import '../../../firebase/models/sci_club.dart';
-import '../../config/ui_config.dart';
-import '../../widgets/my_error_widget.dart';
-import '../navigator/navigator/detail_view_navigator.dart';
-import '../navigator/navigator/nested_navigator.dart';
-import 'controller/scientific_circles_tab_controller.dart';
-import 'widgets/scientific_circle_card.dart';
-import 'widgets/scientific_circle_loading.dart';
-import 'widgets/scrolldown_widget.dart';
+import "../../../../theme/app_theme.dart";
+import "../../../../utils/context_extensions.dart";
+import "../../../../utils/where_non_null_iterable.dart";
+import "../../../current_sci_club/curr_sci_club_builder.dart";
+import "../../../firebase/models/sci_club.dart";
+import "../../config/ui_config.dart";
+import "../../widgets/my_error_widget.dart";
+import "../navigator/navigator/detail_view_navigator.dart";
+import "../navigator/navigator/nested_navigator.dart";
+import "controller/scientific_circles_tab_controller.dart";
+import "widgets/scientific_circle_card.dart";
+import "widgets/scientific_circle_loading.dart";
+import "widgets/scrolldown_widget.dart";
 
 class ScientificCirclesList extends ConsumerWidget {
   const ScientificCirclesList({super.key});
@@ -23,27 +23,30 @@ class ScientificCirclesList extends ConsumerWidget {
     final state = ref.watch(scientificCircleListProvider);
 
     return Expanded(
-        child: Padding(
-            padding: const EdgeInsets.symmetric(
-                horizontal: ScientificCirclesTabConfig.mediumPadding),
-            child: switch (state) {
-              AsyncLoading() => const ScientificCirclesLoading(),
-              AsyncError(:final error) => MyErrorWidget(error),
-              AsyncValue(:final value) => CurrentSciClubBuilder(
-                  loader: const ScientificCirclesLoading(),
-                  builder: (context, sciClub) => _ScientificCirclesDataView(
-                    [
-                      if (value.whereNonNull.map((e) => e.id).contains(
-                            sciClub.id,
-                          ))
-                        sciClub,
-                      ...value.whereNonNull.where(
-                        (element) => element.id != sciClub.id,
-                      )
-                    ],
+      child: Padding(
+        padding: const EdgeInsets.symmetric(
+          horizontal: ScientificCirclesTabConfig.mediumPadding,
+        ),
+        child: switch (state) {
+          AsyncLoading() => const ScientificCirclesLoading(),
+          AsyncError(:final error) => MyErrorWidget(error),
+          AsyncValue(:final value) => CurrentSciClubBuilder(
+              loader: const ScientificCirclesLoading(),
+              builder: (context, sciClub) => _ScientificCirclesDataView(
+                [
+                  if (value.whereNonNull.map((e) => e.id).contains(
+                        sciClub.id,
+                      ))
+                    sciClub,
+                  ...value.whereNonNull.where(
+                    (element) => element.id != sciClub.id,
                   ),
-                ),
-            }));
+                ],
+              ),
+            ),
+        },
+      ),
+    );
   }
 }
 
@@ -62,22 +65,25 @@ class _ScientificCirclesDataView extends ConsumerWidget {
         ),
       );
     }
-    return ScrollUpSciClubList(builder: (context, scrollController) {
-      return GridView.builder(
-        controller: scrollController,
-        padding: const EdgeInsets.only(
-            bottom: ScientificCirclesTabConfig.mediumPadding),
-        gridDelegate: ScientificCirclesTabConfig.researchGroupTabGridDelegate,
-        itemCount: filteredCircles.length,
-        itemBuilder: (context, index) =>
-            ResearchGroupCard(filteredCircles[index], () {
-          if (filteredCircles[index].id != null) {
-            ref
-                .read(navigatorProvider)
-                .navigateToStudyCircleDetails(filteredCircles[index].id!);
-          }
-        }),
-      );
-    });
+    return ScrollUpSciClubList(
+      builder: (context, scrollController) {
+        return GridView.builder(
+          controller: scrollController,
+          padding: const EdgeInsets.only(
+            bottom: ScientificCirclesTabConfig.mediumPadding,
+          ),
+          gridDelegate: ScientificCirclesTabConfig.researchGroupTabGridDelegate,
+          itemCount: filteredCircles.length,
+          itemBuilder: (context, index) =>
+              ResearchGroupCard(filteredCircles[index], () {
+            if (filteredCircles[index].id != null) {
+              ref
+                  .read(navigatorProvider)
+                  .navigateToStudyCircleDetails(filteredCircles[index].id!);
+            }
+          }),
+        );
+      },
+    );
   }
 }

@@ -1,11 +1,11 @@
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:riverpod_annotation/riverpod_annotation.dart';
+import "package:flutter_riverpod/flutter_riverpod.dart";
+import "package:riverpod_annotation/riverpod_annotation.dart";
 
-import '../../form/model/form_model.dart';
-import '../repositories/sci_clubs_repo.dart';
-import 'adapter_service.dart';
+import "../../form/model/form_model.dart";
+import "../repositories/sci_clubs_repo.dart";
+import "adapter_service.dart";
 
-part 'submit_service.g.dart';
+part "submit_service.g.dart";
 
 class SubmitService {
   final Ref ref;

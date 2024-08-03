@@ -1,7 +1,7 @@
-import 'package:flutter/cupertino.dart';
+import "package:flutter/cupertino.dart";
 
-import '../../../../widgets/loading_widgets/scrolable_loader_builder.dart';
-import '../paddings.dart';
+import "../../../../widgets/loading_widgets/scrolable_loader_builder.dart";
+import "../paddings.dart";
 
 class ScrollableSectionPlaceholder extends StatelessWidget {
   const ScrollableSectionPlaceholder({super.key});

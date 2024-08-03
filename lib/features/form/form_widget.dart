@@ -1,20 +1,20 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:reactive_forms/reactive_forms.dart';
+import "package:flutter/material.dart";
+import "package:flutter_riverpod/flutter_riverpod.dart";
+import "package:reactive_forms/reactive_forms.dart";
 
-import '../../utils/context_extensions.dart';
-import '../image_dropzone/image_dropzone.dart';
-import '../mockup_frame/breakpoint.dart';
-import '../mockup_frame/preview_fab.dart';
-import '../social_links_subform/social_links_form.dart';
-import 'model/form_model.dart';
-import 'widgets/fab_send.dart';
-import 'widgets/form_fields.dart';
-import 'widgets/form_header.dart';
-import 'widgets/form_padding.dart';
-import 'widgets/html_field.dart';
-import 'widgets/select_tags.dart';
-import 'widgets/type_choice_field.dart';
+import "../../utils/context_extensions.dart";
+import "../image_dropzone/image_dropzone.dart";
+import "../mockup_frame/breakpoint.dart";
+import "../mockup_frame/preview_fab.dart";
+import "../social_links_subform/social_links_form.dart";
+import "model/form_model.dart";
+import "widgets/fab_send.dart";
+import "widgets/form_fields.dart";
+import "widgets/form_header.dart";
+import "widgets/form_padding.dart";
+import "widgets/html_field.dart";
+import "widgets/select_tags.dart";
+import "widgets/type_choice_field.dart";
 
 class SciClubForm extends ConsumerWidget {
   const SciClubForm({super.key});
@@ -234,7 +234,7 @@ class _FABs extends StatelessWidget {
       children: [
         if (!context.showSplitView)
           const Padding(
-            padding: EdgeInsets.only(bottom: 8.0),
+            padding: EdgeInsets.only(bottom: 8),
             child: ShowPreviewFAB(),
           ),
         const FabSend(),

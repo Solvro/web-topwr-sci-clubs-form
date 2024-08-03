@@ -1,7 +1,7 @@
-import 'package:flutter/material.dart';
+import "package:flutter/material.dart";
 
-import '../../../config/config.dart';
-import '../../../theme/app_theme.dart';
+import "../../../config/config.dart";
+import "../../../theme/app_theme.dart";
 
 class MyOutlineButton extends StatelessWidget {
   const MyOutlineButton({
@@ -23,7 +23,8 @@ class MyOutlineButton extends StatelessWidget {
           ? Theme.of(context).copyWith(
               colorScheme: Theme.of(context).colorScheme.copyWith(
                     primary: context.colorTheme.orangePomegranade,
-                  ))
+                  ),
+            )
           : Theme.of(context),
       child: OutlinedButton.icon(
         onPressed: onClick,
@@ -32,10 +33,12 @@ class MyOutlineButton extends StatelessWidget {
         style: const ButtonStyle(
           shape: WidgetStatePropertyAll(
             RoundedRectangleBorder(
-                borderRadius: BorderRadius.all(FormFieldConfig.radius)),
+              borderRadius: BorderRadius.all(FormFieldConfig.radius),
+            ),
           ),
           padding: WidgetStatePropertyAll(
-              EdgeInsets.symmetric(horizontal: 40, vertical: 10)),
+            EdgeInsets.symmetric(horizontal: 40, vertical: 10),
+          ),
         ),
       ),
     );

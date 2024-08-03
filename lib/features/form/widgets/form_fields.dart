@@ -1,9 +1,9 @@
-import 'package:flutter/material.dart';
-import 'package:reactive_forms_annotations/reactive_forms_annotations.dart';
+import "package:flutter/material.dart";
+import "package:reactive_forms_annotations/reactive_forms_annotations.dart";
 
-import '../../../config/config.dart';
-import '../../../theme/app_theme.dart';
-import '../../form/widgets/text_style.dart';
+import "../../../config/config.dart";
+import "../../../theme/app_theme.dart";
+import "../../form/widgets/text_style.dart";
 
 class MyFormField extends StatelessWidget {
   final FormControl<String>? formControl;
@@ -57,7 +57,7 @@ class MyFormField extends StatelessWidget {
                     Text(
                       counterText!,
                       style: context.textTheme.bodyGrey,
-                    )
+                    ),
                   ],
                 ),
         ).applyDefaults(

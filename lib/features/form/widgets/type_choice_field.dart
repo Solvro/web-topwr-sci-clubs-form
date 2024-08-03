@@ -1,10 +1,10 @@
-import 'package:flutter/material.dart';
-import 'package:reactive_forms_annotations/reactive_forms_annotations.dart';
-import 'package:reactive_segmented_control/reactive_segmented_control.dart';
+import "package:flutter/material.dart";
+import "package:reactive_forms_annotations/reactive_forms_annotations.dart";
+import "package:reactive_segmented_control/reactive_segmented_control.dart";
 
-import '../../../theme/app_theme.dart';
-import '../../../utils/context_extensions.dart';
-import '../model/enums.dart';
+import "../../../theme/app_theme.dart";
+import "../../../utils/context_extensions.dart";
+import "../model/enums.dart";
 
 class TypeChoiceField extends StatelessWidget {
   const TypeChoiceField(
@@ -22,7 +22,7 @@ class TypeChoiceField extends StatelessWidget {
     );
 
     return Padding(
-      padding: const EdgeInsets.only(top: 16.0),
+      padding: const EdgeInsets.only(top: 16),
       child: ReactiveSegmentedControl<SciClubType, SciClubType>(
         formControl: formControl,
         decoration: InputDecoration(
@@ -44,7 +44,7 @@ class _ChoiceText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.all(8),
       child: Text(
         text,
         style: context.textTheme.title.copyWith(

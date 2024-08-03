@@ -1,13 +1,15 @@
-import 'dart:math';
+// ignore_for_file: comment_references
 
-import 'package:fleather/fleather.dart';
-import 'package:flutter/material.dart';
-import 'package:parchment/codecs.dart';
-import 'package:reactive_forms/reactive_forms.dart';
+import "dart:math";
 
-import '../../../theme/app_theme.dart';
-import '../../../utils/delta_utils.dart';
-import 'reactive_mock_field.dart';
+import "package:fleather/fleather.dart";
+import "package:flutter/material.dart";
+import "package:parchment/codecs.dart";
+import "package:reactive_forms/reactive_forms.dart";
+
+import "../../../theme/app_theme.dart";
+import "../../../utils/delta_utils.dart";
+import "reactive_mock_field.dart";
 
 /// A [ReactiveQuillField] that contains a [QuillEditor].
 ///
@@ -42,7 +44,7 @@ class ReactiveQuillField extends ReactiveFormField<String, String> {
   ///
   /// ### Example:
   /// Binds a text field.
-  /// ```
+  /// ```dart
   /// final form = fb.group({'html': Validators.required});
   ///
   /// ReactiveQuillField(
@@ -52,7 +54,7 @@ class ReactiveQuillField extends ReactiveFormField<String, String> {
   /// ```
   ///
   /// Binds a text field directly with a *FormControl*.
-  /// ```
+  /// ```dart
   /// final form = fb.group({'hmtl': Validators.required});
   ///
   /// ReactiveQuillField(
@@ -110,7 +112,6 @@ class ReactiveQuillField extends ReactiveFormField<String, String> {
                         min(MediaQuery.sizeOf(context).height * 0.5, 300),
                     maxHeight: MediaQuery.sizeOf(context).height * 0.5,
                     padding: const EdgeInsets.all(8),
-                    autofocus: false,
                   ),
                 ),
                 IgnorePointer(

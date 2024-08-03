@@ -1,7 +1,7 @@
-import 'package:flutter/material.dart';
+import "package:flutter/material.dart";
 
-import '../../../config/splash.dart';
-import 'fade_in_splash_gradient.dart';
+import "../../../config/splash.dart";
+import "fade_in_splash_gradient.dart";
 
 class FlutterSplashScreen extends StatelessWidget {
   const FlutterSplashScreen({
@@ -17,13 +17,14 @@ class FlutterSplashScreen extends StatelessWidget {
         children: [
           const Positioned.fill(child: FadeInSplashGradient()),
           Center(
-              child: SizedBox(
-            height: size ?? SplashScreenConfig.androidSplashSizeInDp,
-            width: size ?? SplashScreenConfig.androidSplashSizeInDp,
-            child: Image.asset(
-              SplashScreenConfig.logoAssetName,
+            child: SizedBox(
+              height: size ?? SplashScreenConfig.androidSplashSizeInDp,
+              width: size ?? SplashScreenConfig.androidSplashSizeInDp,
+              child: Image.asset(
+                SplashScreenConfig.logoAssetName,
+              ),
             ),
-          )),
+          ),
         ],
       ),
     );

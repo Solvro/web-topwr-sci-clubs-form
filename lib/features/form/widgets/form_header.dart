@@ -1,10 +1,10 @@
-import 'package:collection/collection.dart';
-import 'package:flutter/material.dart';
-import 'package:separate/separate.dart';
+import "package:collection/collection.dart";
+import "package:flutter/material.dart";
+import "package:separate/separate.dart";
 
-import '../../../config/config.dart';
-import '../../../theme/app_theme.dart';
-import '../../../utils/context_extensions.dart';
+import "../../../config/config.dart";
+import "../../../theme/app_theme.dart";
+import "../../../utils/context_extensions.dart";
 
 class FormHeader extends StatelessWidget {
   const FormHeader({super.key});
@@ -22,7 +22,7 @@ class FormHeader extends StatelessWidget {
             textAlign: TextAlign.start,
           ),
           const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 0, vertical: 30),
+            padding: EdgeInsets.symmetric(vertical: 30),
             child: _Desc(),
           ),
         ],
@@ -51,7 +51,7 @@ class _Desc extends StatelessWidget {
             style: context.textTheme.title,
             textAlign: TextAlign.justify,
           ),
-        )
+        ),
       ].separate(
         (i, e0, e1) => const SizedBox(
           height: 20,

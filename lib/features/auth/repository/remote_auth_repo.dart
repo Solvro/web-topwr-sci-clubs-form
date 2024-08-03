@@ -1,12 +1,12 @@
-import 'dart:async';
+import "dart:async";
 
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:riverpod_annotation/riverpod_annotation.dart';
+import "package:firebase_auth/firebase_auth.dart";
+import "package:riverpod_annotation/riverpod_annotation.dart";
 
-import '../../navigation/utils/parse_query.dart';
-import '../models/auth_state.dart';
+import "../../navigation/utils/parse_query.dart";
+import "../models/auth_state.dart";
 
-part 'remote_auth_repo.g.dart';
+part "remote_auth_repo.g.dart";
 
 @riverpod
 class RemoteAuthRepo extends _$RemoteAuthRepo {

@@ -1,13 +1,13 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import "package:flutter/material.dart";
+import "package:flutter_riverpod/flutter_riverpod.dart";
 
-import '../navigation/utils/parse_query.dart';
-import '../splash_screen/widgets/flutter_splash_screen.dart';
-import '../topwr_mockup/widgets/my_error_widget.dart';
-import 'models/auth_state.dart';
-import 'repository/remote_auth_repo.dart';
-import 'widgets/guest_page.dart';
-import 'widgets/wrong_url_page.dart';
+import "../navigation/utils/parse_query.dart";
+import "../splash_screen/widgets/flutter_splash_screen.dart";
+import "../topwr_mockup/widgets/my_error_widget.dart";
+import "models/auth_state.dart";
+import "repository/remote_auth_repo.dart";
+import "widgets/guest_page.dart";
+import "widgets/wrong_url_page.dart";
 
 typedef LoggedBuilder = Widget Function(BuildContext context, Logged value);
 
@@ -25,7 +25,7 @@ class _AuthRootState extends ConsumerState<AuthRoot> {
   void initState() {
     super.initState();
     Future.microtask(
-      () => ref
+      () async => ref
           .read(remoteAuthRepoProvider.notifier)
           .loginWithQuery(context.queryParams),
     );

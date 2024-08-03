@@ -1,10 +1,10 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import "package:flutter/material.dart";
+import "package:flutter_riverpod/flutter_riverpod.dart";
 
-import '../../../config/navigator_config.dart';
-import '../../bottom_nav_bar/bottom_nav_bar_controller.dart';
-import '../page_routes/detail_page_route.dart';
-import '../page_routes/tabbar_page_route.dart';
+import "../../../config/navigator_config.dart";
+import "../../bottom_nav_bar/bottom_nav_bar_controller.dart";
+import "../page_routes/detail_page_route.dart";
+import "../page_routes/tabbar_page_route.dart";
 import "../utils/extract_tabbar_arg.dart";
 
 class NestedNavigator {
@@ -12,11 +12,11 @@ class NestedNavigator {
   final Ref ref;
   final navigatorKey = GlobalKey<NavigatorState>();
 
-  void handleNestedPop() {
+  Future<void> handleNestedPop() async {
     // if (androidSpecialPopTreatment) {
     //   return handleAndroidSpecialPop();
     // }
-    navigatorKey.currentState?.maybePop();
+    await navigatorKey.currentState?.maybePop();
   }
 
   Route<dynamic> onGenerateRoute(RouteSettings settings) {

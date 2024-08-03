@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
-import 'package:split_view/split_view.dart';
+import "package:flutter/material.dart";
+import "package:split_view/split_view.dart";
 
 class FormSplitView extends StatelessWidget {
   const FormSplitView({super.key, required this.form, required this.phone});
@@ -17,8 +17,9 @@ class FormSplitView extends StatelessWidget {
         isActive: true,
       ),
       controller: SplitViewController(
-          weights: [null, 0.3],
-          limits: [null, WeightLimit(max: 0.5, min: 0.1)]),
+        weights: [null, 0.3],
+        limits: [null, WeightLimit(max: 0.5, min: 0.1)],
+      ),
       children: [
         form,
         phone,

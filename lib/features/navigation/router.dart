@@ -1,11 +1,11 @@
-import 'package:auto_route/auto_route.dart';
-import 'package:riverpod_annotation/riverpod_annotation.dart';
+import "package:auto_route/auto_route.dart";
+import "package:riverpod_annotation/riverpod_annotation.dart";
 
-import '../../main.dart';
-import 'page_404.dart';
+import "../../main.dart";
+import "page_404.dart";
 
-part 'router.g.dart';
-part 'router.gr.dart';
+part "router.g.dart";
+part "router.gr.dart";
 
 @AutoRouterConfig(replaceInRouteName: "View,Route")
 class AppRouter extends _$AppRouter {

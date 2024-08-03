@@ -1,9 +1,9 @@
-import 'dart:math';
+import "dart:math";
 
-import 'package:flutter/material.dart';
+import "package:flutter/material.dart";
 
-import '../../../config/ui_config.dart';
-import '../../../widgets/my_cached_image.dart';
+import "../../../config/ui_config.dart";
+import "../../../widgets/my_cached_image.dart";
 
 class SliverHeaderSection extends SliverPersistentHeaderDelegate {
   SliverHeaderSection({
@@ -24,7 +24,7 @@ class SliverHeaderSection extends SliverPersistentHeaderDelegate {
   double calcLogoSize(double shrinkOffset) {
     final ratio = min(1, shrinkOffset / DetailsScreenHeaderConfig.logoSize);
     final adjustedRatio = 1.0 - (ratio * 0.3);
-    return max(0.0, DetailsScreenHeaderConfig.logoSize * adjustedRatio);
+    return max(0, DetailsScreenHeaderConfig.logoSize * adjustedRatio);
   }
 
   double calcLogoOpacity(double shrinkOffset, double logoSize) {
@@ -53,29 +53,30 @@ class SliverHeaderSection extends SliverPersistentHeaderDelegate {
           ),
         ),
         Align(
-            alignment: Alignment.bottomCenter,
-            child: SizedBox.square(
-              dimension: logoSize,
-              child: ListView(
-                reverse: true,
-                physics: const NeverScrollableScrollPhysics(),
-                children: [
-                  Opacity(
-                    opacity: logoOpacity,
-                    child: Card(
-                      elevation: 3,
-                      shape: const CircleBorder(),
-                      clipBehavior: Clip.antiAlias,
-                      child: MyCachedImage(
-                        logoImageUrl,
-                        size: Size.square(logoSize),
-                        boxFit: BoxFit.contain,
-                      ),
+          alignment: Alignment.bottomCenter,
+          child: SizedBox.square(
+            dimension: logoSize,
+            child: ListView(
+              reverse: true,
+              physics: const NeverScrollableScrollPhysics(),
+              children: [
+                Opacity(
+                  opacity: logoOpacity,
+                  child: Card(
+                    elevation: 3,
+                    shape: const CircleBorder(),
+                    clipBehavior: Clip.antiAlias,
+                    child: MyCachedImage(
+                      logoImageUrl,
+                      size: Size.square(logoSize),
+                      boxFit: BoxFit.contain,
                     ),
-                  )
-                ],
-              ),
-            )),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
       ],
     );
   }
