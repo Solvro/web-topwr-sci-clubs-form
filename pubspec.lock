@@ -1792,6 +1792,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.1"
+  total_lints:
+    dependency: "direct main"
+    description:
+      name: total_lints
+      sha256: "3d33cef88d4ad62c12e02cec20f51b47950f439ec087af159c6250113a53b228"
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.4.0"
   typed_data:
     dependency: transitive
     description:

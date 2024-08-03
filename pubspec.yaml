@@ -52,6 +52,7 @@ dependencies:
   fleather: ^1.16.0
   parchment_delta: ^1.0.0
   parchment: ^1.15.0
+  total_lints: ^3.4.0
 
 dev_dependencies:
   flutter_test:
