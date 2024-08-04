@@ -113,5 +113,6 @@
   "saving" : "Zapisujemy...",
   "wait_here" : "Prosimy o chwilkę cierpliwości i pozostanie na tej stronie",
   "show_preview" : "Podgląd",
-  "dept_form_info" : "Aby zmienić wydział, skontaktuj się z nami"
+  "dept_form_info" : "Aby zmienić wydział, skontaktuj się z nami",
+  "form_use_cover_as_preview": "Użyj zdjęcia cover do podglądu na widoku domowym i szczegółach wydziału (Włączone = cover, wyłączone = logo)"
 }

@@ -51,6 +51,7 @@ class SciClubFormModel with _$SciClubFormModel {
     @UrlConverter() @RfControl() AbstractUrl? cover,
     @RfArray() List<bool>? tags,
     @SocialUrlConverter() @RfArray<SocialUrl>() List<SocialUrl>? socialLinks,
+    @Default(false) bool useCoverAsPreviewPhoto,
   }) = _SciClubFormModel;
   const SciClubFormModel._();
 

@@ -26,6 +26,7 @@ class SciClubForm extends ConsumerWidget {
     _TypeChoiceField(),
     _LogoField(),
     _CoverField(),
+    _BoolUseCoverField(),
     _LinksForm(),
     _TagsField(),
     _ShortDescField(),
@@ -54,7 +55,6 @@ class _DescField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final formModel = ReactiveSciClubFormModelForm.of(context)!;
-
     return WYSIWYGEditor(
       context.localize.form_sci_desc,
       formModel.descriptionControl,
@@ -139,6 +139,20 @@ class _TypeChoiceField extends StatelessWidget {
 
     return TypeChoiceField(
       formModel.typeControl,
+    );
+  }
+}
+
+class _BoolUseCoverField extends StatelessWidget {
+  const _BoolUseCoverField();
+
+  @override
+  Widget build(BuildContext context) {
+    final formModel = ReactiveSciClubFormModelForm.of(context)!;
+
+    return ReactiveCheckboxListTile(
+      title: Text(context.localize.form_use_cover_as_preview),
+      formControl: formModel.useCoverAsPreviewPhotoControl,
     );
   }
 }

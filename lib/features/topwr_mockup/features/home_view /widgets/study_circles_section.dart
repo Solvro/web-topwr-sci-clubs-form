@@ -101,7 +101,7 @@ class _StudyCirclesDataList extends ConsumerWidget {
           child: BigPreviewCard(
             title: circle.name ?? context.localize.default_name,
             shortDescription: circle.shortDescription ?? "",
-            photoUrl: circle.logo?.url,
+            photoUrl: circle.previewUrl?.url,
             onClick: circle.id == null
                 ? null
                 : () => goToDetailView(ref, circle.id!),

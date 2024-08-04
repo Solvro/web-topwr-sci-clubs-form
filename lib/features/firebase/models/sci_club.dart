@@ -24,8 +24,14 @@ class SciClub with _$SciClub {
     @Default(Source.manualEntry) Source? source,
     String? description,
     String? shortDescription,
+    @Default(false) bool useCoverAsPreviewPhoto,
   }) = _SciClub;
+
+  const SciClub._();
 
   factory SciClub.fromJson(Map<String, Object?> json) =>
       _$SciClubFromJson(json);
+
+  AbstractUrl? get previewUrl =>
+      useCoverAsPreviewPhoto ? cover ?? logo : logo ?? cover;
 }
