@@ -31,6 +31,12 @@ class MigrateToFirebase extends _$MigrateToFirebase {
     return null;
   }
 
+  Future<void> removeAllUsers() async {
+    final users = await auth.listUsers(maxResults: 300);
+    final uids = users.users.map((user) => user.uid).toList();
+    await auth.deleteUsers(uids);
+  }
+
   CollectionReference<SciClub> initFirestore() {
     final admin = FirebaseAdminApp.initializeApp(
       ApiBaseEnv.firebaseName,
@@ -55,7 +61,7 @@ class MigrateToFirebase extends _$MigrateToFirebase {
 
   Future<void> migrate() async {
     final fireCollection = initFirestore();
-    print(fireCollection);
+    await removeAllUsers();
     final sciClubs = await ref.read(scientificCirclesRepositoryProvider.future);
     for (final sciClub in sciClubs.whereNonNull) {
       final model = await migrateUserAndModel(sciClub);
@@ -117,7 +123,7 @@ class MigrateToFirebase extends _$MigrateToFirebase {
           .toList(),
       type: SciClubType.fromJsonVal(model.type),
       source: Source.fromJsonVal(model.source),
-      description: model.description,
+      description: fixHtmlDesc(model.description),
       shortDescription: model.shortDescription,
     );
   }
@@ -142,4 +148,22 @@ Random random = Random.secure();
 String generateWEPKey(int length) {
   const chars = "0123456789ABCDEF";
   return List.generate(length, (index) => chars[random.nextInt(16)]).join();
+}
+
+String? fixHtmlDesc(String? desc) {
+  if (!(desc?.startsWith("<h1>") ?? false)) return "<p>$desc</p>";
+  final items = desc
+          ?.split(RegExp("<h1>|</h1>"))
+          .where((str) => str.isNotEmpty)
+          .toList() ??
+      [];
+  var results = "";
+  for (var i = 0; i < items.length; i++) {
+    if (i.isEven) {
+      results += "<h1>${items[i]}</h1>";
+    } else {
+      results += "<p>${items[i]}</p>";
+    }
+  }
+  return results == "" ? null : results;
 }
