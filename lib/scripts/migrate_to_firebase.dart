@@ -35,9 +35,9 @@ class MigrateToFirebase extends _$MigrateToFirebase {
     final admin = FirebaseAdminApp.initializeApp(
       ApiBaseEnv.firebaseName,
       Credential.fromServiceAccountParams(
-        clientId: "", // TODO(simon-the-shark): load from env
-        privateKey: "",
-        email: "",
+        clientId: ApiBaseEnv.firebaseClientId,
+        privateKey: ApiBaseEnv.firebasePrivateKey,
+        email: ApiBaseEnv.firebaseEmail,
       ),
     );
     auth = Auth(admin);

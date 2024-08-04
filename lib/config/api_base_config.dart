@@ -24,5 +24,9 @@ abstract class ApiBaseEnv {
   @EnviedField()
   static final String firebaseName = _ApiBaseEnv.firebaseName;
   @EnviedField()
-  static final String firebaseSecret = _ApiBaseEnv.firebaseSecret;
+  static final String firebaseClientId = _ApiBaseEnv.firebaseClientId;
+  @EnviedField()
+  static final String firebasePrivateKey = _ApiBaseEnv.firebasePrivateKey;
+  @EnviedField()
+  static final String firebaseEmail = _ApiBaseEnv.firebaseEmail;
 }
