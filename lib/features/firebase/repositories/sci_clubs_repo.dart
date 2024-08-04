@@ -4,6 +4,7 @@ import "package:firebase_auth/firebase_auth.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
 import "../../../config/firebase.dart";
+import "../../form/model/enums.dart" as enums;
 import "../models/sci_club.dart";
 
 part "sci_clubs_repo.g.dart";
@@ -23,7 +24,7 @@ class SciClubsRepo extends _$SciClubsRepo {
   @override
   Future<List<SciClub>> build() async {
     final data = await _collection.get();
-    return data.docs.map((e) => e.data()).toList();
+    return data.docs.map((e) => e.data()).toList().sortBySourceTypes();
   }
 
   Future<void> save(SciClub model) async {
@@ -43,5 +44,38 @@ class SciClubsRepo extends _$SciClubsRepo {
   Future<SciClub?> getClubForUser(User user) async {
     final data = await future;
     return data.firstWhereOrNull((element) => element.userId == user.uid);
+  }
+}
+
+extension IsSolvroX on SciClub {
+  bool get isSolvro => name?.contains("Solvro") ?? false;
+}
+
+extension SortBySourceTypeX on Iterable<SciClub> {
+  Iterable<SciClub> _filterByType(
+    enums.Source source, {
+    bool includeSolvro = false,
+  }) {
+    return where(
+      (element) =>
+          element.source == source && (includeSolvro || !element.isSolvro),
+    );
+  }
+
+  List<SciClub> sortBySourceTypes() {
+    final solvro = firstWhereOrNull((element) => element.isSolvro);
+    final manualSource = _filterByType(enums.Source.manualEntry).toList()
+      ..shuffle();
+    final activeWebSource = _filterByType(enums.Source.aktywniWebsite).toList()
+      ..shuffle();
+    final studentDepartmentSource =
+        _filterByType(enums.Source.studentDepartment).toList()..shuffle();
+
+    return [
+      if (solvro != null) solvro,
+      ...manualSource,
+      ...activeWebSource,
+      ...studentDepartmentSource,
+    ];
   }
 }
