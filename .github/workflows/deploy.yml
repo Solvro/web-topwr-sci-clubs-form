@@ -43,8 +43,8 @@ jobs:
         with:
           context: .
           push: true
-          tags: ghcr.io/Solvro/web-topwr-sci-clubs-form:latest
-          cache-from: type=registry,ref=ghcr.io/Solvro/web-topwr-sci-clubs-form:latest
+          tags: ghcr.io/solvro/web-topwr-sci-clubs-form:latest
+          cache-from: type=registry,ref=ghcr.io/solvro/web-topwr-sci-clubs-form:latest
           cache-to: type=inline
           network: host
 
