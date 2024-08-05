@@ -20,7 +20,8 @@ class RemoteTagsRepository extends _$RemoteTagsRepository {
   @override
   FutureOr<List<Tag>> build() async {
     final data = await _collection.get();
-    return data.docs.map((e) => e.data()).toList();
+    return data.docs.map((e) => e.data()).toList()
+      ..sort((a, b) => a.name.compareTo(b.name));
   }
 }
 
