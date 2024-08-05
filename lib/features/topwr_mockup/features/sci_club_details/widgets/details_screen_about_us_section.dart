@@ -16,7 +16,7 @@ class AboutUsSection extends StatelessWidget {
     return text.isEmpty
         ? const SizedBox.shrink()
         : Padding(
-            padding: const EdgeInsets.all(24),
+            padding: const EdgeInsets.all(24).copyWith(top: 8),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -27,11 +27,8 @@ class AboutUsSection extends StatelessWidget {
                 const SizedBox(height: 16),
                 HtmlWidget(
                   text,
-                  customStylesBuilder: (element) =>
-                      context.customStylesBuilder(element),
-                  onTapUrl: (url) async {
-                    return LaunchUrlUtil.launch(url);
-                  },
+                  customStylesBuilder: context.customStylesBuilder,
+                  onTapUrl: LaunchUrlUtil.launch,
                 ),
               ],
             ),
