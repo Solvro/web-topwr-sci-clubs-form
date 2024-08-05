@@ -15,7 +15,7 @@ class TypeChoiceField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final choices = UnmodifiableSciClubTypeMap(
-      scientificCircle: _ChoiceText(context.localize.sci_circle_type),
+      scientificCirlce: _ChoiceText(context.localize.sci_circle_type),
       studentOrganization: _ChoiceText(context.localize.stud_org_type),
       studentMedia: _ChoiceText(context.localize.stud_media_type),
       culturalAgenda: _ChoiceText(context.localize.cultural_agenda_type),

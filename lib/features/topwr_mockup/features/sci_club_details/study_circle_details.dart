@@ -65,11 +65,14 @@ class _ViewWidget extends StatelessWidget {
         SliverList(
           delegate: SliverChildListDelegate([
             const SizedBox(height: 8),
-            Text(
-              state.name ?? context.localize.default_name,
-              style: context.textTheme.headline,
-              textAlign: TextAlign.center,
-              maxLines: 2,
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 24),
+              child: Text(
+                state.name ?? context.localize.default_name,
+                style: context.textTheme.headline,
+                textAlign: TextAlign.center,
+                maxLines: 2,
+              ),
             ),
             const SizedBox(height: 12),
             Text(
