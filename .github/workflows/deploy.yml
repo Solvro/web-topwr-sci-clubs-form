@@ -2,7 +2,7 @@ name: Deploy
 
 on:
   push:
-    branches: ["main"]
+    branches: ["master"]
 
 env:
   REGISTRY: ghcr.io
@@ -35,7 +35,8 @@ jobs:
         run: cp .env.example .env
 
       - name: Add firebase config
-        run: echo "${{ secrets.FIREBASE_CONFIG }}" > base64 --decode > lib/firebase_options.dart
+        run: |
+          echo "${{ secrets.FIREBASE_CONFIG }}" | base64 --decode > lib/firebase_options.dart
 
       - name: Build and push
         uses: docker/build-push-action@v6
