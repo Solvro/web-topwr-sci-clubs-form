@@ -31,5 +31,5 @@ RUN dart run build_runner build -d
 RUN flutter build web --web-renderer html
 
 FROM socialengine/nginx-spa:latest
-COPY --chown=nginx:nginx --from=build ./build/web /app
+COPY --chown=nginx:nginx --from=build /app/build/web /app
 EXPOSE 80
