@@ -1,7 +1,7 @@
 name: topwr_sci_clubs_form
 description: "A new Flutter project."
 publish_to: "none"
-version: 1.0.1+2
+version: 1.0.3+4
 
 environment:
   sdk: ">=3.4.1 <4.0.0"
