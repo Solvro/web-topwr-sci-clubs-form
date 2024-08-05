@@ -7,7 +7,7 @@ part "enums.g.dart";
 @JsonEnum(fieldRename: FieldRename.snake, alwaysCreate: true)
 @unmodifiableEnumMap
 enum SciClubType {
-  scientificCircle,
+  scientificCirlce,
   culturalAgenda,
   studentOrganization,
   studentMedia;

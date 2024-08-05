@@ -27,7 +27,7 @@ extension CustomHtmlStylesX on BuildContext {
   Map<String, String>? customStylesBuilder(html.Element element) {
     return {
       if (!element.hasTextAlign) "text-align": "justify",
-      if (element.isH1) "font-size": "22px",
+      if (element.isH1) "font-size": "20px",
       if (element.isLink) "color": colorTheme.orangePomegranade.htmlFormat,
       "text-decoration-color": colorTheme.orangePomegranade.htmlFormat,
     };
