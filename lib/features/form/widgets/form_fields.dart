@@ -49,7 +49,7 @@ class MyFormField extends StatelessWidget {
           filled: true,
           hoverColor: context.colorTheme.blueAzure.withOpacity(0.1),
           prefixIcon: prefixIcon,
-          hintText: hintText,
+          // hintText: hintText, //TODO(simon-the-shark): reverse this when they fix the hint bug
           counter: counterText == null
               ? null
               : Row(

@@ -46,7 +46,9 @@ class _SocialLinkSectionState extends State<SocialLinkSection> {
             formControl: widget.model.urlControl,
             widget.model.model,
             context.localize.url_field,
-            hintText: context.localize.link_field_hint,
+            hintText:
+                // ignore: avoid_redundant_argument_values
+                null, // TODO(simon-the-shark): fix this when flutter fixes hint
             suffixIcon: Padding(
               padding: const EdgeInsets.only(right: 4),
               child: IconButton(
