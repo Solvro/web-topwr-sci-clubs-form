@@ -1,4 +1,5 @@
 import "package:flutter/material.dart";
+import "package:flutter_svg/svg.dart";
 import "../../../theme/app_theme.dart";
 
 class MyIcon extends StatelessWidget {
@@ -18,7 +19,13 @@ class MyIcon extends StatelessWidget {
         child: Container(
           padding: const EdgeInsets.all(8),
           color: context.colorTheme.whiteSoap,
-          child: SizedBox(width: 20, height: 20, child: Image.asset(path)),
+          child: SizedBox(
+            width: 20,
+            height: 20,
+            child: SvgPicture.asset(
+              path,
+            ),
+          ),
         ),
       ),
     );

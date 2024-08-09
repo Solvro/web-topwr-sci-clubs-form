@@ -1,31 +1,43 @@
 import "package:collection/collection.dart";
-import "package:reactive_forms_annotations/reactive_forms_annotations.dart";
+import "package:flutter/widgets.dart";
 
 import "../config/url_icons.dart";
-import "../features/topwr_mockup/config/ui_config.dart";
 
 @immutable
-class UrlIconsModel {
-  final String iconUrl;
+class ContactIconsModel {
+  final String icon;
   final String? text;
   final String? url;
+  final int order;
 
-  UrlIconsModel({
+  ContactIconsModel({
     String? text,
     this.url,
-  })  : iconUrl = url.determineIcon(),
+  })  : icon = url.determineIcon(),
+        order = url.determineIconOrder(),
         text = text ?? url;
 }
 
-extension IconDeterminer on String? {
+extension IconDeterminerX on String? {
   String determineIcon() {
     return this != null
-        ? IconsConfig.iconsPaths.entries
+        ? ContactIconsConfig.iconsPaths.entries
                 .firstWhereOrNull(
                   (e) => this!.contains(e.key),
                 )
                 ?.value ??
-            DetailsScreenConfig.defaultIconUrl
-        : DetailsScreenConfig.defaultIconUrl;
+            ContactIconsConfig.defaultIcon
+        : ContactIconsConfig.defaultIcon;
+  }
+
+  int determineIconOrder() {
+    return this != null
+        ? ContactIconsConfig.iconsOrder.entries
+                .firstWhereOrNull(
+                  (e) => this!.contains(e.key),
+                )
+                ?.value ??
+            ContactIconsConfig.defaultIconOrder
+        : ContactIconsConfig.defaultIconOrder;
   }
 }

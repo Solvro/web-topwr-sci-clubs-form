@@ -3,14 +3,14 @@ import "package:flutter/gestures.dart";
 
 import "../../../../../theme/app_theme.dart";
 import "../../../../../utils/context_extensions.dart";
+import "../../../../../utils/determine_icon.dart";
 import "../../../../../utils/launch_url_util.dart";
 import "../../../widgets/my_icon.dart";
-import "../models/contact_section_data.dart";
 
 class ContactSection extends StatelessWidget {
   const ContactSection({super.key, required this.list});
 
-  final List<ContactSectionData> list;
+  final List<ContactIconsModel> list;
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +28,7 @@ class ContactSection extends StatelessWidget {
               child: _IconWithUrl(
                 url: item.url ?? "",
                 text: item.text ?? "",
-                iconPath: item.iconUrl,
+                iconPath: item.icon,
               ),
             ),
         ],

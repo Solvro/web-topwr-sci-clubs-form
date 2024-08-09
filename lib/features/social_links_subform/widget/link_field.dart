@@ -1,4 +1,5 @@
 import "package:flutter/material.dart";
+import "package:flutter_svg/svg.dart";
 
 import "../../../config/url_icons.dart";
 import "../../../utils/determine_icon.dart";
@@ -15,8 +16,19 @@ class LinkField extends MyFormField {
     super.hintText,
     super.suffixIcon,
   }) : super(
-          prefixIcon: Image.asset(
-            url.isUrlEmail ? IconsConfig.mailLink : url.url.determineIcon(),
+          prefixIcon: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              SizedBox(
+                width: 20,
+                height: 20,
+                child: SvgPicture.asset(
+                  url.isUrlEmail
+                      ? ContactIconsConfig.mailLink
+                      : url.url.determineIcon(),
+                ),
+              ),
+            ],
           ),
         );
 }
