@@ -12,7 +12,7 @@ abstract class ApiBaseConfig {
   path: ".env",
   obfuscate: true,
   useConstantCase: true,
-  requireEnvFile: true,
+  requireEnvFile: false,
 )
 abstract class ApiBaseEnv {
   @EnviedField()

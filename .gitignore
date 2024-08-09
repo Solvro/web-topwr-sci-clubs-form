@@ -152,6 +152,7 @@ app.*.symbols
 .env
 *.env.dev
 .env.dev
+!.env.example
 env.g.dart
 **/env.g.dart
 
