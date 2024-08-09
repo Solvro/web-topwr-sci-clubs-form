@@ -14,11 +14,11 @@ abstract class ContactIconsConfig {
     "maps": 1,
     "tel": 2,
     "mailto:": 3,
-    "linkedin": 5,
-    "facebook": 6,
-    "instagram": 7,
-    "youtu": 8,
-    "github": 9,
+    "facebook": 5,
+    "instagram": 6,
+    "linkedin": 7,
+    "github": 8,
+    "youtu": 9,
   };
   static const defaultIconOrder = 4;
   static const defaultIcon = "assets/contact_icons/web.svg";
