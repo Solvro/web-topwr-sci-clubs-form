@@ -16,16 +16,19 @@ class LinkField extends MyFormField {
     super.hintText,
     super.suffixIcon,
   }) : super(
-          prefixIcon: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+          prefixIcon: Row(
+            mainAxisSize: MainAxisSize.min,
             children: [
-              SizedBox(
-                width: 20,
-                height: 20,
-                child: SvgPicture.asset(
-                  url.isUrlEmail
-                      ? ContactIconsConfig.mailLink
-                      : url.url.determineIcon(),
+              Padding(
+                padding: const EdgeInsets.all(8).copyWith(left: 12),
+                child: SizedBox(
+                  width: 20,
+                  height: 20,
+                  child: SvgPicture.asset(
+                    url.isUrlEmail
+                        ? ContactIconsConfig.mailLink
+                        : url.url.determineIcon(),
+                  ),
                 ),
               ),
             ],
