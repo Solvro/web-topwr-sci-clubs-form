@@ -1,7 +1,7 @@
 name: topwr_sci_clubs_form
-description: "A new Flutter project."
+description: "Ankieta dla kół i organizacji do aplikacji ToPWR, mobilnego przewodnika po Politechnice Wrocławskiej, zrobionego przez Koło Naukowe Solvro."
 publish_to: "none"
-version: 1.0.3+4
+version: 1.0.4+5
 
 environment:
   sdk: ">=3.4.1 <4.0.0"
