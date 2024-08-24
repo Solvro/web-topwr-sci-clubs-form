@@ -3,7 +3,7 @@ description: "Ankieta dla kół i organizacji do aplikacji ToPWR, mobilnego
   przewodnika po Politechnice Wrocławskiej, zrobionego przez Koło Naukowe
   Solvro"
 publish_to: "none"
-version: 1.0.4+5
+version: 1.0.5+6
 
 environment:
   sdk: ">=3.4.1 <4.0.0"
