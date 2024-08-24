@@ -12,7 +12,7 @@ class MyTextButton extends StatelessWidget {
   });
 
   final IconData? icon;
-  final void Function()? onClick;
+  final VoidCallback? onClick;
   final String actionTitle;
   final bool isOrange;
   @override
@@ -30,11 +30,15 @@ class MyTextButton extends StatelessWidget {
             ),
       label: Text(
         actionTitle,
-        style: isOrange
-            ? context.textTheme.boldBodyOrange
-            : context.textTheme.boldBody.copyWith(
-                color: context.colorTheme.blueAzure,
-              ),
+        style: onClick == null
+            ? context.textTheme.boldBody.copyWith(
+                color: context.colorTheme.greyPigeon,
+              )
+            : isOrange
+                ? context.textTheme.boldBodyOrange
+                : context.textTheme.boldBody.copyWith(
+                    color: context.colorTheme.blueAzure,
+                  ),
       ),
     );
   }

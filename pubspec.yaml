@@ -1,5 +1,7 @@
 name: topwr_sci_clubs_form
-description: "Ankieta dla kół i organizacji do aplikacji ToPWR, mobilnego przewodnika po Politechnice Wrocławskiej, zrobionego przez Koło Naukowe Solvro."
+description: "Ankieta dla kół i organizacji do aplikacji ToPWR, mobilnego
+  przewodnika po Politechnice Wrocławskiej, zrobionego przez Koło Naukowe
+  Solvro"
 publish_to: "none"
 version: 1.0.4+5
 
@@ -55,6 +57,7 @@ dependencies:
   total_lints: ^3.4.0
   html: ^0.15.4
   path_provider: ^2.1.4
+  fast_immutable_collections: ^10.2.4
 
 dev_dependencies:
   flutter_test:

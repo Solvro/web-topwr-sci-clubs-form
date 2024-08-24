@@ -1,7 +1,7 @@
 import "package:flutter/cupertino.dart";
 
 import "../features/home_view /home_view.dart";
-import "../features/sci_clubs_tab/scientific_circles_tab.dart";
+import "../features/sci_clubs_tab/science_clubs_view.dart";
 import "nav_bar_config.dart";
 
 abstract class NavigatorConfig {
@@ -20,7 +20,7 @@ abstract class TabsConfig {
     home: HomeView(),
     mapp: Placeholder(),
     faculties: Placeholder(),
-    sciCircles: ScientificCirclesTab(),
+    sciCircles: ScienceClubsView(),
     parkings: Placeholder(),
     info: Placeholder(),
   );

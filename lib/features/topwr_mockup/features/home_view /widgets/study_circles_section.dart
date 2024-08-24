@@ -85,7 +85,7 @@ class _StudyCirclesDataList extends ConsumerWidget {
   final List<SciClub> studyCircles;
 
   static void goToDetailView(WidgetRef ref, String id) {
-    ref.read(navigatorProvider).navigateToStudyCircleDetails(id);
+    ref.read(navigatorProvider).navigateToScienceClubsDetails(id);
   }
 
   @override

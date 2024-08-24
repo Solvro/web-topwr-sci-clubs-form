@@ -35,3 +35,7 @@ abstract class GuestPageConfig {
   static const contactLink = "https://solvro.pwr.edu.pl/contact/";
   static const solvroMailLink = "mailto:kn.solvro@pwr.edu.pl";
 }
+
+abstract class ScienceClubCardConfig {
+  static const trailingPadding = 2.0;
+}

@@ -73,7 +73,7 @@ abstract class DetailsScreenHeaderConfig {
   static const double logoSize = 130;
 }
 
-abstract class ScientificCirclesTabConfig {
+abstract class ScienceClubsViewConfig {
   static const listSeparatorSize = 16.0;
   static const microPadding = 4.0;
   static const smallPadding = 16.0;
@@ -109,4 +109,9 @@ abstract class IParkingConfig {
     right: 10,
   );
   static const extraIndentPadd = EdgeInsets.only(left: 2);
+}
+
+abstract class FilterConfig {
+  static const bottomSheetHeightFactor = 0.65;
+  static const searchFilterPadding = 15.0;
 }

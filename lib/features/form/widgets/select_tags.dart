@@ -20,7 +20,7 @@ class SelectTags extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final tags = ref.watch(remoteTagsRepositoryProvider);
+    final tags = ref.watch(tagsRepositoryProvider);
     return switch (tags) {
       AsyncLoading() => const Center(
           child: CircularProgressIndicator.adaptive(),

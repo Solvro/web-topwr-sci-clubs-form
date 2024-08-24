@@ -1,3 +1,5 @@
+import "dart:async";
+
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
@@ -25,9 +27,13 @@ class _AuthRootState extends ConsumerState<AuthRoot> {
   void initState() {
     super.initState();
     Future.microtask(
-      () async => ref
-          .read(remoteAuthRepoProvider.notifier)
-          .loginWithQuery(context.queryParams),
+      () async {
+        if (mounted) {
+          return ref
+              .read(remoteAuthRepoProvider.notifier)
+              .loginWithQuery(context.queryParams);
+        }
+      },
     );
   }
 

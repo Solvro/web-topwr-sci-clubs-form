@@ -5,7 +5,7 @@ import "../config/ui_config.dart";
 import "search_widget.dart";
 
 class SearchBoxAppBar extends AppBar {
-  static const defaultBottomPadding = 32.0;
+  static const defaultBottomPadding = 16.0;
   static const defaultHorizontalPadding = 24.0;
 
   SearchBoxAppBar(

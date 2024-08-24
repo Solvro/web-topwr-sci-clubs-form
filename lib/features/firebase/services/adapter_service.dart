@@ -60,7 +60,7 @@ class AdapterService {
   }
 
   Stream<String> determineTagsFromBools(SciClubFormModel model) async* {
-    final tags = await ref.read(remoteTagsRepositoryProvider.future);
+    final tags = await ref.read(tagsRepositoryProvider.future);
     for (final pair in IterableZip([tags, model.tags ?? []])) {
       if (pair.length >= 2) {
         final tagName = (pair.first as Tag).name;
@@ -73,7 +73,7 @@ class AdapterService {
   }
 
   Stream<bool> determinBoolsFromTags(SciClub model) async* {
-    final tags = await ref.read(remoteTagsRepositoryProvider.future);
+    final tags = await ref.read(tagsRepositoryProvider.future);
     for (final tag in tags) {
       if (model.tags.contains(tag.name)) {
         yield true;

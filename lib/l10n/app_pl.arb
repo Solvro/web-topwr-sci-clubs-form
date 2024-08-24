@@ -114,5 +114,15 @@
   "wait_here" : "Prosimy o chwilkę cierpliwości i pozostanie na tej stronie",
   "show_preview" : "Podgląd",
   "dept_form_info" : "Aby zmienić wydział, skontaktuj się z nami",
-  "form_use_cover_as_preview": "Użyj zdjęcia cover do podglądu na widoku domowym i szczegółach wydziału (Włączone = cover, wyłączone = logo)"
+  "form_use_cover_as_preview": "Użyj zdjęcia cover do podglądu na widoku domowym i szczegółach wydziału (Włączone = cover, wyłączone = logo)",
+  "no_address": "Brak adresu",
+  "student_medias" : " Media studenckie",
+  "cultural_agendas" : "Agendy kultury",
+  "scientific_cirlces" : "Koła naukowe",
+  "student_organizations" : "Organizacje studenckie",
+  "org_types": "Rodzaje organizacji",
+  "categories":"Kategorie tematyczne",
+  "filters" : "Filtry",
+  "clear" : "Wyczyść",
+  "filters_didnt_found_anything" : "Nie znaleziono żadnych filtrów"
 }

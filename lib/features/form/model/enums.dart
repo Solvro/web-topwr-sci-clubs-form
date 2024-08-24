@@ -17,6 +17,7 @@ enum SciClubType {
         (element) => element.value == str,
       )
       ?.key;
+  String? toJsonVal() => _$SciClubTypeEnumMap[this];
 }
 
 @JsonEnum(fieldRename: FieldRename.snake, alwaysCreate: true)

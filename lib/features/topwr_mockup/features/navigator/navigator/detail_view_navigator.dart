@@ -7,7 +7,7 @@ import "tab_bar_navigator.dart";
 
 /// Extracted logic of navigating to detailed views
 extension DetailViewNavigator on NestedNavigator {
-  void navigateToStudyCircleDetails(String argument) {
+  void navigateToScienceClubsDetails(String argument) {
     unawaited(changeTabBar(NavBarEnum.sciCircles));
     unawaited(
       navigatorKey.currentState?.pushNamed(
