@@ -10,6 +10,7 @@ import "../../../config/ui_config.dart";
 import "../../../widgets/my_error_widget.dart";
 import "../../navigator/navigator/detail_view_navigator.dart";
 import "../../navigator/navigator/nested_navigator.dart";
+import "../controller/current_sci_club_filtered.dart";
 import "../controller/science_clubs_view_controller.dart";
 import "science_club_card.dart";
 import "science_clubs_view_loading.dart";
@@ -24,6 +25,8 @@ class ScienceClubsList extends ConsumerWidget {
       loader: loading,
       builder: (context, sciClub) {
         final state = ref.watch(scienceClubsListControllerProvider);
+        final showCurrent =
+            ref.watch(isCurrentSciClubFilterVisibleProvider(sciClub));
         return Padding(
           padding: const EdgeInsets.symmetric(
             horizontal: ScienceClubsViewConfig.mediumPadding,
@@ -31,8 +34,7 @@ class ScienceClubsList extends ConsumerWidget {
           child: switch (state) {
             AsyncValue(:final Iterable<SciClub?> value) =>
               _ScienceClubsListView([
-                if (value.whereNonNull.map((e) => e.id).contains(sciClub.id))
-                  sciClub,
+                if (showCurrent) sciClub,
                 ...value.whereNonNull.where(
                   (circle) => circle.id != sciClub.id,
                 ),
