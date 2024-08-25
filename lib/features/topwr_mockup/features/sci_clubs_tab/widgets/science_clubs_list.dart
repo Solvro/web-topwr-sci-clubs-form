@@ -4,6 +4,7 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 import "../../../../../theme/app_theme.dart";
 import "../../../../../utils/context_extensions.dart";
 import "../../../../../utils/where_non_null_iterable.dart";
+import "../../../../current_sci_club/curr_sci_club_builder.dart";
 import "../../../../firebase/models/sci_club.dart";
 import "../../../config/ui_config.dart";
 import "../../../widgets/my_error_widget.dart";
@@ -18,16 +19,28 @@ class ScienceClubsList extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final state = ref.watch(scienceClubsListControllerProvider);
-    return Padding(
-      padding: const EdgeInsets.symmetric(
-        horizontal: ScienceClubsViewConfig.mediumPadding,
-      ),
-      child: switch (state) {
-        AsyncValue(:final Iterable<SciClub?> value) =>
-          _ScienceClubsListView(value.whereNonNull.toList()),
-        AsyncError(:final error) => MyErrorWidget(error),
-        _ => const ScienceClubsViewLoading(),
+    const loading = ScienceClubsViewLoading();
+    return CurrentSciClubBuilder(
+      loader: loading,
+      builder: (context, sciClub) {
+        final state = ref.watch(scienceClubsListControllerProvider);
+        return Padding(
+          padding: const EdgeInsets.symmetric(
+            horizontal: ScienceClubsViewConfig.mediumPadding,
+          ),
+          child: switch (state) {
+            AsyncValue(:final Iterable<SciClub?> value) =>
+              _ScienceClubsListView([
+                if (value.whereNonNull.map((e) => e.id).contains(sciClub.id))
+                  sciClub,
+                ...value.whereNonNull.where(
+                  (circle) => circle.id != sciClub.id,
+                ),
+              ]),
+            AsyncError(:final error) => MyErrorWidget(error),
+            _ => loading,
+          },
+        );
       },
     );
   }
