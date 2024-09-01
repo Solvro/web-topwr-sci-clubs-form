@@ -9,6 +9,9 @@ abstract class ContactIconsConfig {
     "github": "assets/contact_icons/github.svg",
     "maps": "assets/contact_icons/compass.svg",
     "tel": "assets/contact_icons/phone.svg",
+    "https://x.com": "assets/contact_icons/x.svg",
+    "tiktok": "assets/contact_icons/tiktok.svg",
+    "discord": "assets/contact_icons/discord.svg",
   };
   static const iconsOrder = {
     "maps": 1,
@@ -16,9 +19,12 @@ abstract class ContactIconsConfig {
     "mailto:": 3,
     "facebook": 5,
     "instagram": 6,
-    "linkedin": 7,
-    "github": 8,
-    "youtu": 9,
+    "discord": 7,
+    "linkedin": 8,
+    "github": 9,
+    "https://x.com": 10,
+    "youtu": 11,
+    "tiktok": 12,
   };
   static const defaultIconOrder = 4;
   static const defaultIcon = "assets/contact_icons/web.svg";
