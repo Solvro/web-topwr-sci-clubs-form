@@ -10,6 +10,7 @@ enum SciClubType {
   scientificCirlce,
   culturalAgenda,
   studentOrganization,
+  studentCouncil,
   studentMedia;
 
   static SciClubType? fromJsonVal(String? str) => _$SciClubTypeEnumMap.entries

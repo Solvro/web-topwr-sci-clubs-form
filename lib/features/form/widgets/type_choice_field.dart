@@ -19,6 +19,7 @@ class TypeChoiceField extends StatelessWidget {
       studentOrganization: _ChoiceText(context.localize.stud_org_type),
       studentMedia: _ChoiceText(context.localize.stud_media_type),
       culturalAgenda: _ChoiceText(context.localize.cultural_agenda_type),
+      studentCouncil: _ChoiceText(context.localize.stud_council_type),
     );
 
     return Padding(
