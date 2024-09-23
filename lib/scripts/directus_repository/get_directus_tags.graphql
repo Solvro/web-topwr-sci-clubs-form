@@ -1,0 +1,6 @@
+query GetDirectusTags {
+    Tags	{
+      id
+      name
+    }
+}

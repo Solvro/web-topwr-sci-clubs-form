@@ -1,5 +1,7 @@
 // ignore_for_file: unreachable_from_main
 
+import "dart:async";
+
 import "package:auto_route/auto_route.dart";
 import "package:flutter/material.dart";
 import "package:flutter_gen/gen_l10n/app_localizations.dart";
@@ -25,6 +27,7 @@ import "features/splash_screen/splash_screen.dart";
 import "features/splash_screen/splash_screen_controller.dart";
 import "features/topwr_mockup/config/ui_config.dart";
 import "features/topwr_mockup/features/home_view /widgets/logo_app_bar.dart";
+import "scripts/migrate_to_directus.dart";
 
 void main() async {
   usePathUrlStrategy();
@@ -43,7 +46,7 @@ class MyApp extends ConsumerWidget {
   const MyApp({super.key});
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    // unawaited(ref.read(migrateToFirebaseProvider.notifier).migrate());
+    unawaited(ref.read(migrateToDirectusProvider.notifier).migrate());
     final router = ref.watch(routerProvider);
     return MaterialApp.router(
       routerConfig: router.config(),
