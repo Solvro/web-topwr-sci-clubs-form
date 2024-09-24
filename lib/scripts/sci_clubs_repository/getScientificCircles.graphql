@@ -24,6 +24,7 @@ query GetScientificCircles {
       name
     }
     description
-    type 
+    type
+    useCoverAsPreviewPhoto 
   }
 }
