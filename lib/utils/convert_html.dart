@@ -21,15 +21,21 @@ extension IsLinkTag on html.Element {
   bool get hasTextAlign {
     return outerHtml.contains("text-align");
   }
+
+  bool get hasUnderline {
+    return outerHtml.contains("text-decoration: underline");
+  }
 }
 
 extension CustomHtmlStylesX on BuildContext {
   Map<String, String>? customStylesBuilder(html.Element element) {
     return {
-      if (!element.hasTextAlign) "text-align": "justify",
+      if (!element.hasTextAlign) "text-align": "left",
       if (element.isH1) "font-size": "20px",
-      if (element.isLink) "color": colorTheme.orangePomegranade.htmlFormat,
-      "text-decoration-color": colorTheme.orangePomegranade.htmlFormat,
+      if (element.isLink) "color": colorTheme.orangePomegranade.hexString,
+      "text-decoration-color": colorTheme.orangePomegranade.hexString,
+      if (element.hasUnderline)
+        "text-decoration-color": colorTheme.blackMirage.hexString,
     };
   }
 }
