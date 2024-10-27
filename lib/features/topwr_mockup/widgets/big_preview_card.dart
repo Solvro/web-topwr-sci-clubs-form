@@ -12,16 +12,18 @@ class BigPreviewCard extends StatelessWidget {
     super.key,
     required this.title,
     required this.shortDescription,
-    required this.photoUrl,
+    required this.directusUrl,
     this.date,
     required this.onClick,
+    this.showBadge = false,
   });
 
   final String title;
   final String shortDescription;
-  final String? photoUrl;
+  final String? directusUrl;
   final DateTime? date;
   final VoidCallback? onClick;
+  final bool showBadge;
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +46,11 @@ class BigPreviewCard extends StatelessWidget {
                 children: [
                   SizedBox(
                     width: double.maxFinite,
-                    child: Center(child: MyCachedImage(photoUrl)),
+                    child: Center(
+                      child: MyCachedImage(
+                        directusUrl,
+                      ),
+                    ),
                   ),
                   if (date != null)
                     DateChip(date: date!)
@@ -69,20 +75,19 @@ class BigPreviewCard extends StatelessWidget {
                     subtitleStyle: context.textTheme.body,
                     spacing: 7,
                     maxTotalLines: 8,
+                    showBadge: showBadge,
                   ),
                   const Spacer(),
                   MaterialButton(
                     elevation: 1,
-                    padding: const EdgeInsets.all(16),
+                    padding: const EdgeInsets.all(8),
                     onPressed: onClick,
                     color: context.colorTheme.orangePomegranade,
                     textColor: context.colorTheme.whiteSoap,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(4),
                     ),
-                    child: Text(
-                      context.localize.read_more,
-                    ),
+                    child: Text(context.localize.read_more),
                   ),
                 ],
               ),

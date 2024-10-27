@@ -69,14 +69,16 @@ class _ScienceClubsListView extends ConsumerWidget {
       ),
       gridDelegate: ScienceClubsViewConfig.researchGroupTabGridDelegate,
       itemCount: filteredCircles.length,
-      itemBuilder: (context, index) =>
-          ScienceClubCard(filteredCircles[index], () async {
-        if (filteredCircles[index].id != null) {
-          ref
-              .read(navigatorProvider)
-              .navigateToScienceClubsDetails(filteredCircles[index].id!);
-        }
-      }),
+      itemBuilder: (context, index) => ScienceClubCard(
+        filteredCircles[index],
+        () async {
+          if (filteredCircles[index].id != null) {
+            ref
+                .read(navigatorProvider)
+                .navigateToScienceClubsDetails(filteredCircles[index].id!);
+          }
+        },
+      ),
     );
   }
 }

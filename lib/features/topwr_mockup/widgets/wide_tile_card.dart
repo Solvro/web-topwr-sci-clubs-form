@@ -26,14 +26,16 @@ class PhotoTrailingWideTileCard extends WideTileCard {
 class WideTileCard extends StatelessWidget {
   const WideTileCard({
     required this.title,
-    this.subtitle,
+    this.subtitle = "",
     this.trailing,
     this.onTap,
     this.activeGradient,
     this.isActive = false,
     this.activeShadows = WideTileCardConfig.defaultActiveShadows,
     this.secondSubtitle,
+    this.crossAxisAlignment = CrossAxisAlignment.start,
     super.key,
+    this.showBadge = false,
   });
 
   final String title;
@@ -47,27 +49,38 @@ class WideTileCard extends StatelessWidget {
 
   final List<BoxShadow>? activeShadows;
   final LinearGradient? activeGradient;
-
+  final CrossAxisAlignment crossAxisAlignment;
+  final bool showBadge;
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Container(
-        decoration: BoxDecoration(
-          gradient: isActive ? activeGradient : null,
-          color: context.colorTheme.greyLight,
-          borderRadius: const BorderRadius.all(WideTileCardConfig.radius),
-          boxShadow: isActive ? activeShadows : null,
-        ),
-        clipBehavior: Clip.antiAlias,
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Expanded(
-              child: _TitlesColumn(title, subtitle, isActive, secondSubtitle),
+    return ClipRRect(
+      borderRadius: const BorderRadius.all(WideTileCardConfig.radius),
+      child: Material(
+        child: InkWell(
+          onTap: onTap,
+          child: Ink(
+            decoration: BoxDecoration(
+              gradient: isActive ? activeGradient : null,
+              color: context.colorTheme.greyLight,
+              borderRadius: const BorderRadius.all(WideTileCardConfig.radius),
+              boxShadow: isActive ? activeShadows : null,
             ),
-            if (trailing != null) trailing!,
-          ],
+            child: Row(
+              crossAxisAlignment: crossAxisAlignment,
+              children: [
+                Expanded(
+                  child: _TitlesColumn(
+                    title,
+                    subtitle,
+                    secondSubtitle,
+                    showBadge: showBadge,
+                    isActive: isActive,
+                  ),
+                ),
+                if (trailing != null) trailing!,
+              ],
+            ),
+          ),
         ),
       ),
     );
@@ -78,15 +91,16 @@ class _TitlesColumn extends StatelessWidget {
   const _TitlesColumn(
     this.title,
     this.subtitle,
-    this.isActive,
-    this.secondSubtitle,
-  );
+    this.secondSubtitle, {
+    required this.isActive,
+    this.showBadge = false,
+  });
 
   final String title;
   final String? subtitle;
   final String? secondSubtitle;
   final bool isActive;
-
+  final bool showBadge;
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
@@ -113,7 +127,8 @@ class _TitlesColumn extends StatelessWidget {
             secondSubtitleStyle: isActive
                 ? context.textTheme.bodyWhite
                 : context.textTheme.bodyBlue,
-            maxTotalLines: 5,
+            maxTotalLines: 4,
+            badge: showBadge,
           ),
         );
       },

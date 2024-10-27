@@ -6,6 +6,7 @@ import "../../../../../utils/where_non_null_iterable.dart";
 import "../../../../current_sci_club/curr_sci_club_builder.dart";
 import "../../../../firebase/models/sci_club.dart";
 import "../../../../firebase/repositories/sci_clubs_repo.dart";
+import "../../../../form/model/enums.dart";
 import "../../../config/nav_bar_config.dart";
 import "../../../config/ui_config.dart";
 import "../../../widgets/big_preview_card.dart";
@@ -101,10 +102,11 @@ class _StudyCirclesDataList extends ConsumerWidget {
           child: BigPreviewCard(
             title: circle.name ?? context.localize.default_name,
             shortDescription: circle.shortDescription ?? "",
-            photoUrl: circle.previewUrl?.url,
             onClick: circle.id == null
                 ? null
                 : () => goToDetailView(ref, circle.id!),
+            directusUrl: circle.previewUrl?.url,
+            showBadge: circle.source == Source.manualEntry,
           ),
         );
       },

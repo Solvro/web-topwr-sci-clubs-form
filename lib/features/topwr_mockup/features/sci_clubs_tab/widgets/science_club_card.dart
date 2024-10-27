@@ -2,6 +2,7 @@ import "package:flutter/material.dart";
 
 import "../../../../../config/config.dart";
 import "../../../../firebase/models/sci_club.dart";
+import "../../../../form/model/enums.dart";
 import "../../../config/ui_config.dart";
 import "../../../widgets/my_cached_image.dart";
 import "../../../widgets/wide_tile_card.dart";
@@ -19,6 +20,7 @@ class ScienceClubCard extends StatelessWidget {
       subtitle: sciClub.department,
       onTap: onTap,
       secondSubtitle: sciClub.tags.map((tag) => "#$tag").toList().join(", "),
+      showBadge: sciClub.source == Source.manualEntry,
       activeShadows: null,
       trailing: Padding(
         padding: const EdgeInsets.only(
