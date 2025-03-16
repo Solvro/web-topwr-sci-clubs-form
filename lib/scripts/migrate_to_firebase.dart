@@ -6,6 +6,7 @@ import "package:collection/collection.dart";
 import "package:dart_firebase_admin/auth.dart";
 import "package:dart_firebase_admin/dart_firebase_admin.dart";
 import "package:dart_firebase_admin/firestore.dart";
+import "package:logger/logger.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 import "package:uuid/uuid.dart";
 
@@ -57,10 +58,27 @@ class MigrateToFirebase extends _$MigrateToFirebase {
     final fireCollection = initFirestore();
     final sciClubs = await ref.read(scientificCirclesRepositoryProvider.future);
     for (final sciClub in sciClubs.whereNonNull) {
-      print(sciClub.id);
-      final model = await migrateUserAndModel(sciClub);
-      if (model != null) await fireCollection.doc(sciClub.id).set(model);
+      // final model = await migrateUserAndModel(sciClub);
+      // if (model != null) await fireCollection.doc(sciClub.id).set(model);
+      final clubNew =
+          await syncExistingClubFromDirectus(fireCollection, sciClub);
+      await fireCollection.doc(sciClub.id).set(clubNew);
+      Logger().i("Migrated: ${sciClub.id}");
     }
+  }
+
+  Future<SciClub> syncExistingClubFromDirectus(
+    CollectionReference<SciClub> fireCollection,
+    ScientificCircle club,
+  ) async {
+    final existingDoc = await fireCollection.doc(club.id).get();
+    if (!existingDoc.exists) throw Exception("Club not found: ${club.id}");
+
+    final existingClub = existingDoc.data();
+    if (existingClub == null) throw Exception("Club is null: ${club.id}");
+
+    final clubNew = await fromFormToFirebase(existingClub.userId, club);
+    return clubNew;
   }
 
   Future<SciClub?> migrateUserAndModel(ScientificCircle club) async {
