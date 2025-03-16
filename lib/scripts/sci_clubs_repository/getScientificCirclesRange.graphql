@@ -1,0 +1,33 @@
+query GetScientificCircles {
+   Scientific_Circles(
+    filter: { id: { _gte: 1589, _lte: 1604 } }
+    limit: 300
+  ) {
+    id
+    name
+    department {
+      name
+    }
+    tags {
+      Tags_id {
+        id
+        name
+      }
+    }
+    logo {
+      filename_disk
+    }
+    cover {
+      filename_disk
+    }
+    source
+    shortDescription
+    links {
+      link
+      name
+    }
+    description
+    type
+    useCoverAsPreviewPhoto 
+  }
+}

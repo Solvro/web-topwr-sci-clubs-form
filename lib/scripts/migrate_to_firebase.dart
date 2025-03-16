@@ -31,12 +31,6 @@ class MigrateToFirebase extends _$MigrateToFirebase {
     return null;
   }
 
-  Future<void> removeAllUsers() async {
-    final users = await auth.listUsers(maxResults: 300);
-    final uids = users.users.map((user) => user.uid).toList();
-    await auth.deleteUsers(uids);
-  }
-
   CollectionReference<SciClub> initFirestore() {
     final admin = FirebaseAdminApp.initializeApp(
       ApiBaseEnv.firebaseName,
@@ -61,9 +55,9 @@ class MigrateToFirebase extends _$MigrateToFirebase {
 
   Future<void> migrate() async {
     final fireCollection = initFirestore();
-    await removeAllUsers();
     final sciClubs = await ref.read(scientificCirclesRepositoryProvider.future);
     for (final sciClub in sciClubs.whereNonNull) {
+      print(sciClub.id);
       final model = await migrateUserAndModel(sciClub);
       if (model != null) await fireCollection.doc(sciClub.id).set(model);
     }

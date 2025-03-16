@@ -28,6 +28,7 @@ import "features/splash_screen/splash_screen_controller.dart";
 import "features/topwr_mockup/config/ui_config.dart";
 import "features/topwr_mockup/features/home_view /widgets/logo_app_bar.dart";
 import "scripts/compare_back.dart";
+import "scripts/migrate_to_firebase.dart";
 
 void main() async {
   usePathUrlStrategy();
@@ -46,7 +47,8 @@ class MyApp extends ConsumerWidget {
   const MyApp({super.key});
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    unawaited(ref.read(compareBackProvider.notifier).compare());
+    // unawaited(ref.read(compareBackProvider.notifier).compare());
+    unawaited(ref.read(migrateToFirebaseProvider.notifier).migrate());
     final router = ref.watch(routerProvider);
     return MaterialApp.router(
       routerConfig: router.config(),
