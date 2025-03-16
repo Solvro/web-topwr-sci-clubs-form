@@ -47,8 +47,8 @@ class MyApp extends ConsumerWidget {
   const MyApp({super.key});
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    // unawaited(ref.read(compareBackProvider.notifier).compare());
-    unawaited(ref.read(migrateToFirebaseProvider.notifier).migrate());
+    unawaited(ref.read(compareBackProvider.notifier).compare());
+    // unawaited(ref.read(migrateToFirebaseProvider.notifier).migrate());
     final router = ref.watch(routerProvider);
     return MaterialApp.router(
       routerConfig: router.config(),
