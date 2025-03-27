@@ -1,7 +1,7 @@
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
 import "../../api_base/gql_client_provider.dart";
-import "getScientificCircles.graphql.dart";
+import "getScientificCirclesRange.graphql.dart";
 
 part "scientific_circles_repository.g.dart";
 

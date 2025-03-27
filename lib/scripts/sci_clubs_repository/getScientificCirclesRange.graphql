@@ -1,6 +1,6 @@
 query GetScientificCircles {
    Scientific_Circles(
-    filter: { id: { _gte: 1589, _lte: 1604 } }
+    filter: { id: { _gte: 1605 } }
     limit: 300
   ) {
     id

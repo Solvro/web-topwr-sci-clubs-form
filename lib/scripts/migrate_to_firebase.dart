@@ -28,8 +28,8 @@ class MigrateToFirebase extends _$MigrateToFirebase {
   late Auth auth;
 
   @override
-  Null build() {
-    return null;
+  void build() {
+    return;
   }
 
   CollectionReference<SciClub> initFirestore() {
@@ -58,11 +58,11 @@ class MigrateToFirebase extends _$MigrateToFirebase {
     final fireCollection = initFirestore();
     final sciClubs = await ref.read(scientificCirclesRepositoryProvider.future);
     for (final sciClub in sciClubs.whereNonNull) {
-      // final model = await migrateUserAndModel(sciClub);
-      // if (model != null) await fireCollection.doc(sciClub.id).set(model);
-      final clubNew =
-          await syncExistingClubFromDirectus(fireCollection, sciClub);
-      await fireCollection.doc(sciClub.id).set(clubNew);
+      final model = await migrateUserAndModel(sciClub);
+      if (model != null) await fireCollection.doc(sciClub.id).set(model);
+      // final clubNew =
+      //     await syncExistingClubFromDirectus(fireCollection, sciClub);
+      // await fireCollection.doc(sciClub.id).set(clubNew);
       Logger().i("Migrated: ${sciClub.id}");
     }
   }
@@ -92,20 +92,23 @@ class MigrateToFirebase extends _$MigrateToFirebase {
     if (email != null) {
       print("${club.name} $email ");
       final user = await createUser(email, club.name);
-      print("https://topwr-form.sharkserver.kowalinski.dev/${user.$2}");
-      return fromFormToFirebase(user.$1, club);
-    } else if (club.links?.isNotEmpty ?? false) {
-      print("${club.links?[0]?.link} ");
-      final user =
-          await createUser("${generateWEPKey(6)}@kowalinski.dev", club.name);
-      print(
-        "${club.name} https://topwr-form.sharkserver.kowalinski.dev/${user.$2}",
-      );
+      print("https://formularz.solvro.pl/${user.$2}");
       return fromFormToFirebase(user.$1, club);
     } else {
-      // print(club.name + club.links!.map((e) => e?.link).toString());
-      return fromFormToFirebase(null, club);
+      throw Exception("No email found for ${club.name}");
     }
+    // } else if (club.links?.isNotEmpty ?? false) {
+    //   print("${club.links?[0]?.link} ");
+    //   final user =
+    //       await createUser("${generateWEPKey(6)}@kowalinski.dev", club.name);
+    //   print(
+    //     "${club.name} https://formularz.solvro.pl/${user.$2}",
+    //   );
+    //   return fromFormToFirebase(user.$1, club);
+    // } else {
+    //   // print(club.name + club.links!.map((e) => e?.link).toString());
+    //   return fromFormToFirebase(null, club);
+    // }
   }
 
   Future<SciClub> fromFormToFirebase(
