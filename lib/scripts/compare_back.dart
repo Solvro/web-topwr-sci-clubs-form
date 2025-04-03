@@ -31,7 +31,6 @@ class CompareBack extends _$CompareBack {
 
     var diffCount = 0;
     var nullCount = 0;
-
     for (final sciClub in sciClubs.docs) {
       final firebaseOne = sciClub.data();
       if (firebaseOne.id == null) {
