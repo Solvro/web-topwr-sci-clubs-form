@@ -1,8 +1,8 @@
 import "package:device_frame/device_frame.dart";
 import "package:flutter/gestures.dart";
 import "package:flutter/material.dart";
-import "package:flutter_gen/gen_l10n/app_localizations.dart";
 
+import "../../l10n/app_localizations.dart";
 import "../topwr_mockup/config/ui_config.dart";
 import "../topwr_mockup/features/navigator/root_navigator_widget.dart";
 
